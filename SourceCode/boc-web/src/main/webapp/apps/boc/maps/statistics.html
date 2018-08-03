@@ -1,0 +1,113 @@
+<div id="STATISTICS-PAGE">
+	<div id="SHOW-INFO-LEFT">
+		<div class="col-md-4 show-info-statistics">
+			<div class="row" style="text-align: center;margin-bottom: 10px;">
+				<span style="font-size: 13px;font-weight: 700;text-transform: uppercase;">TÌNH HÌNH THỰC HIỆN CHỈ TIÊU - {{vm.titleStatistics}}</span>
+			</div>
+			<div class="row" style="margin-bottom: 10px;">
+				<span>Số chỉ tiêu đạt/Tổng số chỉ tiêu: {{vm.statisticsTargets.targetD}}/{{vm.statisticsTargets.totalTargetD}}</span><br>
+				<span>Số chỉ tiêu không đạt M1/Tổng số chỉ tiêu: {{vm.statisticsTargets.targetM1}}/{{vm.statisticsTargets.totalTargetM1}}</span><br>
+				<span>Số chỉ tiêu không đạt M2/Tổng số chỉ tiêu: {{vm.statisticsTargets.targetM2}}/{{vm.statisticsTargets.totalTargetM2}}</span><br>
+				<span>Số chỉ tiêu không đạt M3/Tổng số chỉ tiêu: {{vm.statisticsTargets.targetM3}}/{{vm.statisticsTargets.totalTargetM3}}</span><br>
+			</div>
+			<div class="row" style="text-align: center;margin-bottom: 10px;">
+				<span style="font-size: 13px;font-weight: 700;text-transform: uppercase;" data-translate="statistics.title.titleInfoLeftTable"></span>
+			</div>
+			<div class="class-table-info-statistics">
+				<table ng-table="vm.tableParamsTarget" class="table" show-filter="false">
+				    <tr ng-repeat="listTargets in $data track by $index">
+				      	<td data-title="'STT'">{{$index + 1}}</td>
+				      	<td data-title="'Chỉ tiêu'" sortable="'decode'" style="text-align: left;">
+				        	<a href="javascript:void(0)" style="color: inherit;text-decoration: none;outline: 0;" data-ng-click="vm.viewMaps(listTargets)">{{listTargets.decode}}</a>
+				        </td>
+				        <td data-title="'Thực hiện'" sortable="'actual'">
+				        {{listTargets.actual}}</td>
+				        <td data-title="'Kế hoạch'" sortable="'target'">
+				        {{listTargets.target}}</td>
+				        <td data-title="'Đánh giá'" sortable="'evaluate'">
+				        {{listTargets.evaluate}}</td>
+				    </tr>
+			  	</table>
+			</div>
+		</div>
+	</div>
+	<div id="SHOW-INFO-RIGHT-CHART">
+		<div id="SHOW-INFO-RIGHT" class="tab-content active tab-content-page col-md-8">
+			<div class="div-info-statistics-employee">
+				<div class="row row-chart-table" ng-repeat="lstStatisticsInfoEmployeeDraw in vm.listStatisticsInfoEmployeeOddEven track by $index">
+					<div class="col-md-6" style="text-align: center;" ng-repeat="info in lstStatisticsInfoEmployeeDraw">
+						<div class="div-image-statistics">
+							<img class="image-statistics" ng-src="{{vm.getUrlImageByFileId(info.fileId)}}">
+						</div>
+						<span>{{info.fullName}}</span><br>
+						<span>{{info.positionName}}</span><br>
+						<span>Số chỉ tiêu không đạt/Tổng số chỉ tiêu: {{info.targetNotAchieved}}/{{info.totalTarget}}</span><br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="SHOW-CHART" class="tab-content tab-content-page col-md-8">
+			<div id="chart-boc-page">
+				<div class="row">
+					<div class="tab classTabChartInline col-md-8">
+						<button style="display: inline-block;" class="btn-{{tab.moduleGroup}}" ng-class="{active : $index == 0}" data-ng-click="vm.openTabChart('chart-boc-page', tab.moduleGroup);" ng-repeat="tab in vm.listBocModule track by $index">{{tab.moduleGroupName}}</button>
+					</div>
+					<div class="buttonNextExit col-md-4">
+						<button class="next buttonHoverMap btn" data-ng-click="vm.nextTabChart('chart-boc-page');">
+							<i class="glyphicon glyphicon-arrow-right" style="font-size: 17px;display: block;margin-right: 0px;"></i>
+						</button>
+						<div style="display: inline-block;">
+							<button class="buttonHoverMap btn" data-ng-click="vm.backMaps()">
+								<i class="fa fa-reply" style="font-size: 17px;display: block;margin-right: 0px;"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div id="CHART-ALL" style="height: 100%;margin-top: 20px;">
+					<div id="{{tabModule.moduleGroup}}" class="tab-content"
+							ng-class="{active : $index == 0}"
+							style="height: 100%;" ng-repeat="tabModule in vm.listBocModule track by $index">
+						<div id="{{tabModule.moduleGroup}}-PAGING" class="chart-paging-number">
+							<button data-ng-click="vm.pagination('{{tabModule.moduleGroup}}', $index+1);" ng-class="{active : $index == 0, classDisplayNone : vm.listIdPaging.length==1}" 
+								class="page-{{$index+1}}" ng-repeat="paging in vm.listIdPaging track by $index">{{$index+1}}</button>
+						</div>
+						<div class="row row-chart-table page-{{lstChartDraw[2].paging}}" ng-repeat="lstChartDraw in vm.listChartOddEven track by $index">
+							<div class="col-md-6 bg-chart page-{{chart.paging}}" ng-class="{classDisplayNone : chart.chartData == undefined}" ng-repeat="chart in lstChartDraw">
+								<div class="panel bg-chart no-border">
+									<div class="panel-heading">
+										<span class="font-bold">{{chart.chartTitle}}</span>
+										<ul class="panel-controls">
+											<li>
+												<a href="javascript:void(0)" data-ng-click="vm.onClickExpandChart($event)" class="panel-fullscreen" title="{{'global.common.expand' | translate}}">
+													<span class="fa fa-expand"></span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="panel-body" style="padding: 0px !important;">
+										<div ng-if="chart.chartTypeConfig == 'chart-line'" class="panel-body">
+				                        	<canvas chart-line id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-series="chart.chartSeries" chart-options="chart.chartOptions"
+											chart-click="vm.chartClick" 
+											chart-colors="vm.colorsChartOptions"></canvas>
+										</div>
+										<div ng-if="chart.chartTypeConfig == 'chart-bar'" class="panel-body">
+				                        	<canvas chart-bar id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-series="chart.chartSeries" chart-options="chart.chartOptions"
+											chart-click="vm.chartClick" 
+											chart-colors="vm.colorsChartOptionsBar"></canvas>
+										</div>
+										<div ng-if="chart.chartTypeConfig == 'chart-pie'" class="panel-body">
+											<canvas chart-pie id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-options="chart.chartOptions"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

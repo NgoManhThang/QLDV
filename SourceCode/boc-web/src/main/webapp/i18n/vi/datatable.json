@@ -1,0 +1,24 @@
+{
+  "datatable": {
+    "sProcessing": "Đang xử lý...",
+    "sLengthMenu": "Hiển thị _MENU_ bản ghi",
+    "sZeroRecords": "Không có dữ liệu hiển thị",
+    "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+    "sInfoEmpty": "Không có dữ liệu hiển thị",
+    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+    "sInfoPostFix": "",
+    "sSearch": "Tìm:",
+    "sUrl": "",
+    "oPaginate": {
+      "sFirst": "Trang đầu",
+      "sPrevious": "<",
+      "sNext": ">",
+      "sLast": "Trang cuối"
+    },
+    "info": "Tổng số: _TOTAL_",
+    "records-total-0": "Tổng số: 0",
+    "display": "Hiển thị",
+    "records": "bản ghi",
+    "page": "Trang"
+  }
+}

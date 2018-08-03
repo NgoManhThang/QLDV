@@ -1,0 +1,140 @@
+{
+  "global": {
+    "title": "Tổng Công Ty Điện Lực Miền Nam (SPC)",
+    "menu": {
+      "Dashboard": "Bảng điều khiển",
+      "employee": "QUẢN LÝ NHÂN VIÊN",
+      "partner": "Đối tác",
+      "union": "Đoàn vào",
+      "statement": "QUẢN LÝ TỜ TRÌNH",
+      "lookup": "Tra cứu - dành cho vệ binh",
+      "report": "Báo cáo"
+    },
+    "common": {
+      "toolbar-all": "--Tất cả--",
+      "toolbar-filter": "Tìm kiếm",
+      "toolbar-checkall": "Chọn tất cả",
+      "toolbar-uncheckall": "Bỏ chọn tất cả",
+      "toolbar-chose": "Chọn...",
+      "toolbar-chose1": "-- Lựa chọn --",
+      "fresh": "Làm mới",
+      "expand": "Mở rộng",
+      "collapse": "Thu lại",
+      "settingTable": "Cấu hình bảng"
+    },
+    "placeholder": {
+      "search": "Tìm kiếm..."
+    },
+    "message": {
+      "no-data": "Không có dữ liệu",
+      "error": "Hệ thống đang có lỗi. Xin vui lòng thử lại sau.",
+      "success": "Thao tác thành công",
+      "duplicate": "Dữ liệu này đã được khai báo",
+      "processing": "Đang tải...",
+      "notNull": "Không được để trống",
+      "delete": {
+        "success": "Xóa thành công!",
+        "error": "Xóa không thành công!",
+        "noCanDelete": "Không thể xóa bản ghi này!"
+      },
+      "confirm": {
+        "delete": "Bạn có chắc chắn muốn xóa các bản ghi được chọn không ?",
+        "confirmAction": "Bạn có chắc chắn muốn thực hiện thao tác này ?"
+      },
+      "alert": {
+        "warning": "Cảnh báo!",
+        "success": "Thành công!",
+        "danger": "Lỗi!"
+      },
+      "notOver250": " không vượt quá 250 ký tự!",
+      "notOver50": " không vượt quá 50 ký tự!",
+      "permission": "Xin lỗi! Bạn không có quyền trên bản ghi này!",
+      "invalid": "không hợp lệ",
+      "selectedNull": "Chưa có dữ liệu nào được chọn"
+    },
+    "import": {
+      "file-required": "Chưa chọn file",
+      "invalidTemplate": "File import không đúng mẫu",
+      "success": "Import thành công",
+      "fail": "Import thất bại",
+      "extension-invalid": "File sai định dạng",
+      "fileEmpty": "File rỗng",
+      "invalidData": "Dữ liệu không hợp lệ",
+      "fileExcelError": "File excel có lỗi, vui lòng kiểm tra lại",
+      "dataOver": "Số lượng bản ghi import quá lớn (<= 1500 bản ghi)"
+    },
+    "action": {
+      "search": "Tìm kiếm",
+      "exportExcel": "Xuất excel",
+      "importExcel": "Import Excel",
+      "delete": "Xóa",
+      "close": "Đóng",
+      "yes": "Có",
+      "no": "Không",
+      "choose-file": "Chọn file",
+      "view-file": "Xem file",
+      "confirm": "Xác nhận",
+      "addNew": "Thêm mới",
+      "addNewTVD": "Thêm mới thông tin thành viên đoàn",
+      "update": "Cập nhật",
+      "updateTVD": "Cập nhật thông tin thành viên đoàn",
+      "save": "Ghi lại",
+      "refresh": "Làm mới",
+      "approve": "Duyệt",
+      "band": "Từ chối",
+      "send": "Gửi",
+      "copy": "Sao chép",
+      "edit": "Sửa",
+      "registry": "Trình ký",
+      "exportAppendix": "Export phụ lục",
+      "add": "Thêm",
+      "download-temp": "Tải file mẫu",
+      "back": "Quay lại",
+      "cancel": "Hủy"
+    },
+    "popupDate": {
+      "currentText": "Tháng này",
+      "toDayText": "Hôm nay",
+      "closeText": "Đóng",
+      "clearText": "Xóa"
+    },
+    "modalUpload": {
+      "importExcel": "Nhập file excel",
+      "note": "Ghi chú: Hệ thống chỉ hỗ trợ",
+      "downloadTemplateFile": "Tải file mẫu tại đây",
+      "upload": "Tải lên",
+      "ok": "Ok",
+      "onlyZip": "Chỉ hỗ trợ file(.zip)"
+    },
+    "modalDelete": {
+      "confirmDelete": "Xác nhận xóa",
+      "message": "Bạn có muốn xóa các bản ghi này",
+      "delete": "Xóa",
+      "close": "Đóng"
+    },
+    "modalDetail": {
+      "close": "Đóng"
+    },
+    "index": "STT",
+    "header":{
+      "detail": "Chi tiết"
+    },
+    "alert": {
+      "timeNotValid": "Thời gian không hợp lệ!",
+      "fromDateLessToDate": "Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!",
+      "fromDateLessNowDate": "Thời gian kết thúc không được lớn hơn ngày hiện tại",
+      "noRecordSelected": "Chưa có bản ghi nào được chọn!"
+    },
+    "status": {
+      "notApprove": "Chưa duyệt",
+      "notIssued": "Chưa cấp",
+      "issued": "Đã cấp"
+    },
+    "table": {
+      "name": "Tên",
+      "size": "Kích thước",
+      "action": "Hành động"
+    }
+  },
+  "footer": "This is your footer"
+}

@@ -1,0 +1,38 @@
+<div class="form-group form-group-custom">
+	<fieldset class="input-group" data-ng-disabled="vm.configBoxSearch.disable.area">
+		<multiselect class="input-xlarge"
+					 multiple="true"
+					 tile='global.common.toolbar-area'
+					 data-ng-model="vm.selectedArea"
+					 options="c.description for c in vm.areas"
+					 data-ng-change="vm.changedArea()"
+					 change="selected()">
+		</multiselect>
+	</fieldset>
+</div>
+
+<div class="form-group form-group-custom">
+	<fieldset class="input-group" data-ng-disabled="vm.configBoxSearch.disable.province">
+		<multiselect class="input-xlarge"
+					 multiple="true"
+					 tile="global.common.toolbar-province"
+					 data-ng-model="vm.selectedProvince"
+					 options="c.description for c in vm.provinces"
+					 data-ng-change="vm.changedProvince()"
+					 change="selected()">
+		</multiselect>
+	</fieldset>
+</div>
+
+<div class="form-group form-group-custom">
+	<fieldset class="input-group" data-ng-disabled="vm.configBoxSearch.disable.district">
+		<multiselect class="input-xlarge"
+					 multiple="true"
+					 tile="global.common.toolbar-district"
+					 data-ng-model="vm.selectedDistrict"
+					 options="c.description for c in vm.districts"
+					 data-ng-change="vm.changedDistrict()"
+					 change="selected()">
+		</multiselect>
+	</fieldset>
+</div>

@@ -1,0 +1,21 @@
+{
+  "statistics":{
+    "title":{
+      "search": "Tìm kiếm",
+      "table": "Bảng dữ liệu",
+      "titleInfoLeft": "TÌNH HÌNH THỰC HIỆN CHỈ TIÊU - EVNSPC",
+      "titleInfoLeftTable": "DANH SÁCH CHỈ TIÊU"
+    },
+    "labelInput": {
+      
+    },
+    "placeholder":{
+      
+    },
+    "button": {
+      "refresh": "Làm mới",
+      "search": "Tìm kiếm",
+      "addNew": "Thêm mới"
+    }
+  }
+}

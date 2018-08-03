@@ -1,0 +1,212 @@
+/***** 17.7 LOGIN-FORM *****/
+
+
+
+body {
+    line-height: 21px;
+    color: #636e7b;
+	
+}
+
+body.notfound,
+body.signin {
+    background: #e4e7ea;
+}
+
+input,select,textarea {
+    color: #636e7b;
+}
+.w-full {
+  width: auto !important; }
+a:focus, a:active { outline: none; }
+
+h1,h2,h3,h4,h5 {
+}
+
+strong {
+    font-weight: normal;
+}
+
+/* preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e4e7ea; 
+    z-index: 10000; 
+}
+
+#status {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 50%; 
+    top: 50%;
+    margin: -15px 0 0 -15px;
+    font-size: 32px;
+}
+
+.contentpanel {
+    padding: 20px;
+    position: relative;
+}
+
+.contentpanel::after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+/********** 18. MEDIA QUERIES **********/
+/***************************************/
+
+@media screen and (min-width: 2135px) {
+	body
+	{
+		background:url(../images/4.jpg) center top -71px no-repeat;
+		background-size: 100% auto;
+	}
+}
+@media screen and (max-width: 2135px) {
+	body{
+		background:url(../images/4.jpg) center top no-repeat ;
+		background-size: 100% auto;
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+
+}
+
+@media screen and (max-width: 640px) {
+
+   
+
+}
+
+.bg-login{
+	background:url(../images/4.jpg) center top no-repeat;
+		background-size: 100%;
+}
+
+.box-control
+{
+	background:rgba(255, 255, 255, 0.5);
+	/* border-top:6px solid #da251c;
+	border-bottom:1px solid #63b0c9;
+	border-left:1px solid #63b0c9;
+	border-right:1px solid #63b0c9; */
+	/* background: url("../img/bg-box.png") no-repeat center center; */
+}
+.nameHT
+{
+	font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.btn-info, .btn-default
+{
+	text-transform:uppercase;
+	font-size:16px;
+	
+}
+.form-group input
+{
+	font-size:1.2em;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.img-center
+{
+	margin:0 auto;
+}
+.frmLogin input[type="text"],
+.frmLogin input[type="password"]
+{
+	padding-left:43px;
+}
+.frmLogin input[name="userName"]
+{
+	background:url("../img/user.png") left 8px center no-repeat #fff;
+}
+.frmLogin input[type="password"]
+{
+	background:url("../img/lock.png") left 8px center no-repeat #fff;
+}
+.frmLogin input[name="captCha"] {
+    background: #fff url("../img/language.png") no-repeat scroll left 8px center;
+}
+.frmLogin .btn-info {
+    background-color: #3fa3ed;
+    border: none;
+    color: #fff;
+}
+.frmLogin .btn{
+	border-radius:0;
+}
+.positionBox
+{
+	margin-top: 6%;
+}
+.z-checkbox{
+    position: relative;
+}
+.z-checkbox, .rdio {
+    position: relative;
+}
+input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin: 4px 0 0 2px;
+}
+.rdio-primary input[type="radio"]:checked + label::before {
+    border-color: #428bca;
+}
+.ckbox-primary input[type="checkbox"]:checked + label::before {
+    background-color: #3FA3ED;
+    border-color: #3FA3ED;
+}
+
+.rdio-primary input[type="radio"]:checked + label::after {
+    background-color: #428bca;
+}
+.z-checkbox label {
+    cursor: pointer;
+    margin-bottom: 7px !important;
+    padding-left: 10px;
+}
+.z-checkbox label::before {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #bbb;
+    border-radius: 0px;
+    content: "";
+    display: inline-block;
+    height: 22px;
+    left: 0;
+    position: absolute;
+    top: 0px;
+    width: 23px;
+}
+.z-checkbox input[type="checkbox"]:checked + label::after {
+    color: #fff;
+    content: "";
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-size: 15px;
+    height: 16px;
+    left: 3px;
+    position: absolute;
+    top: 5;
+    width: 16px;
+}
+.red {
+    color: #ff0000;
+}
+input.form-control.errOld {
+    border-color: #ca0606;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0, 0.6);
+    outline: 0 none;
+}

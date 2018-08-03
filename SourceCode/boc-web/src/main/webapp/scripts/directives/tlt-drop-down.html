@@ -1,0 +1,26 @@
+<div class="dropdown-with-ivhTreeView" ng-click="onClickShowHideIVHDropdown($event,this)">
+    <div class="dropDown"  ng-disabled="disabled" ng-class="{'error': !valid()}">
+    	<div class="truncate" style="padding-right: 10px;">
+    		<span style="color: rgb(170, 170, 170);">{{selectedText}}</span>
+    	</div>
+        <div class="dropDownButton" >
+            <i class="fa fa-caret-down"></i>
+        </div>
+    </div>
+    <div class="dropDownContent">
+        <input type="text" ng-model="myQuery" class="searchBox" placeholder="{{ 'global.common.toolbar-filter' | translate }}" />
+        <button class="btn btn-sm btn-info" ng-click="selectAll()" ng-show="isMultipleChoose">
+            {{ 'global.common.toolbar-checkall' | translate }}
+        </button>
+        <button class="btn btn-sm btn-primary" ng-click="deselectAll()" ng-show="isMultipleChoose">
+            {{ 'global.common.toolbar-uncheckall' | translate }}
+        </button>
+        <div class="ivhTree" ivh-treeview="ivhModel"
+             ivh-treeview-filter="myQuery"
+             ivh-treeview-use-checkboxes="true"
+             ivh-treeview-disable-checkbox-selection-propagation="true"
+             ivh-treeview-on-cb-change="changeCallback(ivhNode)"
+             ivh-treeview-expand-to-depth="1">
+        </div>
+    </div>
+</div>

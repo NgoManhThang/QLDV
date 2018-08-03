@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <!-- <property name="now" value="current_timestamp" dbms="oralce"/> -->
+
+    <changeSet id="00000000000000" author="itsol" runAlways="true">
+    	<validCheckSum>ANY</validCheckSum>
+        <!-- <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="50"/> -->
+        <sql dbms="oracle" splitStatements="true" stripComments="true">
+	        select 1 from dual
+        </sql>
+    </changeSet>
+
+    <!--
+        Core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <!-- <changeSet id="00000000000001" author="itsol">
+        
+    </changeSet> -->
+
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<div class="dropdown">
+
+
+	<div class="btn btn-open" ng-click="toggleSelected()" ng-disabled="disabled" ng-class="{'error': !valid()}" tabindex="{{index}}">
+		<span class="pull-left">{{header}}</span>
+		<span class="caret pull-right"></span>
+	</div>
+	<ul class="dropdown-menu">
+		<li>
+			<input class="input-block-level" type="text" ng-model="searchText.label" placeholder="{{ 'global.common.toolbar-filter' | translate }}" />
+			<span class="glyphicon glyphicon-remove" data-attr-reset="false" data-ng-click="resetSearchBox();"></span>
+		</li>
+		<li ng-show="multiple">
+			<input type="button" class="btn btn-sm btn-info" value="{{ 'global.common.toolbar-checkall' | translate }}" data-ng-click="checkAll()" />
+			<input type="button" class="btn btn-sm btn-primary" value="{{ 'global.common.toolbar-uncheckall' | translate }}" data-ng-click="uncheckAll()"/>
+		</li>
+		<li ng-repeat="i in items | filter:searchText">
+			<fieldset class="checkbox">
+				<label>
+					<input type="checkbox" ng-click="select(i);" data-ng-checked="i.checked" />
+					{{i.label}}
+				</label>
+			</fieldset>
+		</li>
+	</ul>
+</div>

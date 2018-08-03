@@ -1,0 +1,36 @@
+{
+  "maps":{
+    "title":{
+      "search": "Tìm kiếm",
+      "table": "Bảng dữ liệu",
+      "warningProvince": "CẢNH BÁO PC KÉM",
+      "warningDistrict": "CẢNH BÁO PC KÉM",
+      "warningSeriousProvince": "ĐƠN VỊ CÓ CẢNH BÁO NGHIÊM TRỌNG",
+      "warningSeriousDistrict": "ĐƠN VỊ CÓ CẢNH BÁO NGHIÊM TRỌNG",
+      "titleDistrictname" : "GIÁM ĐỐC TRUNG TÂM KỸ THUẬT",
+      "titleTableDistrictName" : "DANH SÁCH CHỈ TIÊU"
+    },
+    "labelInput": {
+      "province": "PC",
+      "district": "PC",
+      "targets" : "Chỉ tiêu",
+      "target" : "Kế hoạch",
+      "actual" : "Thực hiện",
+      "evaluate" : "Đánh giá"
+    },
+    "placeholder":{
+      "codeEmployee": "Nhập mã nhân viên",
+      "email": "Nhập email",
+      "fullName": "Nhập họ tên",
+      "unit": "Nhập đơn vị",
+      "phone": "Nhập số điện thoại",
+      "userName": "Nhập tên đăng nhập",
+      "place": "Chọn địa điểm"
+    },
+    "button": {
+      "refresh": "Làm mới",
+      "search": "Tìm kiếm",
+      "addNew": "Thêm mới"
+    }
+  }
+}

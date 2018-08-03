@@ -1,0 +1,20 @@
+﻿<form enctype="multipart/form-data">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" data-ng-click="vm.clear()">&times;</button>
+        <h5 class="modal-title">Import file</h5>
+    </div>
+    <div class="modal-body">
+        <input type="file" class="form-control-sm" name="file" multiple="false" eg-files="photos" has-files="hasFiles"
+               accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <p>Ghi chú: Hệ thống chỉ hỗ trợ
+            <a href="" ng-click="download()"> File mẫu tại đây </a></label>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" ng-show="hasFiles" eg-upload="upload(photos, module)">
+            <em class="fa fa-upload"></em> Tải lên
+        </button>
+        <button class="btn btn-default btn-sm" data-ng-click="cancel(cancelroute)"> Hủy bỏ</button>
+        <br/><br/>
+    </div>
+</form>

@@ -1,0 +1,68 @@
+{
+  "target":{
+    "title":{
+      "search": "Tìm kiếm",
+      "table": "Bảng dữ liệu",
+      "import": "Import mục tiêu"
+    },
+    "labelInput": {
+      "allProvince": "Tất cả tỉnh",
+      "allDistrict": "Tất cả huyện",
+      "typeTargets" : "Loại chỉ tiêu",
+      "toDate" : "Tháng kết thúc",
+      "fromDate" : "Tháng bắt đầu",
+      "monthTargets": "Thời gian giao chỉ tiêu",
+      "regionCode": "Mã địa bàn",
+      "regionName": "Tên địa bàn",
+      "target": "Mục tiêu",
+      "warning1": "Cảnh báo mức 1",
+      "warning2": "Cảnh báo mức 2",
+      "createdUserName": "Người tạo",
+      "createDate": "Ngày tạo",
+      "typeTargetsMonthYear" : "Mức chỉ tiêu"
+    },
+    "placeholder":{
+      "codeEmployee": "Nhập mã nhân viên",
+      "email": "Nhập email",
+      "fullName": "Nhập họ tên",
+      "unit": "Nhập đơn vị",
+      "phone": "Nhập số điện thoại",
+      "userName": "Nhập tên đăng nhập",
+      "place": "Chọn địa điểm"
+    },
+    "button": {
+      "refresh": "Làm mới",
+      "search": "Tìm kiếm",
+      "addNew": "Thêm mới",
+      "export": "Export Excel",
+      "import": "Import Excel",
+      "delete": "Xóa"
+    },
+    "message": {
+	  "confirmDelete": "Xóa mục tiêu",
+      "saveSuccess": "Lưu mục tiêu thành công",
+      "deleteSuccess": "Xóa mục tiêu thành công",
+      "statusAddNew": {
+        "success": "Thêm mới thành công!",
+        "error": "Thêm mới thất bại",
+        "import": {
+          "success": "Import thành công",
+          "fileNull": "Vui lòng chọn file",
+          "error": "Import không thành công",
+          "overData": "Import tối đã 1500 dòng",
+          "noData": "File không có dữ liệu",
+          "fileTypeInvalid": "File không đúng định dạng",
+          "fileInvalid": "Không đúng định dạng template"
+        }
+      }
+    },
+    "btn": {
+      "upload": "Upload",
+      "cancel": "Thoát"
+    },
+    "label": {
+      "downFileTem": "Tải file mẫu ",
+      "here": "tại đây"
+    }
+  }
+}

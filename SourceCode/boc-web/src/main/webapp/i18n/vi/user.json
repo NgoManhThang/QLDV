@@ -1,0 +1,58 @@
+{
+  "user":{
+    "title":{
+      "search": "Tìm kiếm",
+      "table": "Bảng dữ liệu",
+      "viewDetailUser": "Xem chi tiết người dùng",
+      "editDetailUser": "Cập nhật người dùng",
+      "addDetailUser": "Thêm mới người dùng"
+    },
+    "labelInput": {
+      "codeEmployee": "Mã nhân viên",
+      "email": "Email",
+      "rank": "Cấp bậc",
+      "fullName": "Họ tên",
+      "unit": "Đơn vị",
+      "permissApp": "Quyền chức năng",
+      "permissTarget": "Quyền chỉ tiêu",
+      "phone": "Số điện thoại",
+      "regency": "Chức vụ",
+      "status": "Trạng thái",
+      "userName": "Tên đăng nhập",
+      "comments": "Ghi chú",
+      "statusName": "Trạng thái",
+      "imageUser": "Ảnh",
+      "userPassword": "Mật khẩu",
+      "reenterUserPassword": "Nhập lại mật khẩu",
+      "dateStartWorking": "Ngày bổ nhiệm",
+      "company": "Công ty"
+    },
+    "placeholder":{
+      "codeEmployee": "Nhập mã nhân viên",
+      "email": "Nhập email",
+      "fullName": "Nhập họ tên",
+      "unit": "Nhập đơn vị",
+      "phone": "Nhập số điện thoại",
+      "userName": "Nhập tên đăng nhập",
+      "unit": "Chọn đơn vị",
+      "userPassword": "Nhập mật khẩu",
+      "reenterUserPassword": "Nhập lại mật khẩu",
+      "dateStartWorking": "Nhập ngày bổ nhiệm",
+      "permissApp": "Chọn quyền chức năng",
+      "permissTarget": "Chọn quyền chỉ tiêu"
+    },
+    "button": {
+      "refresh": "Làm mới",
+      "search": "Tìm kiếm",
+      "addNew": "Thêm mới"
+    },
+    "message": {
+      "duplicateUserName": "Trùng tên đăng nhập",
+      "duplicateUnit": "Công ty của đơn vị này đã có giám đốc",
+      "duplicateUnitCNTT": "Trung tâm CNTT đã có giám đốc",
+      "saveSuccess": "Lưu người dùng thành công",
+      "deleteSuccess": "Xóa người dùng thành công",
+      "confirmDelete": "Xóa người dùng"
+    }
+  }
+}

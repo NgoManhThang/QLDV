@@ -1,0 +1,33 @@
+{
+    "dashboard": {
+		"title": "Dashboard",
+		"label" : {
+			"hello" : "Hi {{username}}, Welcome back",
+			"settingTitle": "SETTING (Select {0} chart limited)",
+			"save": "Save",
+			"close": "Close",
+			"countSelected": "{0} chart selected",
+			"nodata": "No data to display",
+			"showValue": "Show value"
+		},
+		"data": {
+			"table": {
+				"no": "No",
+				"chart": "Chart",
+				"kpi": "KPI"
+			},
+			"target": "Target",
+			"quantity": "Quantity",
+			"total": "Total"
+		},
+		"alert":{
+			"success": "Success",
+			"maximumChart": "Maximum {0} chart select"
+		}
+    },
+	"common": {
+		"target": {
+			"unit-delivery": "Đơn vị giao"
+		}
+	}
+}

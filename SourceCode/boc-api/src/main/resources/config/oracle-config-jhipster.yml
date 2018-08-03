@@ -1,0 +1,23 @@
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    dataSourceClassName: oracle.jdbc.pool.OracleDataSource
+    url: jdbc:Oracle:thin:@10.0.0.125:1521/orcl
+    username: bikt_dw
+    password: 123456
+
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    database: ORACLE
+    openInView: false
+    show_sql: true
+    generate-ddl: false
+    hibernate:
+        ddl-auto: none
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+    properties:
+        hibernate.cache.use_second_level_cache: true
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: false
+        hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory

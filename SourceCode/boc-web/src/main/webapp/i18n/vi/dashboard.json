@@ -1,0 +1,33 @@
+{
+    "dashboard": {
+		"title": "Dashboard",
+		"label" : {
+			"hello" : "Chào {{username}} đã quay trở lại",
+			"settingTitle": "CẤU HÌNH TRANG CHỦ (Chọn tối đa {0} biểu đồ)",
+			"save": "Ghi lại",
+			"close": "Đóng",
+			"countSelected": "Bạn đã chọn {0} biểu đồ",
+			"nodata": "Không có dữ liệu để hiển thị",
+			"showValue": "Hiển thị giá trị"
+		},
+		"data": {
+			"table": {
+				"no": "STT",
+				"chart": "Biểu đồ",
+				"kpi": "KPI"
+			},
+			"target": "Mục tiêu",
+			"quantity": "Số lượng",
+			"total": "Tổng"
+		},
+		"alert":{
+			"success": "Thao tác thành công",
+			"maximumChart": "Chỉ được chọn tối đa {0} biểu đồ"
+		}
+    },
+	"common": {
+		"target": {
+			"unit-delivery": "Đơn vị giao"
+		}
+	}
+}

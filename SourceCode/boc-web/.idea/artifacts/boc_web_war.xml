@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="boc-web:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="boc-web-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="boc-web:war exploded" />
+    </root>
+  </artifact>
+</component>

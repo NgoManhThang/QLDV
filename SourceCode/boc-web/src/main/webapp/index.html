@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- META SECTION -->
+    <title>BOC Kinh doanh - Version 1.0</title>            
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- END META SECTION -->
+    
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" href="content/assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="libs/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="libs/jquery/datatables/plug-ins/responsive/css/responsive.dataTables.css" type="text/css"/>
+    <link rel="stylesheet" href="libs/jquery/datatables/plug-ins/button/css/buttons.dataTables.css" type="text/css"/>
+    <link rel="stylesheet" href="bower_components/angular-ivh-treeview/dist/ivh-treeview.min.css">
+    <link rel="stylesheet" href="libs/jquery/selectBoxIt/src/stylesheets/jquery.selectBoxIt.css">
+    <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main-custom.css"/>
+    <!-- EOF CSS INCLUDE -->
+    
+</head>
+<body ng-app="app" ng-controller="AppCtrl">
+<div class="app" ui-view></div>
+
+<!-- START PLUGINS -->
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>  
+<!-- END PLUGINS -->
+
+<!-- Angular -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="libs/angular/angular-animate/angular-animate.js"></script>
+<script src="libs/angular/angular-resource/angular-resource.js"></script>
+<script src="libs/angular/angular-sanitize/angular-sanitize.js"></script>
+<script src="libs/angular/angular-touch/angular-touch.js"></script>
+<!-- <script src="libs/angular/angular-ui-select/dist/select.js"></script> -->
+
+<!-- router -->
+<script src="libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- storage -->
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<!-- utils -->
+<script src="libs/angular/angular-ui-utils/ui-utils.js"></script>
+<!-- lazyload -->
+<script src="libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
+<!-- build:js app/vendor.js -->
+<!-- bower:js -->
+<!-- Core lib -->
+<script src="bower_components/messageformat/messageformat.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+<script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<!-- <script src="bower_components/highcharts-ng/dist/highstock.src.js"></script>
+<script src="bower_components/highcharts-ng/dist/highcharts-more.js"></script>
+<script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+<script src="bower_components/highcharts-ng/dist/dark-unica.js"></script> -->
+<!--Display nodata in hightchart-->
+<script src="bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
+<script src="scripts/others/busy_indicator.js"></script>
+<script src='bower_components/ng-table/ng-table.js'></script>
+<!-- endinject -->
+<!-- endbuild -->
+<script src="scripts/controllers/load-google-maps.js"></script>
+
+<!-- App -->
+<script src="scripts/app.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/config.lazyload.js"></script>
+<script src="scripts/config.router.js"></script>
+<script src="scripts/app.ctrl.js"></script>
+
+<script src="scripts/Chart.js"></script>
+
+<script src="scripts/directives/ui-jp.js"></script>
+<script src="scripts/directives/ui-nav.js"></script>
+<script src="scripts/directives/ui-fullscreen.js"></script>
+<script src="scripts/directives/ui-scroll-to.js"></script>
+<script src="scripts/directives/ui-toggle-class.js"></script>
+<script src="scripts/directives/ui-include.js"></script>
+<script src="scripts/directives/its-common.js"></script>
+
+<script src="scripts/filters/fromnow.js"></script>
+
+<script src="scripts/services/ngstore.js"></script>
+<script src="scripts/services/ui-load.js"></script>
+<script src="scripts/services/palette.js"></script>
+
+<script src="scripts/services/user/user.service.js"></script>
+<script src="scripts/services/profiles/profile.service.js"></script>
+<script src="scripts/services/profiles/page-ribbon.directive.js"></script>
+<script src="scripts/services/auth/auth.service.js"></script>
+<script src="scripts/services/auth/auth.jwt.service.js"></script>
+<script src="scripts/services/auth/has-authority.directive.js"></script>
+<!-- endbuild -->
+
+<!-- Component -->
+<script src="scripts/components/language/language.service.js"></script>
+<script src="scripts/components/language/language.filter.js"></script>
+<script src="scripts/components/language/language.controller.js"></script>
+<script src="scripts/components/language/language.constants.js"></script>
+<script src="scripts/components/util/truncate-words.filter.js"></script>
+<script src="scripts/components/util/truncate-characters.filter.js"></script>
+<script src="scripts/components/util/sort-by.directive.js"></script>
+<script src="scripts/components/util/sort.directive.js"></script>
+<script src="scripts/components/util/parse-links.service.js"></script>
+<script src="scripts/components/util/pagination-util.service.js"></script>
+<script src="scripts/components/util/jhi-item-count.directive.js"></script>
+<script src="scripts/components/util/date-util.service.js"></script>
+<script src="scripts/components/util/data-util.service.js"></script>
+<script src="scripts/components/util/capitalize.filter.js"></script>
+<script src="scripts/components/util/base64.service.js"></script>
+<!-- <script src="scripts/components/form/show-validation.directive.js"></script> -->
+<script src="scripts/components/form/pagination.constants.js"></script>
+<script src="scripts/components/form/minbytes.directive.js"></script>
+<script src="scripts/components/form/maxbytes.directive.js"></script>
+
+<!-- Config and intercepter -->
+<script src="scripts/blocks/interceptor/errorhandler.interceptor.js"></script>
+<script src="scripts/blocks/interceptor/auth-expired.interceptor.js"></script>
+<script src="scripts/blocks/interceptor/auth.interceptor.js"></script>
+<script src="scripts/blocks/handlers/translation.handler.js"></script>
+<script src="scripts/blocks/handlers/state.handler.js"></script>
+
+<script src="scripts/blocks/config/compile.config.js"></script>
+<script src="scripts/blocks/config/translation-storage.provider.js"></script>
+<script src="scripts/blocks/config/translation.config.js"></script>
+<script src="scripts/blocks/config/http.config.js"></script>
+
+<script src="scripts/blocks/config/localstorage.config.js"></script>
+
+
+<!-- START PRELOADS -->
+<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+<!-- END PRELOADS -->                  
+
+<!-- START SCRIPTS -->
+
+<!-- START THIS PAGE PLUGINS-->        
+<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>        
+<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+<script type='text/javascript' src='js/plugins/noty/jquery.noty.js'></script>
+<script type='text/javascript' src='js/plugins/noty/layouts/center.js'></script>
+<script type='text/javascript' src='js/plugins/noty/layouts/bottomRight.js'></script>            
+<script type='text/javascript' src='js/plugins/noty/themes/default.js'></script>
+
+<!-- <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+<script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>       
+<script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+<script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script> -->
+<script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>                 
+
+<script type="text/javascript" src="js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-file-input.js"></script>
+<!-- <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-select.js"></script> -->
+<script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+
+<!-- <script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script> -->
+
+<script src="libs/jquery/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="libs/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="libs/jquery/datatables/plug-ins/pagination/input.js"></script>
+
+<script src="libs/jquery/datatables/plug-ins/responsive/js/dataTables.responsive.js"></script>
+<script src="libs/jquery/datatables/plug-ins/button/js/dataTables.buttons.js"></script>
+<script src="libs/jquery/datatables/plug-ins/button/js/buttons.html5.js"></script>
+<script src="libs/jquery/datatables/plug-ins/button/js/buttons.print.js"></script>
+<script src="libs/jquery/datatables/plug-ins/button/js/jszip.js"></script>
+<!-- END THIS PAGE PLUGINS-->  
+
+<!-- END SCRIPTS -->
+
+<!-- Configuration state router -->
+<script src="apps/access/access.state.js"></script>
+<!-- Boc management -->
+<script src="apps/boc/boc.state.js"></script>
+<script src="apps/boc/dashboard/dashboard.state.js"></script>
+<script src="apps/boc/maps/maps.state.js"></script>
+<script src="apps/boc/user/user.state.js"></script>
+<script src="apps/boc/target/target.state.js"></script>
+<!-- Session timeout -->
+<script src="libs/jquery/bootstrap/dist/js/bootstrap-session-timeout.js"></script>
+<script src="libs/jquery/grid-tree/treeGrid.js"></script>
+<script src="libs/jquery/selectBoxIt/src/javascripts/jquery.selectBoxIt.js"></script>
+
+</body>
+</html>
+

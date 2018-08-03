@@ -1,0 +1,227 @@
+<div id="MAPS-PAGE">
+	<div id="SHOW-INFO">
+		<div class="tab-content active tab-content-page col-md-4 show-info-province-district">
+			<div class="row" style="text-align: center;">
+				<span style="font-size: 12px;font-weight: 700;text-transform: uppercase;">{{vm.typeTitleAreaName}}</span>
+			</div>
+			<div class="row" ng-show="vm.showImageFirstEmployee">
+				<div class="col-md-3 staff-information" ng-class="vm.badEmployeeWorstBOCFirst.failKpi == 0 ? 'background-color-green' : 'background-color-red'">
+					<img ng-src="{{vm.viewImageFirstEmployee}}">
+				</div>
+				<div class="col-md-9">
+					<div>							
+						<span class="text-uppercase" style="font-size: 11px;font-weight: 600;">{{vm.badEmployeeWorstBOCFirst.fullName}}</span><br>
+						<span>{{vm.badEmployeeWorstBOCFirst.positionName}} {{vm.badEmployeeWorstBOCFirst.companyName}}</span> <br>
+						<!-- <span>Thời gian đảm nhiệm: {{vm.badEmployeeWorstBOCFirst.workingMonth}} tháng</span><br> -->
+						<span>Số chỉ tiêu không đạt: </span>
+						<span>{{vm.badEmployeeWorstBOCFirst.failKpi}}/{{vm.badEmployeeWorstBOCFirst.totalKpi}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-show="vm.showImageSecondEmployee">
+				<div class="col-md-9">
+					<div style="text-align: right;">							
+						<span class="text-uppercase" style="font-size: 11px;font-weight: 600;">{{vm.badEmployeeWorstBOCSecond.fullName}}</span><br>
+						<span>{{vm.badEmployeeWorstBOCSecond.positionName}} {{vm.badEmployeeWorstBOCSecond.companyName}}</span> <br>
+						<!-- <span>Thời gian đảm nhiệm: {{vm.badEmployeeWorstBOCSecond.workingMonth}} tháng</span><br> -->
+						<span>Số chỉ tiêu không đạt: </span>
+						<span>{{vm.badEmployeeWorstBOCSecond.failKpi}}/{{vm.badEmployeeWorstBOCSecond.totalKpi}}</span>
+					</div>
+				</div>
+				<div class="col-md-3 staff-information" ng-class="vm.badEmployeeWorstBOCSecond.failKpi == 0 ? 'background-color-green' : 'background-color-red'">
+					<img ng-src="{{vm.viewImageSecondEmployee}}">
+				</div>
+			</div>
+			<div class="row">
+				<div style="text-align: center;">
+					<span style="font-size: 11px;font-weight: 700;">{{vm.typeTitleTableAreaName}}</span>
+				</div>
+			</div>
+			<div class="row div-table-frame1-maps">
+				<table ng-table="vm.tableTopTenWorstBOC" class="table" show-filter="false">
+				    <tr ng-repeat="listTopTenWorst in $data track by $index">
+				      	<td data-title="'STT'">{{$index + 1}}</td>
+				        <td ng-if="listTopTenWorst.isClick == 'true'" data-title="'PC'" style="text-align: left;">
+							<a href="javascript:void(0)" style="color: inherit;text-decoration: none;outline: 0;" data-ng-click="vm.viewMapProvince(listTopTenWorst)">{{listTopTenWorst.regionName}}</a>
+						</td>
+						<td ng-if="listTopTenWorst.isClick != 'true'" data-title="'PC'" style="text-align: left;">
+							{{listTopTenWorst.regionName}}
+						</td>
+				        <td class="recent-month" data-title="vm.getColumnTable(0)" sortable="'failKPI0'">
+				        {{listTopTenWorst.failKPI0totalKPI0}}</td>
+				        <td data-title="vm.getColumnTable(1)" sortable="'failKPI1'">
+				        {{listTopTenWorst.failKPI1totalKPI1}}</td>
+				        <td data-title="vm.getColumnTable(2)" sortable="'failKPI2'">
+				        {{listTopTenWorst.failKPI2totalKPI2}}</td>
+				        <td data-title="vm.getColumnTable(3)" sortable="'failKPI3'">
+				        {{listTopTenWorst.failKPI3totalKPI3}}</td>
+				    </tr>
+			  	</table>
+			</div>
+			<div class="row">
+				<div id="idChooseBocTargetTable" class="col-md-2 dropdown" style="padding-left: 0px;padding-right: 0px;">
+					<a class="dropdown-toggle" data-toggle="dropdown"> 
+						<button class="btn btn-icon-map" style="height: 27px;"><i class="glyphicon glyphicon-th-list" style="font-size: 15px;margin-right: 0px;"></i></button>
+					</a>
+					<ul class="dropdown-menu" style="height: 150px;">
+						<li ng-repeat="boc in vm.listDropdownTargets"><a
+							data-ng-click="vm.chooseBocData(boc)">{{boc.decodeGroup}}</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8" style="text-align: center;margin-top: 5px;">
+					<span style="font-size: 13px;">{{vm.groupNameShow}}</span>
+				</div>
+				<div class="col-md-2" style="padding-left: 0px;padding-right: 0px;text-align: right;margin-bottom: 0px;">
+					<button class="btn btn-icon-map" style="height: 27px;" data-ng-click="vm.openTabPage('SHOW-MAPS-CHART', 'SHOW-CHART')"><i class="fa fa-line-chart" style="font-size: 15px;margin-right: 0px;"></i></button>
+				</div>
+			</div>
+			<div id="idTableFrame2Maps" class="div-table-frame2-maps">
+				<table class="tableCustom">
+					<thead>
+						<tr>
+							<th rowspan="2">STT</th>
+							<th rowspan="2">{{vm.typeAreaName}}</th>
+							<th colspan="3" ng-repeat="bocT in vm.bocTitle">{{bocT.decode}}</th>
+						</tr>
+						<tr>
+							<th
+								ng-repeat="bocHeader in vm.bocTitleHeader track by $index">
+								<span ng-if="bocHeader % 3 == 0">GT</span> <span
+								ng-if="bocHeader % 3 == 1">MT</span> <span
+								ng-if="bocHeader % 3 == 2">ĐG</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="bocData in vm.bocData track by $index">
+							<td>{{$index + 1}}</td>
+							<td style="text-align: left;" nowrap>
+								<a href="" style="color: inherit;text-decoration: none;outline: 0;" data-ng-click="vm.viewMapProvince(bocData)">{{bocData.regionName}}</a>
+							</td>
+							<td ng-repeat="bocTitleHeader in vm.bocTitleHeader track by $index">
+								<span ng-if="bocTitleHeader % 3 == 0"
+									class="{{vm.colorForTableBocData(bocData.result[bocTitleHeader / 3])}}">
+									{{(bocData.actual[bocTitleHeader/ 3] == '-9999') ? '' :
+									((bocData.actual[bocTitleHeader / 3]) | number : 2)}}</span>
+								<span ng-if="bocTitleHeader % 3 == 1"
+									class="{{vm.colorForTableBocData(bocData.result[(bocTitleHeader - 1) / 3])}}">
+									{{(bocData.target[(bocTitleHeader- 1) / 3] == '-9999') ? '' :
+									((bocData.target[(bocTitleHeader - 1) /3]) | number : 2)}} </span>
+								<span ng-if="bocTitleHeader % 3 == 2"
+									class="{{vm.colorForTableBocData(bocData.result[(bocTitleHeader - 2) / 3])}}">
+									{{(bocData.result[(bocTitleHeader- 2) / 3] == 'D') ? 'Đ' :
+									(bocData.result[(bocTitleHeader - 2) / 3] == 'M1') ? 'M1' :
+									(bocData.result[(bocTitleHeader - 2) / 3] == 'M2') ? 'M2' :
+									(bocData.result[(bocTitleHeader - 2) / 3] == 'M3') ? 'M3' : ''}} </span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="SHOW-MAPS-CHART">
+		<div id="SHOW-MAPS" class="tab-content active tab-content-page col-md-8"
+			style="padding-left: 0px !important;padding-right: 0px !important;">
+			<div class="header-map-custom">
+				<div class="col-md-4">
+					<ui-select ng-change="vm.onChangeProvince()"
+						ng-model="vm.provinceSelected.selected" >
+						<ui-select-match class="ui-select-match" title="{{$select.selected.provinceVname}}"
+							placeholder="Tỉnh">{{$select.selected.provinceVname}}</ui-select-match>
+						<ui-select-choices class="ui-select-choices"
+							repeat="item in vm.provinces | filter: $select.search">
+						<div ng-bind-html="item.provinceVname | highlight: $select.search"></div>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+				<div class="col-md-6">
+					<ui-select ng-change="vm.onChangeTarget()"
+						ng-model="vm.targetSelected.selected" theme="bootstrap">
+					<ui-select-match class="ui-select-match" title="{{$select.selected.decode}}"
+						placeholder="Kế hoạch">{{$select.selected.decode}}</ui-select-match>
+					<ui-select-choices class="ui-select-choices" group-by="vm.someGroupTarget"
+						repeat="item in vm.targets | filter: $select.search">
+					<div ng-bind-html="item.decode | highlight: $select.search"></div>
+					</ui-select-choices> </ui-select>
+				</div>
+				<!-- Button -->
+				<!-- <div class="col-md-1">
+					<a href="" class="button-reset-map" ng-click="vm.resetSearchCondition()"><i class="fa fa-times-circle"></i></a>
+				</div> -->
+				<div class="buttonNextExit col-md-1">
+					<button class="buttonHoverMap btn" ng-click="vm.backPageShowInfo()" title="Quay lại">
+						<i class="fa fa-reply" style="font-size: 17px;display: block;margin-right: 0px;"></i>
+					</button>
+				</div>
+			</div>
+			<div style="height:  calc(100vh - 100px);"
+				ui-map="vm.myMap"
+				ui-event="{'map-idle' : 'vm.onMapIdle()','map-zoom_changed': 'vm.setZoomMessage(myMap.getZoom())' }"
+				ui-options="vm.mapOptions"></div>
+		</div>
+		<div id="SHOW-CHART" class="tab-content tab-content-page col-md-8">
+			<div id="chart-boc-page">
+				<div class="row">
+					<div class="tab classTabChartInline col-md-8">
+						<button style="display: inline-block;" class="btn-{{tab.moduleGroup}}" ng-class="{active : $index == 0}" data-ng-click="vm.openTabChart('chart-boc-page', tab.moduleGroup);" ng-repeat="tab in vm.listBocModule track by $index">{{tab.moduleGroupName}}</button>
+					</div>
+					<div class="buttonNextExit col-md-4">
+						<button class="next buttonHoverMap btn" data-ng-click="vm.nextTabChart('chart-boc-page');">
+							<i class="glyphicon glyphicon-arrow-right" style="font-size: 17px;display: block;margin-right: 0px;"></i>
+						</button>
+						<div style="display: inline-block;">
+							<button class="buttonHoverMap btn" data-ng-click="vm.hideChart()">
+								<i class="glyphicon glyphicon-remove" style="font-size: 17px;display: block;margin-right: 0px;"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div id="CHART-ALL" style="height: 100%;margin-top: 20px;">
+					<div id="{{tabModule.moduleGroup}}" class="tab-content"
+							ng-class="{active : $index == 0}"
+							style="height: 100%;" ng-repeat="tabModule in vm.listBocModule track by $index">
+						<div id="{{tabModule.moduleGroup}}-PAGING" class="chart-paging-number">
+							<button data-ng-click="vm.pagination('{{tabModule.moduleGroup}}', $index+1);" ng-class="{active : $index == 0, classDisplayNone : vm.listIdPaging.length==1}" 
+								class="page-{{$index+1}}" ng-repeat="paging in vm.listIdPaging track by $index">{{$index+1}}</button>
+						</div>
+						<div class="row row-chart-table page-{{lstChartDraw[2].paging}}" ng-repeat="lstChartDraw in vm.listChartOddEven track by $index">
+							<div class="col-md-6 bg-chart page-{{chart.paging}}" ng-class="{classDisplayNone : chart.chartData == undefined}" ng-repeat="chart in lstChartDraw">
+								<div class="panel bg-chart no-border">
+									<div class="panel-heading">
+										<span class="font-bold">{{chart.chartTitle}}</span>
+										<ul class="panel-controls">
+											<li>
+												<a href="javascript:void(0)" data-ng-click="vm.onClickExpandChart($event)" class="panel-fullscreen" title="{{'global.common.expand' | translate}}">
+													<span class="fa fa-expand"></span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="panel-body" style="padding: 0px !important;">
+										<div ng-if="chart.chartTypeConfig == 'chart-line'" class="panel-body">
+				                        	<canvas chart-line id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-series="chart.chartSeries" chart-options="chart.chartOptions"
+											chart-click="vm.chartClick" 
+											chart-colors="vm.colorsChartOptions"></canvas>
+										</div>
+										<div ng-if="chart.chartTypeConfig == 'chart-bar'" class="panel-body">
+				                        	<canvas chart-bar id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-series="chart.chartSeries" chart-options="chart.chartOptions"
+											chart-click="vm.chartClick" 
+											chart-colors="vm.colorsChartOptionsBar"></canvas>
+										</div>
+										<div ng-if="chart.chartTypeConfig == 'chart-pie'" class="panel-body">
+											<canvas chart-pie id="{{chart.chartId}}" class="chart" chart-data="chart.chartData"
+											chart-labels="chart.chartLabels" chart-options="chart.chartOptions"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

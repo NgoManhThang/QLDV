@@ -1,0 +1,166 @@
+<div class="row">
+	<div class="col-md-12">
+		<!-- START FORM GRID -->
+		<div class="block">
+			<form id="idFSaveData" name="fSaveData" ng-disabled="!vm.isSaveData" novalidate>
+				<fieldset ng-disabled="!vm.isSaveData">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.userName"></label>
+							<span class="text-danger">(*)</span>
+							<input type="text" ng-disabled="vm.objBocUser.userId != null" data-ng-model="vm.objBocUser.userName" name="userName"
+								placeholder="{{'user.placeholder.userName' | translate}}"
+								class="form-control" maxlength="200" tabindex="6" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.email"></label>
+							<span class="text-danger">(*)</span>
+							<input type="text" data-ng-model="vm.objBocUser.email" name="email"
+								placeholder="{{'user.placeholder.email' | translate}}"
+								class="form-control" maxlength="200" tabindex="8" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.userPassword"></label>
+							<span ng-hide="vm.objBocUser.userId != null" class="text-danger">(*)</span>
+							<input type="password" data-ng-model="vm.objBocUser.password" name="password"
+								placeholder="{{'user.placeholder.userPassword' | translate}}"
+								class="form-control" maxlength="100" tabindex="10" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.unit"></label>
+							<tlt-dropdown ivh-model="vm.dataTreeUnitUser"
+                                data-ng-model="vm.selectedUnitUser"
+                                data-ng-change="vm.changedUnitUser()"
+                                is-multiple-choose="false"
+                                is-select-parent="false"
+                                placeholder="{{'user.placeholder.unit' | translate}}"
+                                tabindex="12">
+	                        </tlt-dropdown>
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.company"></label>
+							<select class="form-control select-wrapper" ng-model="vm.objBocUser.company"
+								tabindex="14">
+								<option data-ng-repeat="obj in vm.dataCompanyUser" value="{{obj.constantCode}}">
+									{{obj.constantName}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label" data-translate="user.labelInput.dateStartWorking"></label>
+		                    <div class="import-money-punish-date">
+		                        <div class="input-group">
+		                            <input type="text" class="form-control form-control-sm"
+		                            		id="idWorkingDate"
+		                                   name="workingDate" tabindex="16"
+		                                   uib-datepicker-popup="{{vm.dateFormat}}"
+		                                   alt-input-formats="{{vm.dateFormat}}"
+		                                   data-ng-model="vm.objBocUser.workingDate"
+		                                   is-open="vm.openedDateStartWorking"
+		                                   close-text="{{'global.popupDate.closeText' | translate}}"
+		                                   clear-text="{{'global.popupDate.clearText' | translate}}"
+		                                   current-text="{{'global.popupDate.currentText' | translate}}"
+		                                   datepicker-options="vm.dateOptions" placeholder="{{'user.labelInput.dateStartWorking' | translate}}"/>
+		                            <div class="input-group-btn">
+		                                <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openDateStartWorking()">
+		                                    <i class="glyphicon glyphicon-calendar"></i>
+		                                </button>
+		                            </div>
+		                        </div>
+		                        <div role="alert">
+		                        	<input type="hidden" id="errorDateStartWorking" value="{{!fSaveData.workingDate.$error.required && !fSaveData.workingDate.$error.dateValid && fSaveData.workingDate.$invalid}}">
+		                            <!-- <p class="error" ng-show="!fSaveData.workingDate.$error.required && !fSaveData.workingDate.$error.dateValid && fSaveData.workingDate.$invalid">
+		                                Dữ liệu không hợp lệ
+		                            </p> -->
+		                        </div>
+		                    </div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.fullName"></label>
+							<span class="text-danger">(*)</span>
+							<input type="text" data-ng-model="vm.objBocUser.fullName" name="fullName"
+								placeholder="{{'user.placeholder.fullName' | translate}}"
+								class="form-control" maxlength="200" tabindex="7" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.phone"></label>
+							<input type="text" data-ng-model="vm.objBocUser.phoneNumber" name="phoneNumber"
+								onkeypress="forceNumericOnly(event)" maxlength="25"
+								placeholder="{{'user.placeholder.phone' | translate}}"
+								class="form-control" tabindex="9" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.reenterUserPassword"></label>
+							<span ng-hide="vm.objBocUser.userId != null" class="text-danger">(*)</span>
+							<input type="password" data-ng-model="vm.objBocUser.rePassword" name="rePassword"
+								placeholder="{{'user.placeholder.reenterUserPassword' | translate}}"
+								class="form-control" maxlength="100" tabindex="11" />
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.permissApp"></label>
+							<tlt-dropdown ivh-model="vm.dataTreeRoleUser"
+                                data-ng-model="vm.selectedRoleUser"
+                                data-ng-change="vm.changedRoleUser()"
+                                is-multiple-choose="true"
+                                is-select-parent="true"
+                                placeholder="{{'user.placeholder.permissApp' | translate}}"
+                                tabindex="13">
+	                        </tlt-dropdown>
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.permissTarget"></label>
+							<tlt-dropdown ivh-model="vm.dataTreeRoleTargetUser"
+                                data-ng-model="vm.selectedRoleTargetUser"
+                                data-ng-change="vm.changedRoleTargetUser()"
+                                is-multiple-choose="true"
+                                is-select-parent="true"
+                                placeholder="{{'user.placeholder.permissTarget' | translate}}"
+                                tabindex="15">
+	                        </tlt-dropdown>
+						</div>
+						<div class="form-group">
+							<label class="control-label"
+								data-translate="user.labelInput.regency"></label>
+							<select class="form-control select-wrapper" ng-model="vm.objBocUser.position"
+								ng-change="vm.changedPosition(vm.objBocUser.position)" tabindex="17">
+								<option data-ng-repeat="obj in vm.dataPositionUser" value="{{obj.constantCode}}">
+									{{obj.constantName}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group" style="text-align: center;">
+	                        <input type="file" class="hide" accept="image/*" file-model="vm.avatarImg" onchange="showImage(this)" />
+	                        <img id="idImageAvatar" class="img-circle" ng-src="{{vm.urlImageUser}}" onclick="changeToFile(this)" style="width: 200px; height: 200px; cursor: pointer;" />
+						</div>
+						<div class="form-group" style="text-align: center;" data-ng-show="vm.isHasImageLoad">
+	                        <button type="button" class="btn btn-danger" tabindex="18" data-ng-click="vm.doDeleteImage();">
+								<i class="fa fa-remove"></i> <span data-translate="global.action.delete"></span>
+							</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<!-- END HORIZONTAL FORM SAMPLE -->
+	</div>
+	<div class="col-md-12 form-button-search">
+		<button type="button" class="btn btn-success" tabindex="19" data-ng-show="vm.isSaveData" data-ng-click="vm.doSaveData();">
+			<i class="fa fa-save"></i> <span data-translate="global.action.save"></span>
+		</button>
+        <button type="button" class="btn btn-danger" tabindex="20" data-dismiss="modal">
+        	<i class="fa fa-mail-reply"></i> <span data-translate="global.action.cancel"></span>
+        </button>
+	</div>
+</div>

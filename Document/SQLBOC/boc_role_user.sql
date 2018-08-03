@@ -1,0 +1,86 @@
+--------------------------------------------------------
+--  File created - Tuesday-July-31-2018   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table BOC_ROLE_USER
+--------------------------------------------------------
+
+  CREATE TABLE "BOC_ROLE_USER" ("ROLE_USER_ID" NUMBER, "ROLE_ID" NUMBER, "USER_ID" NUMBER) 
+
+   COMMENT ON COLUMN "BOC_ROLE_USER"."ROLE_USER_ID" IS 'Id của bảng'
+   COMMENT ON COLUMN "BOC_ROLE_USER"."ROLE_ID" IS 'Id của quyền'
+   COMMENT ON COLUMN "BOC_ROLE_USER"."USER_ID" IS 'Id của tài khoản'
+REM INSERTING into BOC_ROLE_USER
+SET DEFINE OFF;
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2745,2,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2746,1,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2747,6,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2748,7,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2749,8,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2750,4,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2751,3,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1446,1,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1447,3,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1448,4,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1449,5,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1450,2,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1451,6,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1452,7,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1453,8,459);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2752,5,3);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2801,2,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2802,1,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2803,6,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2804,7,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2805,8,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2806,4,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2807,3,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2808,5,1341);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2526,1,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2527,6,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2528,7,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2529,8,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2530,4,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2531,3,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2532,5,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2525,2,4);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2338,1,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2339,6,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2340,7,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2341,8,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2342,4,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2343,3,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2344,5,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2337,2,1821);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1454,1,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1455,3,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1456,4,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1457,5,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1458,2,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1459,6,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1460,7,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1461,8,747);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1462,1,741);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1463,1,21);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (1464,2,21);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2782,1,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2783,6,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2784,7,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2785,8,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2786,4,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2787,3,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2737,2,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2738,1,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2739,6,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2740,7,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2741,8,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2742,4,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2743,3,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2744,5,1);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2781,2,1473);
+Insert into BOC_ROLE_USER (ROLE_USER_ID,ROLE_ID,USER_ID) values (2788,5,1473);
+--------------------------------------------------------
+--  Constraints for Table BOC_ROLE_USER
+--------------------------------------------------------
+
+  ALTER TABLE "BOC_ROLE_USER" MODIFY ("ROLE_USER_ID" NOT NULL ENABLE)

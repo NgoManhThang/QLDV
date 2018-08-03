@@ -1,0 +1,36 @@
+<div class="form-group form-group-custom">
+	<div class="input-group import-money-punish-date">
+		<input type="text" class="form-control form-control-sm" uib-datepicker-popup="{{format}}"
+			ng-model="start" is-open="startOpened"
+			datepicker-options="dateOptions" ng-required="true"
+			ng-change="changeStart(start,end)" /> <span class="input-group-btn">
+			<button type="button" class="btn btn-default"
+				ng-click="openStart($event)">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</button>
+		</span>
+	</div>
+	<div role="alert">
+		<p class="error" ng-show="!validStart">Nhập ngày tháng năm sai định dạng.</p>
+		<p class="error" ng-show="!validStartGt">Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.</p>
+	</div>
+</div>
+
+<div class="form-group form-group-custom">
+	<div class="input-group import-money-punish-date ">
+		<input type="text" class="form-control form-control-sm" uib-datepicker-popup="{{format}}"
+			ng-model="end" min="start" is-open="endOpened"
+			datepicker-options="dateOptions" ng-required="true" /> <span
+			class="input-group-btn">
+			<button type="button" class="btn btn-default"
+				ng-click="openEnd($event)">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</button>
+		</span>
+	</div>
+
+	<div role="alert">
+		<p class="error" ng-show="!validEnd">Nhập ngày tháng năm sai định dạng.</p>
+		<p class="error" ng-show="!validEndGt">Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.</p>
+	</div>
+</div>
