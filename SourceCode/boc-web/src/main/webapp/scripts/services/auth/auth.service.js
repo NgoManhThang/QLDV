@@ -51,11 +51,11 @@
             function authenticateSuccess (data, status, headers) {
             	if($localStorage.user != null) {
             		var hasAuthority = $localStorage.user.listRole && $localStorage.user.listRole.indexOf(role) !== -1;
-            		if (!hasAuthority) {
+            		/*if (!hasAuthority) {
             			delete $localStorage.user;
                     	delete $localStorage.applicationName;
                     	$state.go('access.signin');
-            		}
+            		}*/
                 }
                 if(data == null || data == '') {
                 	delete $localStorage.user;

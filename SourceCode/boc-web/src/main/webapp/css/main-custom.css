@@ -1,6 +1,7 @@
-.table>thead>tr>th {
+.table > thead > tr > th {
     vertical-align: middle !important;
 }
+
 .dataTables_wrapper .dataTables_length {
     float: left;
     width: 50%;
@@ -54,10 +55,11 @@
     color: #09a1b1 !important;
 }
 
-.its-table-paging{
+.its-table-paging {
     float: left;
     width: 100%;
 }
+
 .its-table-paging .dataTables_paginate {
     display: none;
 }
@@ -92,15 +94,17 @@
     border-color: rgb(169, 169, 169);
     background-color: transparent;
 }
+
 .its-table-paging .custom-pagination .btn:first-child {
     margin-right: 10px;
 }
+
 .its-table-paging .custom-pagination .btn:last-child {
     margin-left: 10px;
 }
 
 div.dataTables_length select {
-	width: 50px !important;
+    width: 50px !important;
 }
 
 .dataTables_empty {
@@ -111,30 +115,35 @@ td.dataTables_empty {
     text-align: left !important;
 }
 
-div.dataTables_scrollBody thead {           
+div.dataTables_scrollBody thead {
     visibility: collapse;
 }
 
-.its-table-config{
+.its-table-config {
     float: right;
 }
-.its-table-config .dropdown-menu{
+
+.its-table-config .dropdown-menu {
     max-height: 300px;
     overflow: scroll;
     overflow-x: hidden;
 }
-.its-table-config .dropdown-menu li .checkbox{
+
+.its-table-config .dropdown-menu li .checkbox {
     margin-left: 10px;
 }
-.its-table-config .dropdown-menu li .checkbox label{
+
+.its-table-config .dropdown-menu li .checkbox label {
     display: block;
 }
+
 .treegrid-indent {
     width: 16px;
     height: 16px;
     display: inline-block;
     position: relative
 }
+
 .treegrid-expander {
     width: 9px;
     height: 9px;
@@ -143,6 +152,7 @@ div.dataTables_scrollBody thead {
     cursor: pointer;
     margin-right: 10px;
 }
+
 .treegrid-expander-expanded {
     width: 0px;
     height: 0px;
@@ -150,6 +160,7 @@ div.dataTables_scrollBody thead {
     border-right: 5px solid transparent;
     border-bottom: 5px solid #4a4545;
 }
+
 .treegrid-expander-collapsed {
     width: 0px;
     height: 0px;
@@ -157,60 +168,71 @@ div.dataTables_scrollBody thead {
     border-right: 5px solid transparent;
     border-top: 5px solid #4a4545;
 }
-multiselect div.dropdown{
+
+multiselect div.dropdown {
     border: 1px solid #999;
     background-color: #2e3e4e;
     height: 30px;
 }
-multiselect div.dropdown div.btn-open{
+
+multiselect div.dropdown div.btn-open {
     width: 100%;
     padding-left: 10px;
 }
-multiselect div.dropdown div.btn-open span.pull-left{
+
+multiselect div.dropdown div.btn-open span.pull-left {
     width: 95%;
     overflow: hidden;
     text-align: left;
 }
-multiselect div.dropdown div.btn-open span.caret{
+
+multiselect div.dropdown div.btn-open span.caret {
     position: absolute;
     top: 40%;
     right: 10px;
 }
-multiselect div.dropdown ul.dropdown-menu{
+
+multiselect div.dropdown ul.dropdown-menu {
     width: 100%;
     border: 1px solid #D5D5D5;
     max-height: 350px;
     overflow-x: hidden;
 }
-multiselect div.dropdown ul.dropdown-menu input{
+
+multiselect div.dropdown ul.dropdown-menu input {
     border: none;
     padding: 5px;
 }
-multiselect div.dropdown ul.dropdown-menu span.glyphicon-remove{
+
+multiselect div.dropdown ul.dropdown-menu span.glyphicon-remove {
     position: absolute;
     top: 7px;
     right: 5px;
     cursor: pointer;
 }
-multiselect div.dropdown ul.dropdown-menu input[type="button"]{
+
+multiselect div.dropdown ul.dropdown-menu input[type="button"] {
     float: left;
     width: 50%;
 }
-multiselect div.dropdown ul.dropdown-menu li fieldset.checkbox{
+
+multiselect div.dropdown ul.dropdown-menu li fieldset.checkbox {
     margin-left: 10px;
     margin-bottom: 0px;
     margin-top: 2px;
 }
-select.select-wrapper{
+
+select.select-wrapper {
     -webkit-appearance: menulist;
     padding-top: 4px;
     padding-left: 7px;
 }
+
 .form-control {
-	border-radius: 0px !important;
-	background: #2e3e4e !important;
-	color: rgba(255, 255, 255, 0.87);
-   	border: 1px solid #999;
+    border-radius: 0px !important;
+    background: #2e3e4e !important;
+    color: rgba(255, 255, 255, 0.87);
+    border: 1px solid #999;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -222,16 +244,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .x-navigation li.active > a {
-    background: #3d4356;
+    background: #0c93e2;
 }
 
 .x-navigation > li.xn-logo > a:first-child {
-    background: #283543;
+    background: #f90404;
 }
 
 .x-navigation > li.xn-logo > a:first-child:hover {
-    background-color: #283543;
+    background-color: #067af7;
 }
+
+.xn-text {
+    color: #ffffff !important;
+}
+
+/*.active a > span.xn-text {
+    color: #ff0500 !important;
+}*/
 
 .panel-fullscreen-wrap .panel .panel-body {
     overflow-y: auto;
@@ -244,16 +274,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .dropdown-menu {
-	border-radius: 0px !important;
-	background-color: #2e3e4e;
+    border-radius: 0px !important;
+    background-color: #2e3e4e;
 }
 
-.ui-select-bootstrap .ui-select-choices-row>a {
+.ui-select-bootstrap .ui-select-choices-row > a {
     color: rgba(255, 255, 255, 0.87) !important;
 }
 
 .btn-default-focus {
-	color: rgba(255, 255, 255, 0.87) !important;
+    color: rgba(255, 255, 255, 0.87) !important;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
@@ -261,15 +291,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-color: #DDD;
 }
 
-.uib-monthpicker button:hover, .uib-monthpicker button:focus{
-	color: #22262e !important;
+.uib-monthpicker button:hover, .uib-monthpicker button:focus {
+    color: #22262e !important;
 }
 
-.uib-daypicker button:hover, .uib-daypicker button:focus{
-	color: #22262e !important;
+.uib-daypicker button:hover, .uib-daypicker button:focus {
+    color: #22262e !important;
 }
 
-.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
     margin-left: 2px;
 }
 
@@ -277,7 +307,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: rgba(255, 255, 255, 0.87) !important;
 }
 
-#MAPS-PAGE .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+#MAPS-PAGE .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
     color: rgba(255, 255, 255, 0.87) !important;
 }
 
@@ -298,16 +328,16 @@ html, body {
 }
 
 .panel-refresh-layer {
-  opacity: 0.1;
+    opacity: 0.1;
 }
 
 .panel {
-    background-color: rgba(0,0,0,.075);
+    background-color: rgba(0, 0, 0, .075);
     border-top: none;
 }
 
 .panel-default .panel-heading, .panel-primary .panel-heading, .panel-success .panel-heading, .panel-info .panel-heading, .panel-warning .panel-heading, .panel-danger .panel-heading {
-    background: rgba(0,0,0,.075);
+    background: rgba(0, 0, 0, .075);
     border-color: #999;
 }
 
@@ -319,7 +349,7 @@ html, body {
     border: 1px solid #999;
 }
 
-.panel-default>.panel-heading {
+.panel-default > .panel-heading {
     color: rgba(255, 255, 255, 0.87);
 }
 
@@ -351,7 +381,7 @@ ul.panel-controls > li > a {
     background: #283543;
 }
 
-.dropdown-menu>li>a {
+.dropdown-menu > li > a {
     color: rgba(255, 255, 255, 0.87);
 }
 
@@ -361,7 +391,7 @@ ul.panel-controls > li > a {
 }
 
 .breadcrumb {
-	background: #2e3e4e;
+    background: #2e3e4e;
 }
 
 .breadcrumb li, .breadcrumb li a {
@@ -377,124 +407,128 @@ ul.panel-controls > li > a {
 }
 
 .page-container .page-content {
-   	height: auto !important;
-   	background: #2e3e4e;
+    height: auto !important;
+    background: #2e3e4e;
 }
+
 th:first-child.sorting_asc:before {
     display: none;
 }
+
 th:first-child.sorting_asc {
-	cursor: inherit !important;
+    cursor: inherit !important;
 }
 
 .btn-icon-table {
     cursor: pointer;
     font-size: 20px;
 }
-.autocomplete .ui-select-match span.caret{
+
+.autocomplete .ui-select-match span.caret {
     display: none;
 }
 
 .form-button-search {
-	text-align: center;
+    text-align: center;
     margin-bottom: 10px;
 }
 
 .login-container {
-	height: 100vh;
-	background-image: url(../img/imagelogin.jpg);
+    height: 100vh;
+    background-image: url(../img/imagelogin.jpg);
 }
 
 .li-div-title-layout-header {
-	padding-top: 10px !important;
-	width: 90% !important;
+    padding-top: 10px !important;
+    width: 90% !important;
     text-align: center;
 }
 
 .title-layout-header {
-	color: #ffffff;
-	font-size: 20px;
+    color: #ffffff;
+    font-size: 20px;
 }
+
 /* Maps start */
 .customControlDivTitle {
-	z-index: 1;
+    z-index: 1;
 }
 
 .customControlDiv {
-	height: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	z-index: 1;
-	margin-top: 3px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    margin-top: 3px;
 }
 
 .controlUITitle {
-	background-color: #d5d5d5;
-	border: 2px solid #d5d5d5;
-	/* border-radius: 3px; */
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
-	margin-bottom: 1px;
-	text-align: center;
-	height: 30px;
+    background-color: #d5d5d5;
+    border: 2px solid #d5d5d5;
+    /* border-radius: 3px; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
+    margin-bottom: 1px;
+    text-align: center;
+    height: 30px;
 }
 
 .controlUI {
-	border: 1px solid #d5d5d5;
-	/* border-radius: 3px; */
-	cursor: pointer;
-	margin-bottom: 1px;
-	text-align: center;
-	height: 30px;
-	/* color: #040404;
-	background-color: #d5d5d5; */
+    border: 1px solid #d5d5d5;
+    /* border-radius: 3px; */
+    cursor: pointer;
+    margin-bottom: 1px;
+    text-align: center;
+    height: 30px;
+    /* color: #040404;
+    background-color: #d5d5d5; */
 }
 
 .controlUI:HOVER {
-	background-color: #e2e3e7;
-	border: 2px solid #e2e3e7;
-	color: #040404;
+    background-color: #e2e3e7;
+    border: 2px solid #e2e3e7;
+    color: #040404;
 }
 
 .controlTextTitle {
-	color: rgb(25, 25, 25);
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 30px;
-	padding-left: 5px;
-	padding-right: 5px;
+    color: rgb(25, 25, 25);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .controlText {
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 30px;
-	padding-left: 5px;
-	padding-right: 5px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .customControlDivInfoPanel {
-	width: 30%;
-	height: 25%;
-	top: 10% !important;
+    width: 30%;
+    height: 25%;
+    top: 10% !important;
 }
 
 .controlUIInfoPanel {
-	text-align: left;
-	margin-left: 10px;
-	margin-top: 10px;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .customFontPanel {
-	font-size: 13px;
-	font-weight: 400;
-	margin-bottom: 6px;
-	color: #e2e3e7;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: #e2e3e7;
 }
 
 .customControlDivTotal {
-	width: 12%;
-	top: 15% !important;
-	height: 70%;
+    width: 12%;
+    top: 15% !important;
+    height: 70%;
 }
 
 .header-map-custom {
@@ -504,111 +538,112 @@ th:first-child.sorting_asc {
     width: 100%;
     margin-top: 9px;
 }
+
 /* Maps end */
-.ui-select-bootstrap>.ui-select-match {
-	text-align: left;
-	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding-right: 30px;
-	border-radius: 3px;
-	background-color: rgba(74, 80, 105, 0) !important;
+.ui-select-bootstrap > .ui-select-match {
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 30px;
+    border-radius: 3px;
+    background-color: rgba(74, 80, 105, 0) !important;
     font-size: 14px !important;
 }
 
 .ui-select-match:HOVER {
-	color: #f5d045 !important;
+    color: #f5d045 !important;
 }
 
-.ui-select-bootstrap>.ui-select-choices {
-	font-size: 13px !important;
+.ui-select-bootstrap > .ui-select-choices {
+    font-size: 13px !important;
     max-height: 400px !important;
     margin: 0px 0px 0px !important;
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-	/* background-color: #475069; */
+    /* background-color: #475069; */
 }
 
 ::-webkit-scrollbar-corner {
-	background: transparent;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(61,
-		67, 86)), color-stop(0.72, rgba(61, 67, 86, 1)),
-		color-stop(0.86, rgba(61, 67, 86, 1)));
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(61,
+    67, 86)), color-stop(0.72, rgba(61, 67, 86, 1)),
+    color-stop(0.86, rgba(61, 67, 86, 1)));
 }
 
 .button-reset-map {
-	font-size: 21px;
-	color: #ddd !important;
+    font-size: 21px;
+    color: #ddd !important;
 }
 
 .truncate {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #MAPS-PAGE .dropdown-header {
-	font-size: 14px;
-	padding: 8px 16px;
-	color: #abafae !important;
-	border: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    color: #abafae !important;
+    border: none;
 }
 
 #MAPS-PAGE .dropdown-menu .divider {
-	display: none;
+    display: none;
 }
 
-#MAPS-PAGE .open>.dropdown-menu {
+#MAPS-PAGE .open > .dropdown-menu {
     margin-top: 0px !important;
     height: 300px;
     overflow-y: auto;
 }
 
 #MAPS-PAGE .dropdown-menu > li > a {
-	cursor: pointer;
+    cursor: pointer;
     line-height: 12px !important;
     border-bottom: 1px solid #E9E9E9;
 }
 
-.tableCustom>tbody>tr>td, .tableCustom>tfoot>tr>td, .tableCustom>tbody>tr>th,
-	.tableCustom>tfoot>tr>th {
-	padding: 3px 3px;
-	border-top: 1px solid #3d4356;
+.tableCustom > tbody > tr > td, .tableCustom > tfoot > tr > td, .tableCustom > tbody > tr > th,
+.tableCustom > tfoot > tr > th {
+    padding: 3px 3px;
+    border-top: 1px solid #3d4356;
 }
 
 .tableCustom {
-	font-size: 100%;
-	width: 100%;
+    font-size: 100%;
+    width: 100%;
 }
 
-.tableCustom>thead>tr>th {
-	padding: 3px 3px;
-	border-bottom: 1px solid #3d4356;
-	color: #c7b422;
+.tableCustom > thead > tr > th {
+    padding: 3px 3px;
+    border-bottom: 1px solid #3d4356;
+    color: #c7b422;
 }
 
-.tableCustom>tbody tr:nth-child(odd) {
-	background-color: #2e3e4e;
+.tableCustom > tbody tr:nth-child(odd) {
+    background-color: #2e3e4e;
 }
 
-.tableCustom>tbody tr:nth-child(even) {
-	background-color: #dddddd14;
+.tableCustom > tbody tr:nth-child(even) {
+    background-color: #dddddd14;
 }
 
-.table-striped>tbody>tr:nth-child(odd) {
+.table-striped > tbody > tr:nth-child(odd) {
     background-color: #283543;
 }
 
-.table-striped>tbody>tr:nth-child(odd) {
+.table-striped > tbody > tr:nth-child(odd) {
     background-color: #283543;
 }
 
@@ -624,20 +659,20 @@ td.dataTables_empty {
     border-color: #999;
 }
 
-.table-hover>tbody>tr:hover {
+.table-hover > tbody > tr:hover {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
 .tableCustom tr, th, td {
-	border: 1px solid #999;
+    border: 1px solid #999;
 }
 
 .tableCustom tr, th, td {
-	text-align: center;
+    text-align: center;
 }
 
 .staff-information img {
-	width: 50px;
+    width: 50px;
     border-radius: 50%;
     height: 50px;
     margin-top: 5px;
@@ -651,15 +686,15 @@ td.dataTables_empty {
 }
 
 .background-color-green {
-	background-color: #54cc19;
+    background-color: #54cc19;
 }
 
 .background-color-red {
-	background-color: #FF0000;
+    background-color: #FF0000;
 }
 
 .recent-month {
-	color: #ff6666;
+    color: #ff6666;
 }
 
 .modal-content {
@@ -680,77 +715,82 @@ td.dataTables_empty {
 }
 
 #MAPS-PAGE div.tab-content, #STATISTICS-PAGE div.tab-content {
-	display: none;
+    display: none;
 }
 
 #MAPS-PAGE div.active, #STATISTICS-PAGE div.active {
-	display: block;
+    display: block;
 }
 
 #MAPS-PAGE div.tab button, #STATISTICS-PAGE div.tab button {
-	border: 1px solid #999;
-	padding: 5px 5px;
-	background-color: #2e3e4e;
+    border: 1px solid #999;
+    padding: 5px 5px;
+    background-color: #2e3e4e;
 }
 
 #MAPS-PAGE div.tab button:hover, #STATISTICS-PAGE div.tab button:hover {
-	background: #999 none repeat scroll 0% 0%;
+    background: #999 none repeat scroll 0% 0%;
 }
 
 #MAPS-PAGE div.tab button.active, #STATISTICS-PAGE div.tab button.active {
-	background: #777 none repeat scroll 0% 0%;
+    background: #777 none repeat scroll 0% 0%;
 }
 
 #MAPS-PAGE div.buttonNextExit button, #STATISTICS-PAGE div.buttonNextExit button {
-	border: 1px solid #999;
-	padding: 5px 10px;
-	background-color: #2e3e4e;
+    border: 1px solid #999;
+    padding: 5px 10px;
+    background-color: #2e3e4e;
 }
 
 #MAPS-PAGE div.buttonNextExit button.active, #STATISTICS-PAGE div.buttonNextExit button.active {
-	background-color: #cccccc80;
+    background-color: #cccccc80;
 }
 
 #MAPS-PAGE div.buttonNextExit, #STATISTICS-PAGE div.buttonNextExit {
-	float: right;
+    float: right;
 }
 
 #MAPS-PAGE div.chart-bottom, #STATISTICS-PAGE div.chart-bottom {
-	margin-top: 15px;
-	text-align: center;
+    margin-top: 15px;
+    text-align: center;
 }
 
 #MAPS-PAGE div.chart-bottom span, #STATISTICS-PAGE div.chart-bottom span {
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 #MAPS-PAGE div.hiden, #STATISTICS-PAGE div.hiden {
-	display: none;
+    display: none;
 }
 
 #MAPS-PAGE div.chart-pagination button, #STATISTICS-PAGE div.chart-pagination button {
-	background-color: #7d7575;
-	margin-right: 5px;
-	border: 1px solid #7d7575;
+    background-color: #7d7575;
+    margin-right: 5px;
+    border: 1px solid #7d7575;
 }
 
 #MAPS-PAGE div.chart-paging-number button.active, #STATISTICS-PAGE div.chart-paging-number button.active {
-	background: rgba(247, 245, 245, 0.8) none repeat scroll 0% 0%;
+    background: rgba(247, 245, 245, 0.8) none repeat scroll 0% 0%;
 }
 
 #MAPS-PAGE div.chart-paging-number button:hover, #STATISTICS-PAGE div.chart-paging-number button:hover {
     background: rgba(247, 245, 245, 0.8) none repeat scroll 0% 0%;
 }
 
-a[href^="http://maps.google.com/maps"]{display:none !important}
-a[href^="https://maps.google.com/maps"]{display:none !important}
+a[href^="http://maps.google.com/maps"] {
+    display: none !important
+}
+
+a[href^="https://maps.google.com/maps"] {
+    display: none !important
+}
 
 .gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
+    display: none;
 }
 
 .gmnoprint div {
-    background:none !important;
+    background: none !important;
 }
 
 .classTabChartInline {
@@ -767,12 +807,12 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 
 .classDisplayNone {
-	display: none !important;
+    display: none !important;
 }
 
 .row-chart-table {
-	height: 50%;
-	overflow-y: auto;
+    height: 50%;
+    overflow-y: auto;
 }
 
 .chart-paging-number {
@@ -780,28 +820,28 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 
 .color-green {
-	color: #54cc19;
-	font-weight: 500;
+    color: #54cc19;
+    font-weight: 500;
 }
 
 .color-red {
-	color: #FF0000;
-	font-weight: 500;
+    color: #FF0000;
+    font-weight: 500;
 }
 
 .color-orange {
-	color: #ffa500;
-	font-weight: 500;
+    color: #ffa500;
+    font-weight: 500;
 }
 
 .color-yellow {
-	color: #ffff00;
-	font-weight: 500;
+    color: #ffff00;
+    font-weight: 500;
 }
 
 .show-info-province-district {
-	padding-right: 0px !important;
-	/* padding-left: 0px !important; */
+    padding-right: 0px !important;
+    /* padding-left: 0px !important; */
     height: calc(100vh - 100px);
     /* overflow-x: hidden;
     overflow-y: auto; */
@@ -812,52 +852,62 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 
 /* - Date input -------------------------------------------------*/
-.import-money-punish-date div[role="alert"]{
+.import-money-punish-date div[role="alert"] {
     position: absolute;
     color: #ab0f0f;
 }
-.import-money-punish-date .glyphicon-calendar{
+
+.import-money-punish-date .glyphicon-calendar {
     margin-right: unset;
     margin-top: 1px;
     color: #333;
 }
-.import-money-punish-date ul.uib-datepicker-popup
-,.import-money-punish-date table.uib-daypicker{
+
+.import-money-punish-date ul.uib-datepicker-popup, .import-money-punish-date table.uib-daypicker {
     min-width: 300px;
 }
-.import-money-punish-date ul.uib-datepicker-popup div.uib-datepicker{
+
+.import-money-punish-date ul.uib-datepicker-popup div.uib-datepicker {
     margin-right: 5px;
 }
-.import-money-punish-date ul.uib-datepicker-popup li.uib-button-bar{
+
+.import-money-punish-date ul.uib-datepicker-popup li.uib-button-bar {
     float: left;
     width: 100%;
     margin-bottom: 10px;
 }
-.import-money-punish-date table.uib-daypicker th button{
+
+.import-money-punish-date table.uib-daypicker th button {
     border: 0px;
 }
-.import-money-punish-date table.uib-daypicker td.uib-day button{
+
+.import-money-punish-date table.uib-daypicker td.uib-day button {
     border-bottom: 0px;
     border-right: 0px;
 }
-.import-money-punish-date table.uib-daypicker td:last-child.uib-day button{
+
+.import-money-punish-date table.uib-daypicker td:last-child.uib-day button {
     border-right: 1px solid #DDD;
 }
-.import-money-punish-date table.uib-daypicker tr:last-child td.uib-day button{
+
+.import-money-punish-date table.uib-daypicker tr:last-child td.uib-day button {
     border-bottom: 1px solid #DDD;
 }
-.import-money-punish-date table.uib-monthpicker td.uib-month button.active span{
+
+.import-money-punish-date table.uib-monthpicker td.uib-month button.active span {
     color: #333 !important;
 }
-.import-money-punish-date table.uib-daypicker td.uib-day button.active span{
+
+.import-money-punish-date table.uib-daypicker td.uib-day button.active span {
     color: #333 !important;
 }
+
 /* - End date input ---------------------------------------------*/
 
 /* start select tree */
 
 .dropdown-with-ivhTreeView {
-	background: #2e3e4e;
+    background: #2e3e4e;
     cursor: pointer;
 }
 
@@ -960,7 +1010,7 @@ ul.ivh-treeview ul.ivh-treeview {
 /* end select tree */
 
 .error-message {
-	color: #ff504f;
+    color: #ff504f;
 }
 
 .selectboxit-options .selectboxit-option .selectboxit-option-anchor {
@@ -986,32 +1036,36 @@ ul.ivh-treeview ul.ivh-treeview {
 }
 
 .div-table-frame1-maps {
-	height: 30%;
-	overflow-y: auto;
+    height: 30%;
+    overflow-y: auto;
 }
 
 .div-table-frame2-maps {
-	overflow-y: auto;
+    overflow-y: auto;
 }
 
 /* Ng-table */
 .ng-table th.sortable .sort-indicator {
     margin-right: -6px;
 }
+
 .ng-table th.sortable {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .ng-table th.sortable.sort-desc, .ng-table th.sortable.sort-asc {
     text-shadow: none;
 }
+
 #STATISTICS-PAGE .table > thead > tr > th {
     background: #2e3e4e;
     color: #dee0e3;
     font-size: 11px;
     border-top: 1px solid #999;
 }
-#STATISTICS-PAGE .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+
+#STATISTICS-PAGE .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 5px;
 }
 
@@ -1021,7 +1075,8 @@ ul.ivh-treeview ul.ivh-treeview {
     font-size: 11px;
     border-top: 1px solid #999;
 }
-#MAPS-PAGE .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+
+#MAPS-PAGE .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 5px;
 }
 
@@ -1035,8 +1090,8 @@ ul.ivh-treeview ul.ivh-treeview {
 
 /* Statistics*/
 .image-statistics {
-	height: 150px;
-	width: 150px;
+    height: 150px;
+    width: 150px;
 }
 
 .show-info-statistics {
@@ -1050,6 +1105,6 @@ ul.ivh-treeview ul.ivh-treeview {
 }
 
 .div-info-statistics-employee {
-	overflow-y: auto;
+    overflow-y: auto;
     height: calc(100vh - 100px);
 }

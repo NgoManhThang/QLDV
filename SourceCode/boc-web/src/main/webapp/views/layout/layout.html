@@ -5,7 +5,7 @@
 		<!-- START X-NAVIGATION -->
 		<ul class="x-navigation">
 			<li class="xn-logo">
-				<a href="index.html">BOC</a>
+				<a href="index.html">QLDV</a>
 				<!-- <img alt="logo" src="img/logo-spc.png" style="height: 50px;width: 100%;"> -->
 				<a href="#" class="x-navigation-control"></a>
 			</li>
@@ -14,9 +14,9 @@
 					<img ng-src="{{userLoggedIn.urlFileImage}}"/>
 				</a>
 				<div class="profile">
-					<!-- <div class="profile-image">
+					 <div class="profile-image">
 						<img ng-src="{{userLoggedIn.urlFileImage}}"/>
-					</div> -->
+					</div>
 					<div class="profile-data">
 						<div class="profile-data-name">{{userLoggedIn.fullName}}</div>
 						<div class="profile-data-title">{{userLoggedIn.positionName}}</div>
@@ -29,7 +29,7 @@
 				</div>
 			</li>
 			<li class="xn-title">Danh mục</li>
-			<li ui-sref-active="active"
+			<!--<li ui-sref-active="active"
 				ng-repeat="menuItem in userLoggedIn.parentMenu"
 				ng-class="{'xn-openable':(menuItem.childObjects.length != 0)}"
 				ng-click="navMenuClick($event)"
@@ -56,6 +56,33 @@
 						</a>
 					</li>
 				</ul>
+			</li>-->
+
+			<li ui-sref-active="active"
+				ng-repeat="menuItem in userLoggedIn.parentMenu"
+				ng-class="{'xn-openable':(menuItem.childObjects.length != 0)}"
+				ng-click="navMenuClick($event)">
+				<a ng-click="navMenuClickOpenPageParent(menuItem.objectName)"
+				   ui-sref="{{menuItem.objectUrl}}"
+				   ng-if="menuItem.childObjects.length == 0"> <span
+						class="fa {{menuIcons[menuItem.objectCode]}}"> </span>
+					<span class="xn-text">{{menuItem.objectName}}</span>
+				</a>
+				<a ng-if="menuItem.childObjects.length != 0">
+					<span class="fa {{menuIcons[menuItem.objectCode]}}"> </span>
+					<span class="xn-text">{{menuItem.objectName}} </span>
+				</a>
+
+				<ul class="nav-sub" ng-if="menuItem.childObjects.length != 0">
+					<li ui-sref-active="active"
+						ng-repeat="childItem in menuItem.childObjects">
+						<a ng-click="navMenuClickOpenPageChild($event)"
+						   ui-sref="{{childItem.objectUrl}}">
+							<span class="fa {{menuIcons[childItem.objectCode]}}"> </span>
+							<span>{{childItem.objectName}} </span>
+						</a>
+					</li>
+				</ul>
 			</li>
 		</ul>
 		<!-- END X-NAVIGATION -->
@@ -73,7 +100,7 @@
 			</li>
 			<!-- END TOGGLE NAVIGATION -->
 			<li class="li-div-title-layout-header">
-				<span class="title-layout-header truncate">HỆ THỐNG ĐIỀU HÀNH SẢN XUẤT KINH DOANH - EVNSPC</span>
+				<span class="title-layout-header truncate">HỆ THỐNG QUẢN LÝ ĐOÀN VÀO</span>
 			</li>
 			<!-- SIGN OUT -->
 			<li class="xn-icon-button pull-right"><a href="#"

@@ -307,7 +307,7 @@ body.page-container-boxed .page-container {
 }
 .x-navigation li > a .fa,
 .x-navigation li > a .glyphicon {
-  color: #8b91a0;
+  color: #ffffff;
   text-align: center;
   width: 20px;
   font-size: 14px;
@@ -320,7 +320,7 @@ body.page-container-boxed .page-container {
   transition: color 200ms ease;
 }
 .x-navigation li > a:hover {
-  background: #262a33;
+  background: #f30000;
   color:#fff;
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
@@ -393,7 +393,7 @@ body.page-container-boxed .page-container {
   line-height: 20px;
   font-weight: 300;
   font-size: 13px;
-  color: #8b91a0;
+  color: #ffffff;
   border-bottom: 1px solid #17191e;
 }
 .x-navigation > li.xn-openable:before {
