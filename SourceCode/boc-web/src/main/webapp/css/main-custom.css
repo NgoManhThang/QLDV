@@ -354,7 +354,7 @@ html, body {
 }
 
 .panel .panel-title {
-    color: rgba(255, 255, 255, 0.87);
+    color: #ffffff;
 }
 
 ul.panel-controls > li > a:hover {
@@ -1107,4 +1107,8 @@ ul.ivh-treeview ul.ivh-treeview {
 .div-info-statistics-employee {
     overflow-y: auto;
     height: calc(100vh - 100px);
+}
+
+label.control-label {
+    color: #ffffff !important;
 }

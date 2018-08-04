@@ -28,7 +28,7 @@ var scopeHolder;
             
             vm.dateFormat = "MM/yyyy";
             vm.dateOptions = {
-                minMode: 'month',
+                minMode: 'day',
                 maxMode: 'year',
                 datepickerMode: 'month'
             };
