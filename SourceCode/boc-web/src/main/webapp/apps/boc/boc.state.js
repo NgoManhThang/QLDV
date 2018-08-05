@@ -8,7 +8,7 @@
 
     stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig ($stateProvider) {
+    function stateConfig($stateProvider) {
         $stateProvider.state('boc', {
             abstract: true,
             url: '/boc',
@@ -18,7 +18,8 @@
                 }
             },
             resolve: {
-                authorize: ['Auth', function (Auth) {
+                authorize: [
+                    'Auth', function (Auth) {
                         return Auth.authorize('DASHBOARD');
                     }
                 ],

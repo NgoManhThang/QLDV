@@ -30,8 +30,8 @@
 
 .its-box .box-body table.dataTable thead > tr > th, .its-table-custom table.dataTable thead > tr > th {
     background: none;
-    background-color: #2e3e4e;
-    color: rgba(255, 255, 255, 0.87);
+    background-color: #19abff;
+    color: #ffffff;
     text-align: center;
     font-weight: 600;
     border-top: 1px solid #999999 !important;
