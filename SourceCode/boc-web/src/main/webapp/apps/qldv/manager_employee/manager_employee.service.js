@@ -1,15 +1,16 @@
 (function() {
     'use strict';
 
-    angular.module('app').factory('ManaEmployeeService', ManaEmployeeService);
+    angular.module('app').factory('ManageEmployeeService', ManageEmployeeService);
 
-    ManaEmployeeService.$inject = ['$resource', 'APP_REST_SERVICE'];
-    function ManaEmployeeService ($resource, APP_REST_SERVICE) {
+    ManageEmployeeService.$inject = ['$resource', 'APP_REST_SERVICE'];
+    function ManageEmployeeService ($resource, APP_REST_SERVICE) {
         var contentType = 'application/octet-stream';
-        var service =  $resource(APP_REST_SERVICE, {}, {
+        var URL = APP_REST_SERVICE + "employee";
+        var service =  $resource(URL, {}, {
             search: {
                 method: 'POST',
-                url: APP_REST_SERVICE + 'bocUser/search',
+                url: URL + '/search',
                 responseType: 'json',
                 cache: false,
                 transformRequest: function (data) {

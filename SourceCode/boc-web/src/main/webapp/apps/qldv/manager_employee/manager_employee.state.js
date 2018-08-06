@@ -16,11 +16,11 @@
             controller: "ManaEmployeeController",
             controllerAs: 'vm',
             resolve: {
-                authorize: [
+                /*authorize: [
                     'Auth', function (Auth) {
                         return Auth.authorize('MANAGER_USER');
                     }
-                ],
+                ],*/
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('dashboard');
                     $translatePartialLoader.addPart('datatable');

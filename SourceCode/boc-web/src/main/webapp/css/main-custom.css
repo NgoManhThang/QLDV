@@ -22,6 +22,8 @@
 
 .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
     background: #dddddd14;
+    vertical-align: middle !important;
+    color: #ffffff !important;
 }
 
 .sorting:before {

@@ -185,12 +185,12 @@ public class CommonRepositoryImpl extends BaseRepository implements CommonReposi
         return listResult;
     }
     
-    @SuppressWarnings("deprecation")
+    /*@SuppressWarnings("deprecation")
 	@Override
     @Scheduled(fixedDelay = 60000)
     public void keepAlive() {
         String sql = "SELECT 1 FROM DUAL";
         SQLQuery query = getSession().createSQLQuery(sql);
         query.executeUpdate();
-    }
+    }*/
 }

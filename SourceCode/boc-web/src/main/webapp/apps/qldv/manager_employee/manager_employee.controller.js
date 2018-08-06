@@ -5,9 +5,9 @@ var scopeHolder;
     angular.module('app').controller('ManaEmployeeController', ManaEmployeeController);
 
     ManaEmployeeController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'ManaEmployeeService'];
+        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'ManageEmployeeService'];
     function ManaEmployeeController($scope, $rootScope, $controller, $state, $window, $element,
-                                    $translate, $http, $timeout, $sessionStorage, $localStorage, ManaEmployeeService){
+                                    $translate, $http, $timeout, $sessionStorage, $localStorage, ManageEmployeeService){
         var vm = this;
         scopeHolder = $scope;
 
@@ -20,15 +20,25 @@ var scopeHolder;
             });
             $rootScope.$broadcast('$elementLoadJavascript', $element);
 
-            vm.getTable = getTable;
+            //<editor-fold desc="Init variable">
+            vm.objSearch = {};
+            //</editor-fold>
 
+            //<editor-fold desc="Function">
+            vm.getTable = getTable;
+            vm.doSearch = doSearch;
+            vm.getListEmployee = getListEmployee;
+            vm.doRefresh = doRefresh;
+            //</editor-fold>
+
+            //<editor-fold desc="Config Table">
             vm.tableHeadDefault = [
                 {title: $translate.instant('global.index'), value: "tblIndex", checked: true, disable: true, isShow: true},
-                //{title: "", value: "tblCheckbox", checked: true, disable: true, isShow: false},
                 {title: $translate.instant('global.table.action'), value: "tblAction", checked: true, disable: true, isShow: true},
                 {title: $translate.instant('user.labelInput.imageUser'), value: "tblImage", checked: true, disable: true, isShow: true},
                 {title: $translate.instant('user.labelInput.userName'), value: "userName", checked: true, disable: true, isShow: true},
                 {title: $translate.instant('user.labelInput.fullName'), value: "fullName", checked: true, disable: false, isShow: true},
+                {title: $translate.instant('user.labelInput.codeEmployee'), value: "codeEmployee", checked: true, disable: false, isShow: true},
                 {title: $translate.instant('user.labelInput.email'), value: "email", checked: true, disable: false, isShow: true},
                 {title: $translate.instant('user.labelInput.phone'), value: "phone", checked: true, disable: false, isShow: true}
             ];
@@ -48,9 +58,95 @@ var scopeHolder;
                 headerDefault: vm.tableHeadDefault,
                 hasPaging: true
             };
+            //</editor-fold>
+
+            vm.doSearch();
         })();
 
 
+        function doSearch() {
+            vm.tableMainConfig.currentPage = 1;
+            vm.tableMainConfig.pageSize = 10;
+            vm.getListEmployee();
+        }
+
+        function getListEmployee() {
+            vm.loadingByIdTable("tableMain", "shown", vm.tableMainConfig.data);
+            vm.objSearch.page = vm.tableMainConfig.currentPage;
+            vm.objSearch.pageSize = vm.tableMainConfig.pageSize;
+            vm.objSearch.sortName = vm.tableMainConfig.sortName;
+            vm.objSearch.sortType = vm.tableMainConfig.sortType;
+
+            ManageEmployeeService.search(vm.objSearch).$promise.then(function (resp) {
+                vm.tableMainConfig.data = [];
+                vm.tableMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
+                vm.tableMainConfig.totalPage = parseInt(resp.data.draw);
+                var lstData = resp.data.data;
+                if(lstData.length > 0){
+                    for (var i = 0; i < lstData.length; i++){
+                        var item = lstData[i];
+                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.userId + '\')"><i class="fa fa-edit"></i></span>' +
+                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + item.userId + '\')"><i class="fa fa-remove"></i></span>';
+
+                        var objAdd = {
+                            "action": {
+                                value: action,
+                                id: item.employeeId,
+                                align: "center",
+                                header: $translate.instant('global.table.action'),
+                                width: '100'
+                            },
+                            "imageUser": {
+                                value: "",
+                                align: "center",
+                                header: $translate.instant('user.labelInput.imageUser'),
+                                width: '80'
+                            },
+                            "userName": {
+                                value: item.userName,
+                                align: "left",
+                                header: $translate.instant('user.labelInput.userName'),
+                                width: '150'
+                            },
+                            "fullName": {
+                                value: item.fullName,
+                                align: "left",
+                                header: $translate.instant('user.labelInput.fullName'),
+                                width: '150'
+                            },
+                            "codeEmployee": {
+                                value: item.codeEmployee,
+                                align: "left",
+                                header: $translate.instant('user.labelInput.codeEmployee'),
+                                width: '120'
+                            },
+                            "email": {
+                                value: nullToStringEmpty(item.email),
+                                align: "left",
+                                header: $translate.instant('user.labelInput.email'),
+                                width: '200'
+                            },
+                            "phone": {
+                                value: nullToStringEmpty(item.phone),
+                                align: "right",
+                                header: $translate.instant('user.labelInput.phone'),
+                                width: '120'
+                            }
+                        };
+                        vm.tableMainConfig.data.push(objAdd);
+                    }
+                }
+                vm.loadingByIdTable("tableMain", "hidden", vm.tableMainConfig.data);
+            }, function (error) {
+
+            });
+        }
+
+        function doRefresh() {
+            vm.objSearch.userName = "";
+            vm.objSearch.fullName = "";
+            vm.getListEmployee();
+        }
 
         function getTable(table) {
             for (var i = 0; i < vm.tableMainConfig.headerDefault.length; i++) {

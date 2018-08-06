@@ -24,5 +24,5 @@ public interface CommonRepository {
     List<BocRoleTargetDto> getListBocRoleTarget();
     List<BocConstantDto> getListBocConstant(String constantType);
     
-    void keepAlive();
+//    void keepAlive();
 }

@@ -75,9 +75,9 @@
 			                        orderable: false,
 			                        targets: indexNumber,
 			                        createdCell: function (td, cellData, rowData, rIndex, cIndex) {
-			                        	if(rowData.imageUser != undefined) {
+			                        	/*if(rowData.imageUser != undefined) {
 			                        		$(td).css('padding-top', "24px");
-			                        	}
+			                        	}*/
 			                        },
 			                        render: function (data, type, row, meta) {
 			                        	if(hasPaging) {

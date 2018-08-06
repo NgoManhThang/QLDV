@@ -39,7 +39,7 @@ public class BocUserResource {
     @Autowired
     BocUserService bocUserService;
     
-    @PreAuthorize("@roleChecker.hasValidRole('MANAGER_USER')")
+//    @PreAuthorize("@roleChecker.hasValidRole('MANAGER_USER')")
     @PostMapping("/search")
     @Timed
     public ResponseEntity<Datatable> search(@RequestBody BocUserDto bocUserDto) throws URISyntaxException {

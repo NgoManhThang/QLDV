@@ -7,7 +7,7 @@
                            data-translate="user.labelInput.userName"></label>
                     <input type="text" data-ng-model="vm.objSearch.userName" name="userName"
                            placeholder="{{'user.placeholder.userName' | translate}}"
-                           class="form-control" maxlength="200" tabindex="1" />
+                           class="form-control" maxlength="200" tabindex="1"/>
                 </div>
             </div>
             <div class="col-md-6">
@@ -16,7 +16,48 @@
                            data-translate="user.labelInput.fullName"></label>
                     <input type="text" data-ng-model="vm.objSearch.fullName" name="fullName"
                            placeholder="{{'user.placeholder.fullName' | translate}}"
-                           class="form-control" maxlength="200" tabindex="2" />
+                           class="form-control" maxlength="200" tabindex="2"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 form-button-search">
+        <button type="button" class="btn btn-info" tabindex="3" data-ng-click="vm.doSearch();">
+            <i class="fa fa-search"></i> <span data-translate="user.button.search"></span>
+        </button>
+        <button type="button" class="btn btn-warning" tabindex="4" data-ng-click="vm.doRefresh();">
+            <i class="fa fa-refresh"></i> <span data-translate="user.button.refresh"></span>
+        </button>
+        <button type="button" class="btn btn-success" tabindex="4" data-ng-click="vm.doAddNew();">
+            <i class="fa fa-plus"></i> <span data-translate="user.button.addNew"></span>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" data-translate="user.title.table"></h3>
+                <ul class="panel-controls">
+                    <li>
+                        <a href="#" class="panel-fullscreen" title="{{'global.common.expand' | translate}}">
+                            <span class="fa fa-expand"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <its-table-config table-config="vm.tableMainConfig"></its-table-config>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive its-table-paging its-table-custom">
+                    <table class="table table-striped table-hover table-bordered"
+                           id="tableMain" its-datatable p-data="{{vm.tableMainConfig}}"
+                           f-get-table="vm.getTable(table)"
+                           f-row-click="vm.rowTableMainClick(data)">
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
