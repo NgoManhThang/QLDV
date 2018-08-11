@@ -3,6 +3,7 @@ package com.viettel.api.web.rest.qldv;
 import com.codahale.metrics.annotation.Timed;
 import com.viettel.api.config.Constants;
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.boc.BocUserDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.service.qldv.EmployeeService;
@@ -31,5 +32,19 @@ public class EmployeeResource {
     public ResponseEntity<Datatable> search(@RequestBody EmployeeDto dto) throws URISyntaxException {
         Datatable data = employeeService.searchEmployee(dto);
         return new ResponseEntity<>(data, HttpStatus.OK);
+    }
+
+    @PostMapping("/saveData")
+    @Timed
+    public ResponseEntity<ResultDto> saveData(@RequestBody EmployeeDto dto){
+        ResultDto resultDto = employeeService.saveData(dto);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/getDetail")
+    @Timed
+    public ResponseEntity<EmployeeDto> getDetail(@RequestBody EmployeeDto dto){
+        EmployeeDto employeeDto = employeeService.getDetail(dto);
+        return new ResponseEntity<>(employeeDto, HttpStatus.OK);
     }
 }

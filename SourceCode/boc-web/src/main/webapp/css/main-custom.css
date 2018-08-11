@@ -1114,3 +1114,13 @@ ul.ivh-treeview ul.ivh-treeview {
 label.control-label {
     color: #ffffff !important;
 }
+
+.panel-heading-custom, .panel-body-custom, .panel-footer-custom{
+    background: #2e3e4e !important;
+}
+
+.panel-default-custom{
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: #fff !important;
+}

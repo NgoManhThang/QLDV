@@ -17,12 +17,19 @@ import com.viettel.api.dto.boc.BocUserDto;
  */
 @Repository
 public interface BocUserRepository {
-	BocUserDto getUserByUserName(String userName);
-	List<BocRoleDto> getListRoleByUserName(String userName);
-	List<BocUnitDto> getListUnitByUserName(String userName);
-	List<BocRoleTargetDto> getListRoleTargetByUserName(String userName);
+    BocUserDto getUserByUserName(String userName);
+
+    List<BocRoleDto> getListRoleByUserName(String userName);
+
+    List<BocUnitDto> getListUnitByUserName(String userName);
+
+    List<BocRoleTargetDto> getListRoleTargetByUserName(String userName);
+
     Datatable search(BocUserDto bocUserDto);
+
     ResultDto delete(Long userId);
+
     BocUserDto getDetail(Long userId);
+
     ResultDto save(List<MultipartFile> files, BocUserDto bocUserDto);
 }

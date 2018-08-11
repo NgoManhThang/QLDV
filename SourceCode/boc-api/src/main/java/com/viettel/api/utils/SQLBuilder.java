@@ -25,6 +25,7 @@ public class SQLBuilder {
     public final static String SQL_MODULE_BOC_USER = "boc_user";
     public final static String SQL_MODULE_STATISTICS = "statistics";
     public final static String SQL_MODULE_QLDV_EMPLOYEE = "employee";
+    public final static String SQL_MODULE_QLDV_COMMON = "qldv_common";
 
     public static String getSqlQueryById(String module, String queryId) {
         File folder = null;

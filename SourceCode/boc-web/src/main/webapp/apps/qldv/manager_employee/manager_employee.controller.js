@@ -29,6 +29,7 @@ var scopeHolder;
             vm.doSearch = doSearch;
             vm.getListEmployee = getListEmployee;
             vm.doRefresh = doRefresh;
+            vm.doAddNew = doAddNew;
             //</editor-fold>
 
             //<editor-fold desc="Config Table">
@@ -146,6 +147,10 @@ var scopeHolder;
             vm.objSearch.userName = "";
             vm.objSearch.fullName = "";
             vm.getListEmployee();
+        }
+
+        function doAddNew() {
+            $state.go('employee-detail');
         }
 
         function getTable(table) {

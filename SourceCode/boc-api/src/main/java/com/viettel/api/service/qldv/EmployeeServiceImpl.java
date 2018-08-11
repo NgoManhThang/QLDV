@@ -1,6 +1,7 @@
 package com.viettel.api.service.qldv;
 
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.repository.qldv.employee.EmployeeRepository;
 import org.slf4j.Logger;
@@ -18,5 +19,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Datatable searchEmployee(EmployeeDto dto) {
         return employeeRepository.searchEmployee(dto);
+    }
+
+    @Override
+    public ResultDto saveData(EmployeeDto dto) {
+        return employeeRepository.saveData(dto);
+    }
+
+    @Override
+    public EmployeeDto getDetail(EmployeeDto dto) {
+        return employeeRepository.getDetail(dto);
     }
 }

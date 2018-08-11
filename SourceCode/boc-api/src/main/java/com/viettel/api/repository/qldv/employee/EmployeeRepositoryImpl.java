@@ -1,17 +1,27 @@
 package com.viettel.api.repository.qldv.employee;
 
+import com.viettel.api.config.Constants;
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.repository.BaseRepository;
+import com.viettel.api.utils.DataUtil;
 import com.viettel.api.utils.SQLBuilder;
 import com.viettel.api.utils.StringUtils;
 import com.viettel.api.web.rest.BaseController;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +32,9 @@ import java.util.Map;
 @Transactional
 public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRepository {
     private Logger logger = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Override
     public Datatable searchEmployee(EmployeeDto dto) {
@@ -55,5 +68,51 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
             logger.error(ex.getMessage(), ex);
         }
         return datatable;
+    }
+
+    @Override
+    public ResultDto saveData(EmployeeDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        Session session = getSession();
+        entityManager = getEntityManager();
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String userName = auth.getName();
+            if (StringUtils.isStringNullOrEmpty(dto.getEmployeeId())) {
+                dto.setCreateUser(userName);
+                dto.setUpdateUser(userName);
+                dto.setCreateDate(new Timestamp(System.currentTimeMillis()));
+                dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+                Long id = (Long) session.save(dto.toEntity());
+                resultDto.setId(String.valueOf(id));
+            } else {
+//                dto.setCreateDate(DataUtil.date2Timestamp(DataUtil.ddMMyyyyToDate(dto.getCreateDate())));
+                dto.setUpdateUser(userName);
+                dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+                entityManager.merge(dto.toEntity());
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            resultDto.setKey(Constants.RESULT.ERROR);
+        }
+        return resultDto;
+    }
+
+    @Override
+    public EmployeeDto getDetail(EmployeeDto dto) {
+        EmployeeDto employeeDto = new EmployeeDto();
+        try {
+            String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_EMPLOYEE, "get-detail");
+            Map<String, String> maps = new HashMap<>();
+            maps.put("p_id", dto.getEmployeeId());
+            List<EmployeeDto> list = getNamedParameterJdbcTemplate().query(sql, maps, BeanPropertyRowMapper.newInstance(EmployeeDto.class));
+            if (list != null && list.size() > 0) {
+                employeeDto = list.get(0);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return employeeDto;
     }
 }
