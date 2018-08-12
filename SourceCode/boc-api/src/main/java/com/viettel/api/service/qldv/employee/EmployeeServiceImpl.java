@@ -1,4 +1,4 @@
-package com.viettel.api.service.qldv;
+package com.viettel.api.service.qldv.employee;
 
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;

@@ -26,6 +26,7 @@
                         $translatePartialLoader.addPart('dashboard');
                         $translatePartialLoader.addPart('datatable');
                         $translatePartialLoader.addPart('user');
+                        $translatePartialLoader.addPart('employee');
                         return $translate.refresh();
                     }],
                     loadPlugin: function ($ocLazyLoad) {
@@ -33,6 +34,7 @@
                             'apps/qldv/manager_employee/manager_employee.service.js'
                             , 'apps/qldv/manager_employee/manager_employee.controller.js'
                             , 'apps/qldv/manager_employee/detail.controller.js'
+                            , 'apps/qldv/common/qldv_common.service.js'
                             , 'apps/base.controller.js'
                             , 'apps/base.service.js'
                             , 'ui.select'

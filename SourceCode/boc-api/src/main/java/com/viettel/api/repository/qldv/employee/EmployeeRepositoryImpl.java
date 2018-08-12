@@ -80,6 +80,7 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userName = auth.getName();
             if (StringUtils.isStringNullOrEmpty(dto.getEmployeeId())) {
+                dto.setPassword(StringUtils.passwordEncoder().encode(dto.getPassword().trim()));
                 dto.setCreateUser(userName);
                 dto.setUpdateUser(userName);
                 dto.setCreateDate(new Timestamp(System.currentTimeMillis()));

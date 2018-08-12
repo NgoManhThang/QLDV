@@ -1,0 +1,18 @@
+{
+  "employee": {
+    "title": {
+      "addNew": "THÊM MỚI NHÂN VIÊN"
+    },
+    "label": {
+      "code": "Mã nhân viên",
+      "fullName": "Họ tên",
+      "userName": "User Name",
+      "password": "Mật khẩu",
+      "retypePassword": "Nhập lại mật khẩu",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "position": "Chức vụ",
+      "status": "Trạng thái"
+    }
+  }
+}

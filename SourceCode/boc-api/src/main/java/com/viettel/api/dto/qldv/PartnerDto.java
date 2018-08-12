@@ -1,6 +1,7 @@
 package com.viettel.api.dto.qldv;
 
 import com.viettel.api.domain.qldv.PartnerEntity;
+import com.viettel.api.dto.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,11 +13,12 @@ import java.sql.Timestamp;
 @Setter
 @Getter
 @AllArgsConstructor
-public class PartnerDto {
+public class PartnerDto extends BaseDto{
     private Long partnerId;
     private String partnerCode;
     private String partnerName;
     private String partnerType;
+    private String partnerTypeName;
     private String createUser;
     private Timestamp createDate;
     private String updateUser;

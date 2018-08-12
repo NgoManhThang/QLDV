@@ -13,4 +13,7 @@ public class CodeDecodeDto {
     private String decode;
     private String codeLevel;
     private String status;
+
+    public CodeDecodeDto() {
+    }
 }
