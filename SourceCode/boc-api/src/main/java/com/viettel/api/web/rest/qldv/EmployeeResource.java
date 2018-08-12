@@ -1,6 +1,7 @@
 package com.viettel.api.web.rest.qldv;
 
 import com.codahale.metrics.annotation.Timed;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viettel.api.config.Constants;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
@@ -11,11 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 @RestController
@@ -35,7 +34,11 @@ public class EmployeeResource {
 
     @PostMapping("/saveData")
     @Timed
-    public ResponseEntity<ResultDto> saveData(@RequestBody EmployeeDto dto){
+    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String dataString) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        EmployeeDto dto = mapper.readValue(dataString, EmployeeDto.class);
+
         ResultDto resultDto = employeeService.saveData(dto);
         return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }

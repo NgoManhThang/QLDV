@@ -22,6 +22,21 @@
                         headers: headers()
                     };
                 }
+            },
+            saveData: {
+                method: 'POST',
+                url: URL + '/saveData',
+                responseType: 'json',
+                cache: false,
+                processData: false,
+                headers: {'Content-type': undefined},
+                transformRequest: angular.identity,
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
             }
         });
         return service;

@@ -18,6 +18,7 @@ public class EmployeeDto extends BaseDto {
     private Long status;
     private String userName;
     private String password;
+    private String retypePassword;
     private String fullName;
     private String codeEmployee;
     private String email;

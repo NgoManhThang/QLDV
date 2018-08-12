@@ -38,7 +38,7 @@
                             <label class="control-label"
                                    data-translate="employee.label.email">Email</label>
                             <span class="text-danger">(*)</span>
-                            <input type="email" data-ng-model="vm.detail.email" name="email"
+                            <input type="text" data-ng-model="vm.detail.email" name="email"
                                    placeholder="{{'employee.label.email' | translate}}"
                                    class="form-control" maxlength="100"/>
                         </div>
@@ -73,7 +73,7 @@
                             <input type="text" data-ng-model="vm.detail.phone" name="phone"
                                    onkeypress="forceNumericOnly(event)"
                                    placeholder="{{'employee.label.phone' | translate}}"
-                                   class="form-control" maxlength="100"/>
+                                   class="form-control" maxlength="11"/>
                         </div>
 
                         <div class="form-group">

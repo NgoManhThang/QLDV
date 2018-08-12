@@ -13,6 +13,19 @@
       "email": "Email",
       "position": "Chức vụ",
       "status": "Trạng thái"
+    },
+    "message": {
+      "employeeCodeNotnull": "Mã nhân viên bắt buộc nhập",
+      "fullNameNotnull": "Họ tên bắt buộc nhập",
+      "passwordNotnull": "Mật khẩu bắt buộc nhập",
+      "retypePasswordNotnull": "Vui lòng nhập lại mật khẩu",
+      "passwordMissmatched": "Xác nhận mật khẩu chưa khớp với mật khẩu bạn nhập vào",
+      "emailNotnull": "Email bắt buộc nhập",
+      "statusNotnull": "Trạng thái nhân viên bắt buộc chọn",
+      "userNameNotnull": "Tên đăng nhập bắt buộc nhập",
+      "phoneNotnull": "Số điện thoại bắt buộc nhập",
+      "positionNotnull": "Chức vụ bắt buộc chọn",
+      "emailNotFormat": "Email nhập không đúng định dạng (example@gmail.com)"
     }
   }
 }

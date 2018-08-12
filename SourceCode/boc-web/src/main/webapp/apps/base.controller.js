@@ -50,7 +50,7 @@
     		noty({text: content, layout: 'bottomRight', type: type});
             setTimeout(function () {
                 vm.closeAlert(type);
-            }, 3000);
+            }, 6000);
         };
         vm.closeAlert = function (type) {
         	$.noty.closeAll();
@@ -69,30 +69,6 @@
         vm.closeFormConfirm = function() {
         	$('#formConfirm').modal('hide');
         }
-        
-        /*vm.confirmAlert = function (content, callback) {
-        	noty({
-                text: content,
-                layout: 'center',
-                buttons: [
-                    {
-                    	addClass: 'btn btn-success btn-clean',
-                		text: $translate.instant('global.action.yes'),
-                		onClick: function($noty) {
-                			callback();
-                    		$noty.close();
-                    	}
-                    },
-                    {
-                    	addClass: 'btn btn-danger btn-clean',
-                    	text: $translate.instant('global.action.no'),
-                    	onClick: function($noty) {
-                    		$noty.close();
-                        }
-                    }
-                ]
-            });
-        }*/
         
         /**
          * Table check all button click handel
@@ -173,6 +149,14 @@
             	return false;
         	}
         }
+
+        vm.stringIsNotNullOrEmpty = function (value) {
+            return typeof value !== 'undefined' && value !== null && value.trim() !== "";
+        };
+        
+        vm.numberIsNotNull = function (value) {
+            return typeof value !== 'undefined' && value !== null && value !== "";
+        };
     }
 })();
 

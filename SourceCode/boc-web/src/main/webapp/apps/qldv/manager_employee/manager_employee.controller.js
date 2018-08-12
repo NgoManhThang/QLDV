@@ -1,13 +1,14 @@
 // code style: https://github.com/johnpapa/angular-styleguide
 var scopeHolder;
-(function() {
+(function () {
     'use strict';
     angular.module('app').controller('ManaEmployeeController', ManaEmployeeController);
 
     ManaEmployeeController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
         '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'ManageEmployeeService'];
+
     function ManaEmployeeController($scope, $rootScope, $controller, $state, $window, $element,
-                                    $translate, $http, $timeout, $sessionStorage, $localStorage, ManageEmployeeService){
+                                    $translate, $http, $timeout, $sessionStorage, $localStorage, ManageEmployeeService) {
         var vm = this;
         scopeHolder = $scope;
 
@@ -34,14 +35,55 @@ var scopeHolder;
 
             //<editor-fold desc="Config Table">
             vm.tableHeadDefault = [
-                {title: $translate.instant('global.index'), value: "tblIndex", checked: true, disable: true, isShow: true},
-                {title: $translate.instant('global.table.action'), value: "tblAction", checked: true, disable: true, isShow: true},
-                {title: $translate.instant('user.labelInput.imageUser'), value: "tblImage", checked: true, disable: true, isShow: true},
-                {title: $translate.instant('user.labelInput.userName'), value: "userName", checked: true, disable: true, isShow: true},
-                {title: $translate.instant('user.labelInput.fullName'), value: "fullName", checked: true, disable: false, isShow: true},
-                {title: $translate.instant('user.labelInput.codeEmployee'), value: "codeEmployee", checked: true, disable: false, isShow: true},
-                {title: $translate.instant('user.labelInput.email'), value: "email", checked: true, disable: false, isShow: true},
-                {title: $translate.instant('user.labelInput.phone'), value: "phone", checked: true, disable: false, isShow: true}
+                {
+                    title: $translate.instant('global.index'),
+                    value: "tblIndex",
+                    checked: true,
+                    disable: true,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('global.table.action'),
+                    value: "tblAction",
+                    checked: true,
+                    disable: true,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.userName'),
+                    value: "userName",
+                    checked: true,
+                    disable: true,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.fullName'),
+                    value: "fullName",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.codeEmployee'),
+                    value: "codeEmployee",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.email'),
+                    value: "email",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.phone'),
+                    value: "phone",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                }
             ];
             vm.tableMainConfig = {
                 tableName: 'tableMain',
@@ -83,8 +125,8 @@ var scopeHolder;
                 vm.tableMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableMainConfig.totalPage = parseInt(resp.data.draw);
                 var lstData = resp.data.data;
-                if(lstData.length > 0){
-                    for (var i = 0; i < lstData.length; i++){
+                if (lstData.length > 0) {
+                    for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
                         var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.userId + '\')"><i class="fa fa-edit"></i></span>' +
                             '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + item.userId + '\')"><i class="fa fa-remove"></i></span>';
@@ -96,12 +138,6 @@ var scopeHolder;
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
                                 width: '100'
-                            },
-                            "imageUser": {
-                                value: "",
-                                align: "center",
-                                header: $translate.instant('user.labelInput.imageUser'),
-                                width: '80'
                             },
                             "userName": {
                                 value: item.userName,
@@ -155,8 +191,8 @@ var scopeHolder;
 
         function getTable(table) {
             for (var i = 0; i < vm.tableMainConfig.headerDefault.length; i++) {
-                if(!vm.tableMainConfig.headerDefault[i].disable){
-                    if(vm.tableMainConfig.headerDefault[i].checked){
+                if (!vm.tableMainConfig.headerDefault[i].disable) {
+                    if (vm.tableMainConfig.headerDefault[i].checked) {
                         table.column(i).visible(true);
                     } else {
                         table.column(i).visible(false);
@@ -165,13 +201,17 @@ var scopeHolder;
             }
         }
 
-        $rootScope.$on('$loadSortingDatatable', function(event, object){
+        $rootScope.$on('$loadSortingDatatable', function (event, object) {
             vm.tableMainConfig.sortName = object.sortName;
             vm.tableMainConfig.sortType = object.sortType;
             vm.tableMainConfig.sortIndex = object.sortIndex;
-            if(object.pageName == 'pageUser') {
+            if (object.pageName == 'pageUser') {
                 getListDataEmployee();
             }
+        });
+
+        $rootScope.$on("loadDataEmployee", function () {
+            vm.doSearch();
         });
 
 
