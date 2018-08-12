@@ -39,6 +39,7 @@
             "BOC_STATISTICS": "fa fa-desktop",
             "BOC_USER": "fa-users",
             "QLDV_EMPLOYEE": "fa-users",
+            "QLDV_PARTNER": "fa-twitter",
             "BOC_TARGET": "fa-bar-chart-o"
         };
 
@@ -154,6 +155,19 @@
                             "description": "",
                             "objectName": "Quản lý nhân viên",
                             "objectUrl": "boc.employee",
+                            "objectRole": ""
+                        },
+                        {
+                            "childObjects": [],
+                            "ord": 3,
+                            "parentId": -1,
+                            "status": 1,
+                            "objectId": 387930,
+                            "objectType": "M",
+                            "objectCode": "QLDV_PARTNER",
+                            "description": "",
+                            "objectName": "Quản lý đối tác",
+                            "objectUrl": "boc.partner",
                             "objectRole": ""
                         }
                     ];

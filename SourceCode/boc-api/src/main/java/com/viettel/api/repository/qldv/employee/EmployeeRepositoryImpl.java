@@ -1,6 +1,7 @@
 package com.viettel.api.repository.qldv.employee;
 
 import com.viettel.api.config.Constants;
+import com.viettel.api.domain.qldv.EmployeeEntity;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
@@ -88,10 +89,13 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
                 Long id = (Long) session.save(dto.toEntity());
                 resultDto.setId(String.valueOf(id));
             } else {
-//                dto.setCreateDate(DataUtil.date2Timestamp(DataUtil.ddMMyyyyToDate(dto.getCreateDate())));
-                dto.setUpdateUser(userName);
-                dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
-                entityManager.merge(dto.toEntity());
+                EmployeeEntity entity = entityManager.find(EmployeeEntity.class, Long.valueOf(dto.getEmployeeId()));
+                if(entity.getEmployeeId() != null){
+                    dto.setUpdateUser(userName);
+                    dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+                    dto.setPassword(entity.getPassword());
+                    entityManager.merge(dto.toEntity());
+                }
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

@@ -5,10 +5,10 @@ var scopeHolder;
     angular.module('app').controller('EmployeeDetailController', EmployeeDetailController);
 
     EmployeeDetailController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$uibModalInstance',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'ManageEmployeeService', 'QldvCommonService'];
+        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'ManageEmployeeService', 'QldvCommonService', '$stateParams'];
 
     function EmployeeDetailController($scope, $rootScope, $controller, $state, $uibModalInstance,
-                                      $translate, $http, $timeout, $sessionStorage, $localStorage, ManageEmployeeService, QldvCommonService) {
+                                      $translate, $http, $timeout, $sessionStorage, $localStorage, ManageEmployeeService, QldvCommonService, $stateParams) {
         var vm = this;
         scopeHolder = $scope;
 
@@ -28,18 +28,23 @@ var scopeHolder;
             vm.lstPosition = [];
             vm.lstStatus = [];
             vm.detail = {};
+            if (vm.stringIsNotNullOrEmpty($stateParams.employeeId)) {
+                vm.title = $translate.instant('employee.title.update');
+            } else {
+                vm.title = $translate.instant('employee.title.addNew');
+            }
             //endregion
 
             //region Function
             vm.loadDataCombo = loadDataCombo;
             vm.doExit = doExit;
             vm.doSaveData = doSaveData;
+            vm.getDetail = getDetail;
             //endregion
 
             //region Function init
             vm.loadDataCombo();
             //endregion
-
         })();
 
         function loadDataCombo() {
@@ -53,6 +58,9 @@ var scopeHolder;
                         vm.lstStatus.push(obj);
                     }
                 });
+                if (vm.stringIsNotNullOrEmpty($stateParams.employeeId)) {
+                    vm.getDetail($stateParams.employeeId);
+                }
             }, function (err) {
 
             });
@@ -60,57 +68,59 @@ var scopeHolder;
 
         function doSaveData() {
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.code)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.code)) {
                 vm.showAlert("warning", $translate.instant('employee.message.employeeCodeNotnull'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.fullName)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.fullName)) {
                 vm.showAlert("warning", $translate.instant('employee.message.fullNameNotnull'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.password)){
-                vm.showAlert("warning", $translate.instant('employee.message.passwordNotnull'));
-                return;
+            if (!vm.stringIsNotNullOrEmpty($stateParams.employeeId)) {
+                if (!vm.stringIsNotNullOrEmpty(vm.detail.password)) {
+                    vm.showAlert("warning", $translate.instant('employee.message.passwordNotnull'));
+                    return;
+                }
+
+                if (!vm.stringIsNotNullOrEmpty(vm.detail.retypePassword)) {
+                    vm.showAlert("warning", $translate.instant('employee.message.retypePasswordNotnull'));
+                    return;
+                }
+
+                if (vm.detail.password !== vm.detail.retypePassword) {
+                    vm.showAlert("warning", $translate.instant('employee.message.passwordMissmatched'));
+                    return;
+                }
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.retypePassword)){
-                vm.showAlert("warning", $translate.instant('employee.message.retypePasswordNotnull'));
-                return;
-            }
-
-            if(vm.detail.password !== vm.detail.retypePassword){
-                vm.showAlert("warning", $translate.instant('employee.message.passwordMissmatched'));
-                return;
-            }
-
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.email)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.email)) {
                 vm.showAlert("warning", $translate.instant('employee.message.emailNotnull'));
                 return;
             }
 
-            if(!regexEmail.test(vm.detail.email)){
+            if (!regexEmail.test(vm.detail.email)) {
                 vm.showAlert("warning", $translate.instant('employee.message.emailNotFormat'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.status)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.status)) {
                 vm.showAlert("warning", $translate.instant('employee.message.statusNotnull'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.userName)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.userName)) {
                 vm.showAlert("warning", $translate.instant('employee.message.userNameNotnull'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.phone)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.phone)) {
                 vm.showAlert("warning", $translate.instant('employee.message.phoneNotnull'));
                 return;
             }
 
-            if(!vm.stringIsNotNullOrEmpty(vm.detail.position)){
+            if (!vm.stringIsNotNullOrEmpty(vm.detail.position)) {
                 vm.showAlert("warning", $translate.instant('employee.message.positionNotnull'));
                 return;
             }
@@ -133,8 +143,18 @@ var scopeHolder;
         }
 
         function doExit() {
+            $stateParams.employeeId = null;
             $uibModalInstance.close();
             $state.go('boc.employee');
+        }
+
+        function getDetail(id) {
+            ManageEmployeeService.getDetail({employeeId: id}).$promise.then(function (resp) {
+                vm.detail = resp.data;
+                console.log(resp);
+            }, function (err) {
+
+            });
         }
 
 

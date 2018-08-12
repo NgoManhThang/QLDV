@@ -31,6 +31,10 @@ var scopeHolder;
             vm.getListEmployee = getListEmployee;
             vm.doRefresh = doRefresh;
             vm.doAddNew = doAddNew;
+
+            vm.editData = editData;
+            $window.editData = vm.editData;
+
             //</editor-fold>
 
             //<editor-fold desc="Config Table">
@@ -128,8 +132,8 @@ var scopeHolder;
                 if (lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
-                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.userId + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + item.userId + '\')"><i class="fa fa-remove"></i></span>';
+                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.employeeId + '\')"><i class="fa fa-edit"></i></span>' +
+                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(item) + '\')"><i class="fa fa-remove"></i></span>';
 
                         var objAdd = {
                             "action": {
@@ -187,6 +191,11 @@ var scopeHolder;
 
         function doAddNew() {
             $state.go('employee-detail');
+        }
+
+        function editData(id) {
+            $state.go('employee-detail', {employeeId: id});
+            console.log(id);
         }
 
         function getTable(table) {

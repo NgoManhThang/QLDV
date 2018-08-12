@@ -1,7 +1,8 @@
 {
   "employee": {
     "title": {
-      "addNew": "THÊM MỚI NHÂN VIÊN"
+      "addNew": "THÊM MỚI NHÂN VIÊN",
+      "update": "CẬP NHẬT THÔNG TIN NHÂN VIÊN"
     },
     "label": {
       "code": "Mã nhân viên",

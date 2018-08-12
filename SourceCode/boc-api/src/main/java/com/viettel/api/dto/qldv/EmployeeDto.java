@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class EmployeeDto extends BaseDto {
     private String employeeId;
     private String code;
-    private Long status;
+    private String status;
     private String userName;
     private String password;
     private String retypePassword;
@@ -46,7 +46,7 @@ public class EmployeeDto extends BaseDto {
                     updateDate,
                     userName,
                     password,
-                    status
+                    StringUtils.isNotNullOrEmpty(status) ? Long.valueOf(status) : null
             );
             return entity;
         } catch (Exception e) {

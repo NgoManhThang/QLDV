@@ -48,9 +48,12 @@
                     }
                 }
             })
-            .state('employee-detail',{
+            .state('employee-detail', {
                 parent: 'boc.employee',
                 url: '/detail',
+                params: {
+                    employeeId: null
+                },
                 onEnter: ['$stateParams', '$state', '$uibModal', '$resource', '$rootScope', function ($stateParams, $state, $uibModal, $rootScope) {
                     $uibModal.open({
                         templateUrl: 'apps/qldv/manager_employee/detail.html',
