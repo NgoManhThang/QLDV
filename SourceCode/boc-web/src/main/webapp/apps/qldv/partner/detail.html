@@ -1,0 +1,116 @@
+<div class="panel panel-default panel-default-custom">
+    <div class="panel-heading panel-heading-custom">
+        <h3 class="panel-title">{{vm.title}}</h3>
+    </div>
+    <div class="panel-body panel-body-custom">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="idFSaveData" name="fSaveData">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.code">Mã nhân viên</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.code" name="code"
+                                   placeholder="{{'employee.label.code' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.fullName">Họ tên</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.fullName" name="fullName"
+                                   placeholder="{{'employee.label.fullName' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group" ng-hide="vm.detail.employeeId != null">
+                            <label class="control-label"
+                                   data-translate="employee.label.password">Mật khẩu</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="password" data-ng-model="vm.detail.password" name="password"
+                                   placeholder="{{'employee.label.password' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.email">Email</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.email" name="email"
+                                   placeholder="{{'employee.label.email' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.status">Trạng thái</label>
+                            <span class="text-danger">(*)</span>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.status">
+                                <option value="" data-translate="global.common.toolbar-chose1"></option>
+                                <option data-ng-repeat="obj in vm.lstStatus" value="{{obj.code}}">
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.userName">User Name</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.userName" name="userName"
+                                   placeholder="{{'employee.label.userName' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.phone">Số điện thoại</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.phone" name="phone"
+                                   onkeypress="forceNumericOnly(event)"
+                                   placeholder="{{'employee.label.phone' | translate}}"
+                                   class="form-control" maxlength="11"/>
+                        </div>
+
+                        <div class="form-group" ng-hide="vm.detail.employeeId != null">
+                            <label class="control-label"
+                                   data-translate="employee.label.retypePassword">Nhập lại Mật khẩu</label>
+                            <span class="text-danger">(*)</span>
+                            <input type="password" data-ng-model="vm.detail.retypePassword" name="retypePassword"
+                                   placeholder="{{'employee.label.retypePassword' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="employee.label.position">Chức vụ</label>
+                            <span class="text-danger">(*)</span>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.position">
+                                <option value="" data-translate="global.common.toolbar-chose1"></option>
+                                <option data-ng-repeat="obj in vm.lstPosition" value="{{obj.code}}">
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer panel-footer-custom">
+        <div class="col-md-12 form-button-search">
+            <button type="button" class="btn btn-info" data-ng-click="vm.doSaveData();">
+                <i class="fa fa-save"></i> <span data-translate="global.action.save"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger" data-ng-click="vm.doExit();">
+                <i class="fa fa-close"></i> <span data-translate="global.action.close"></span>
+            </button>
+        </div>
+    </div>
+</div>
