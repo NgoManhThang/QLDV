@@ -1,0 +1,15 @@
+{
+  "partner":{
+    "title":{
+      "table": "DANH SÁCH ĐỐI TÁC"
+    },
+    "label":{
+      "partnerCode": "Mã đối tác",
+      "partnerName": "Tên đối tác",
+      "partnerType": "Loại đối tác",
+      "status": " Trạng thái",
+      "representName": "Đại diện đoàn đối tác",
+      "phoneRepresent": "Sđt đại diện đối tác"
+    }
+  }
+}

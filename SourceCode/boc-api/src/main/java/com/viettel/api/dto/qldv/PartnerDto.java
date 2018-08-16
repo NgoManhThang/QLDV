@@ -24,6 +24,9 @@ public class PartnerDto extends BaseDto{
     private String updateUser;
     private Timestamp updateDate;
     private String status;
+    private String statusName;
+    private String representName;
+    private String phoneRepresent;
 
     public PartnerDto() {
     }
@@ -40,7 +43,9 @@ public class PartnerDto extends BaseDto{
                     createDate,
                     updateUser,
                     updateDate,
-                    status
+                    status,
+                    representName,
+                    phoneRepresent
             );
             return entity;
         } catch (Exception e) {

@@ -15,15 +15,11 @@
       "toolbar-filter": "Tìm kiếm",
       "toolbar-checkall": "Chọn tất cả",
       "toolbar-uncheckall": "Bỏ chọn tất cả",
-      "toolbar-chose": "Chọn...",
-      "toolbar-chose1": "-- Lựa chọn --",
+      "toolbar-chose": "-- Lựa chọn --",
       "fresh": "Làm mới",
       "expand": "Mở rộng",
       "collapse": "Thu lại",
       "settingTable": "Cấu hình bảng"
-    },
-    "placeholder": {
-      "search": "Tìm kiếm..."
     },
     "message": {
       "no-data": "Không có dữ liệu",
@@ -65,32 +61,11 @@
     },
     "action": {
       "search": "Tìm kiếm",
-      "exportExcel": "Xuất excel",
-      "importExcel": "Import Excel",
-      "delete": "Xóa",
-      "close": "Đóng",
-      "yes": "Có",
-      "no": "Không",
-      "choose-file": "Chọn file",
-      "view-file": "Xem file",
-      "confirm": "Xác nhận",
-      "addNew": "Thêm mới",
-      "addNewTVD": "Thêm mới thông tin thành viên đoàn",
-      "update": "Cập nhật",
-      "updateTVD": "Cập nhật thông tin thành viên đoàn",
-      "save": "Ghi lại",
       "refresh": "Làm mới",
-      "approve": "Duyệt",
-      "band": "Từ chối",
-      "send": "Gửi",
-      "copy": "Sao chép",
-      "edit": "Sửa",
-      "registry": "Trình ký",
-      "exportAppendix": "Export phụ lục",
-      "add": "Thêm",
-      "download-temp": "Tải file mẫu",
-      "back": "Quay lại",
-      "cancel": "Hủy"
+      "addNew": "Thêm mới",
+      "save": "Ghi lại",
+      "close": "Đóng"
+
     },
     "popupDate": {
       "currentText": "Tháng này",

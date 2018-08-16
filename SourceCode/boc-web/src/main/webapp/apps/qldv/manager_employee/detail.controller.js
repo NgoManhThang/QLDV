@@ -58,6 +58,7 @@ var scopeHolder;
                         vm.lstStatus.push(obj);
                     }
                 });
+                //Load khi mà update
                 if (vm.stringIsNotNullOrEmpty($stateParams.employeeId)) {
                     vm.getDetail($stateParams.employeeId);
                 }

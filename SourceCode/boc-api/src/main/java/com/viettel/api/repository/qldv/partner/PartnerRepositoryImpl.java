@@ -35,6 +35,7 @@ public class PartnerRepositoryImpl extends BaseRepository implements PartnerRepo
             maps.put("p_partner_code", StringUtils.convertUpperParamContains(dto.getPartnerCode()));
             maps.put("p_partner_name", StringUtils.convertUpperParamContains(dto.getPartnerName()));
             maps.put("p_partner_type", dto.getPartnerType());
+            maps.put("p_partner_status", dto.getStatus());
             List<PartnerDto> list = getListDataBySqlQuery(sql.toString(),
                     maps, dto.getPage(), dto.getPageSize(),
                     PartnerDto.class, true,

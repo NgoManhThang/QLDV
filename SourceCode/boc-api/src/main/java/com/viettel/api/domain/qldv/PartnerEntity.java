@@ -44,6 +44,12 @@ public class PartnerEntity {
     @Column(name = "STATUS")
     private String status;
 
+    @Column(name = "REPRESENT_NAME")
+    private String representName;
+
+    @Column(name = "PHONE_REPRESENT")
+    private String phoneRepresent;
+
     public PartnerEntity() {
     }
 
@@ -56,7 +62,9 @@ public class PartnerEntity {
             Timestamp createDate,
             String updateUser,
             Timestamp updateDate,
-            String status
+            String status,
+            String representName,
+            String phoneRepresent
     ) {
         this.partnerId = partnerId;
         this.partnerCode = partnerCode;
@@ -67,5 +75,7 @@ public class PartnerEntity {
         this.updateUser = updateUser;
         this.updateDate = updateDate;
         this.status = status;
+        this.representName = representName;
+        this.phoneRepresent = phoneRepresent;
     }
 }

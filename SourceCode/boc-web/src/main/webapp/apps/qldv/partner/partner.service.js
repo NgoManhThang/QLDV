@@ -6,7 +6,7 @@
     PartnerService.$inject = ['$resource', 'APP_REST_SERVICE'];
     function PartnerService ($resource, APP_REST_SERVICE) {
         var contentType = 'application/octet-stream';
-        var URL = APP_REST_SERVICE + "employee";
+        var URL = APP_REST_SERVICE + "partner";
         var service =  $resource(URL, {}, {
             search: {
                 method: 'POST',

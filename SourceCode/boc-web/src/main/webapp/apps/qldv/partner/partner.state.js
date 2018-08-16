@@ -18,10 +18,9 @@
                 controllerAs: 'vm',
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('dashboard');
                         $translatePartialLoader.addPart('datatable');
-                        $translatePartialLoader.addPart('user');
-                        $translatePartialLoader.addPart('employee');
+                        $translatePartialLoader.addPart('partner');
+                        $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }],
                     loadPlugin: function ($ocLazyLoad) {

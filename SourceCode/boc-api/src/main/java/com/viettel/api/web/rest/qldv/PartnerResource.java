@@ -23,7 +23,7 @@ public class PartnerResource {
     @Autowired
     PartnerService partnerService;
 
-    @PostMapping("/searchPartner")
+    @PostMapping("/search")
     @Timed
     public ResponseEntity<Datatable> searchPartner(@RequestBody PartnerDto dto) {
         Datatable datatable = new Datatable();
