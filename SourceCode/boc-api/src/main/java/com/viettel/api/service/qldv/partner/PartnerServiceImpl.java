@@ -1,6 +1,8 @@
 package com.viettel.api.service.qldv.partner;
 
+import com.viettel.api.domain.qldv.PartnerEntity;
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.PartnerDto;
 import com.viettel.api.repository.qldv.partner.PartnerRepository;
 import org.slf4j.Logger;
@@ -19,5 +21,15 @@ public class PartnerServiceImpl implements PartnerService {
     @Override
     public Datatable seachPartner(PartnerDto dto) {
         return partnerRepository.seachPartner(dto);
+    }
+
+    @Override
+    public ResultDto saveData(PartnerDto dto) {
+        return partnerRepository.saveData(dto);
+    }
+
+    @Override
+    public PartnerEntity getDetail(PartnerDto dto) {
+        return partnerRepository.getDetail(dto);
     }
 }

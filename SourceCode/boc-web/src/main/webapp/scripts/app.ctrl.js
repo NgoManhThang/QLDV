@@ -36,11 +36,9 @@
         });
 
         $scope.menuIcons = {
-            "BOC_STATISTICS": "fa fa-desktop",
-            "BOC_USER": "fa-users",
             "QLDV_EMPLOYEE": "fa-users",
             "QLDV_PARTNER": "fa-twitter",
-            "BOC_TARGET": "fa-bar-chart-o"
+            "QLDV_UNIONS": "fa-stack-overflow"
         };
 
         function getBreadcrumb() {
@@ -96,7 +94,7 @@
 
         function loginSuccess() {
             if ($localStorage.applicationName == APP_NAME) {
-                $state.go('boc.statistics');
+                $state.go('boc.employee');
                 if ($localStorage.user != null && $localStorage.user != undefined) {
                     $scope.userLoggedIn = $localStorage.user;
                     if ($scope.userLoggedIn.fileId != null) {
@@ -105,7 +103,7 @@
                         $scope.userLoggedIn.urlFileImage = './img/person.png';
                     }
                     var aaa = [
-                        {
+                        /*{
                             "childObjects": [],
                             "ord": 3,
                             "parentId": -1,
@@ -143,7 +141,7 @@
                             "objectName": "Quản lý người dùng",
                             "objectUrl": "boc.user",
                             "objectRole": "MANAGER_USER"
-                        },
+                        },*/
                         {
                             "childObjects": [],
                             "ord": 3,
@@ -168,6 +166,19 @@
                             "description": "",
                             "objectName": "Quản lý đối tác",
                             "objectUrl": "boc.partner",
+                            "objectRole": ""
+                        },
+                        {
+                            "childObjects": [],
+                            "ord": 3,
+                            "parentId": -1,
+                            "status": 1,
+                            "objectId": 387930,
+                            "objectType": "M",
+                            "objectCode": "QLDV_UNIONS",
+                            "description": "",
+                            "objectName": "Quản lý đoàn",
+                            "objectUrl": "boc.unions",
                             "objectRole": ""
                         }
                     ];

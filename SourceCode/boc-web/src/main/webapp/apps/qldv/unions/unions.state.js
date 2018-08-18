@@ -9,25 +9,26 @@
 
     function stateConfig($stateProvider, $urlRouterProvider, MODULE_CONFIG) {
         $stateProvider
-            .state('boc.partner', {
+            .state('boc.unions', {
                 parent: 'boc',
-                url: '/partner',
-                templateUrl: 'apps/qldv/partner/partner.html',
+                url: '/unions',
+                templateUrl: 'apps/qldv/unions/unions.html',
                 data: {title: 'Partner'},
-                controller: "PartnerController",
+                controller: "UnionsController",
                 controllerAs: 'vm',
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('datatable');
                         $translatePartialLoader.addPart('partner');
+                        $translatePartialLoader.addPart('unions');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }],
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
-                            'apps/qldv/partner/partner.service.js'
-                            , 'apps/qldv/partner/partner.controller.js'
-                            , 'apps/qldv/partner/detail.controller.js'
+                            'apps/qldv/unions/unions.service.js'
+                            , 'apps/qldv/unions/unions.controller.js'
+                            , 'apps/qldv/unions/detail.controller.js'
                             , 'apps/qldv/common/qldv_common.service.js'
                             , 'apps/base.controller.js'
                             , 'apps/base.service.js'
@@ -42,7 +43,7 @@
                     }
                 }
             })
-            .state('partner-detail', {
+            .state('unions-detail', {
                 parent: 'boc.partner',
                 url: '/detail',
                 params: {

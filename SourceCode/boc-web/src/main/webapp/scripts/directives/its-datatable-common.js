@@ -213,6 +213,7 @@
                             lengthMenu: '<div class="custom-pagination-length">' +
                             $translate.instant('datatable.display') +
                             ' <select class="page-size" onchange="window.' + tableName + 'pageSizeChange(this, \'' + tableName + '\')">' +
+                            '<option value="5">5</option>' +
                             '<option value="10">10</option>' +
                             '<option value="20">20</option>' +
                             '<option value="30">30</option>' +

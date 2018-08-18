@@ -1,7 +1,9 @@
 {
   "partner":{
     "title":{
-      "table": "DANH SÁCH ĐỐI TÁC"
+      "table": "DANH SÁCH ĐỐI TÁC",
+      "addNew": "THÊM MỚI ĐỐI TÁC",
+      "update": "CẬP NHẬT ĐỐI TÁC"
     },
     "label":{
       "partnerCode": "Mã đối tác",
@@ -10,6 +12,14 @@
       "status": " Trạng thái",
       "representName": "Đại diện đoàn đối tác",
       "phoneRepresent": "Sđt đại diện đối tác"
+    },
+    "message": {
+      "partnerCodeNotNull": "Mã đối tác không được để trống",
+      "partnerNameNotNull": "Tên đối tác không được để trống",
+      "representNameNotNull": "Tên đại diện đoàn đối tác không được để trống",
+      "representPhoneNotNull": "Số điện thoại đại diện đoàn đối tác không được để trống",
+      "partnerTypeNotNull": "Loại đối tác bắt buộc chọn",
+      "statusNotNull": "Trạng thái đối tác bắt buộc chọn"
     }
   }
 }

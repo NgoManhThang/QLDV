@@ -2,13 +2,13 @@
 var scopeHolder;
 (function () {
     'use strict';
-    angular.module('app').controller('PartnerController', PartnerController);
+    angular.module('app').controller('UnionsController', UnionsController);
 
-    PartnerController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'PartnerService', 'QldvCommonService'];
+    UnionsController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
+        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'UnionsService', 'QldvCommonService'];
 
-    function PartnerController($scope, $rootScope, $controller, $state, $window, $element,
-                               $translate, $http, $timeout, $sessionStorage, $localStorage, PartnerService, QldvCommonService) {
+    function UnionsController($scope, $rootScope, $controller, $state, $window, $element,
+                               $translate, $http, $timeout, $sessionStorage, $localStorage, UnionsService, QldvCommonService) {
         var vm = this;
         scopeHolder = $scope;
 
@@ -125,8 +125,8 @@ var scopeHolder;
             //</editor-fold>
 
             //<editor-fold desc="Init function">
-            vm.loadDataCombo();
-            vm.doSearch();
+            // vm.loadDataCombo();
+            // vm.doSearch();
             //</editor-fold>
 
         })();

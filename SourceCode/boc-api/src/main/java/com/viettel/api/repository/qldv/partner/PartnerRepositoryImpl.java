@@ -1,17 +1,24 @@
 package com.viettel.api.repository.qldv.partner;
 
+import com.viettel.api.config.Constants;
+import com.viettel.api.domain.qldv.PartnerEntity;
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.PartnerDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
 import com.viettel.api.utils.StringUtils;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +26,7 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 @Repository
 @Transactional
-public class PartnerRepositoryImpl extends BaseRepository implements PartnerRepository{
+public class PartnerRepositoryImpl extends BaseRepository implements PartnerRepository {
     Logger logger = LoggerFactory.getLogger(PartnerRepositoryImpl.class);
 
     @PersistenceContext
@@ -55,9 +62,45 @@ public class PartnerRepositoryImpl extends BaseRepository implements PartnerRepo
                 }
             }
             datatable.setData(list);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
         return datatable;
+    }
+
+    @Override
+    public ResultDto saveData(PartnerDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        Session session = getSession();
+        entityManager = getEntityManager();
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (StringUtils.isStringNullOrEmpty(dto.getPartnerId())) {
+                dto.setCreateUser(auth.getName());
+                dto.setUpdateUser(auth.getName());
+                dto.setCreateDate(new Timestamp(System.currentTimeMillis()));
+                dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+                long id = (long) session.save(dto.toEntity());
+                resultDto.setId(String.valueOf(id));
+            } else {
+                PartnerEntity entity = entityManager.find(PartnerEntity.class, dto.getPartnerId());
+                if (entity.getPartnerId() != null) {
+                    dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+                    dto.setUpdateUser(auth.getName());
+                    entityManager.merge(dto.toEntity());
+                }
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return resultDto;
+    }
+
+    @Override
+    public PartnerEntity getDetail(PartnerDto dto) {
+        entityManager = getEntityManager();
+        PartnerEntity entity = entityManager.find(PartnerEntity.class, dto.getPartnerId());
+        return entity;
     }
 }

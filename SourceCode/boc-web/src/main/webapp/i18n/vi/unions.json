@@ -1,0 +1,10 @@
+{
+  "unions": {
+    "title":{
+      "table": "DANH SÁCH ĐOÀN"
+    },
+    "label":{
+
+    }
+  }
+}
