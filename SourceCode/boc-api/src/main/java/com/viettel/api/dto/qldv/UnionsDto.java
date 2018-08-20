@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 public class UnionsDto extends BaseDto {
     private Long unionId;
     private String unionName;
-    private Long vietnameeseNumber;
+    private Long vietnameseNumber;
     private Long foreignerNumber;
     private String fromDate;
     private String toDate;
@@ -59,7 +59,7 @@ public class UnionsDto extends BaseDto {
             UnionsEntity entity = new UnionsEntity(
                     unionId,
                     unionName,
-                    vietnameeseNumber,
+                    vietnameseNumber,
                     foreignerNumber,
                     StringUtils.isNotNullOrEmpty(fromDate) ? DataUtil.ddMMyyyyToDate(fromDate) : null,
                     StringUtils.isNotNullOrEmpty(toDate) ? DataUtil.ddMMyyyyToDate(toDate) : null,

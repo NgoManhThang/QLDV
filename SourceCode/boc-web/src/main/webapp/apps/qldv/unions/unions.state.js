@@ -27,6 +27,7 @@
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             'apps/qldv/unions/unions.service.js'
+                            , 'apps/qldv/partner/partner.service.js'
                             , 'apps/qldv/unions/unions.controller.js'
                             , 'apps/qldv/unions/detail.controller.js'
                             , 'apps/qldv/common/qldv_common.service.js'

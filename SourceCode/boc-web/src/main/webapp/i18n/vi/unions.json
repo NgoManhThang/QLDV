@@ -1,10 +1,29 @@
 {
   "unions": {
-    "title":{
+    "title": {
       "table": "DANH SÁCH ĐOÀN"
     },
-    "label":{
-
+    "label": {
+      "unionName": "Tên đoàn",
+      "fromDateFrom": "Ngày bắt đầu từ",
+      "fromDateTo": "Ngày bắt đầu đến",
+      "toDateFrom": "Ngày kết thúc từ",
+      "toDateTo": "Ngày kết thúc đến",
+      "partnerId": "Thuộc đối tác",
+      "unionType": "Loại đoàn",
+      "unitId": "Khách thuộc đơn vị",
+      "status": "Trạng thái"
+    },
+    "table": {
+      "partnerName": "Tên đối tác",
+      "unionName": "Tên đoàn",
+      "vietnameeseNumber": "Số người Việt Nam",
+      "foreignerNumber": "Số người nước ngoài",
+      "fromDate": "Ngày bắt đầu",
+      "toDate": "Ngày kết thúc",
+      "representUnion": "Đại diện đoàn",
+      "representCompany": "Đại diện công ty",
+      "status": "Trạng thái"
     }
   }
 }

@@ -5,10 +5,10 @@ var scopeHolder;
     angular.module('app').controller('UnionsController', UnionsController);
 
     UnionsController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'UnionsService', 'QldvCommonService'];
+        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'UnionsService', 'QldvCommonService', 'PartnerService'];
 
     function UnionsController($scope, $rootScope, $controller, $state, $window, $element,
-                               $translate, $http, $timeout, $sessionStorage, $localStorage, UnionsService, QldvCommonService) {
+                              $translate, $http, $timeout, $sessionStorage, $localStorage, UnionsService, QldvCommonService, PartnerService) {
         var vm = this;
         scopeHolder = $scope;
 
@@ -23,8 +23,14 @@ var scopeHolder;
 
             //<editor-fold desc="Init variable">
             vm.objSearch = {};
-            vm.lstPartnerType = [];
+            vm.loadCombo = {};
+            vm.listSelectedPartner = [];
+            vm.lstPartner = [];
+            vm.listSelectedUnionType = [];
+            vm.lstUnionType = [];
+            vm.listSelectedStatus = [];
             vm.lstStatus = [];
+
             //</editor-fold>
 
             //<editor-fold desc="Function">
@@ -45,6 +51,8 @@ var scopeHolder;
             $window.tableMainnextPage = vm.nextPage;
             $window.tableMainpageSizeChange = vm.pageSizeChange;
             $window.tableMaincurrentPageChange = vm.currentPageChange;
+
+            vm.openPopupDate = openPopupDate;
             //</editor-fold>
 
             //<editor-fold desc="Config Table">
@@ -64,43 +72,64 @@ var scopeHolder;
                     isShow: true
                 },
                 {
-                    title: $translate.instant('partner.label.partnerCode'),
-                    value: "partnerCode",
+                    title: $translate.instant('unions.table.partnerName'),
+                    value: "partnerName",
                     checked: true,
                     disable: true,
                     isShow: true
                 },
                 {
-                    title: $translate.instant('partner.label.partnerName'),
-                    value: "partnerName",
+                    title: $translate.instant('unions.table.unionName'),
+                    value: "unionName",
                     checked: true,
                     disable: false,
                     isShow: true
                 },
                 {
-                    title: $translate.instant('partner.label.partnerType'),
-                    value: "partnerType",
+                    title: $translate.instant('unions.table.vietnameeseNumber'),
+                    value: "vietnameeseNumber",
                     checked: true,
                     disable: false,
                     isShow: true
                 },
                 {
-                    title: $translate.instant('partner.label.status'),
+                    title: $translate.instant('unions.table.foreignerNumber'),
+                    value: "foreignerNumber",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.table.fromDate'),
+                    value: "fromDate",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.table.toDate'),
+                    value: "toDate",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.table.representUnion'),
+                    value: "representUnion",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.table.representCompany'),
+                    value: "representCompany",
+                    checked: true,
+                    disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.table.status'),
                     value: "status",
-                    checked: true,
-                    disable: false,
-                    isShow: true
-                },
-                {
-                    title: $translate.instant('partner.label.representName'),
-                    value: "representName",
-                    checked: true,
-                    disable: false,
-                    isShow: true
-                },
-                {
-                    title: $translate.instant('partner.label.phoneRepresent'),
-                    value: "phoneRepresent",
                     checked: true,
                     disable: false,
                     isShow: true
@@ -115,7 +144,7 @@ var scopeHolder;
                 currentPage: 1,
                 pageSize: 5,
                 sortIndex: 3,
-                sortName: 'partnerCode',
+                sortName: 'unionName',
                 sortType: 'asc',
                 propertyName: '',
                 lastColumnWith: "10",
@@ -125,34 +154,55 @@ var scopeHolder;
             //</editor-fold>
 
             //<editor-fold desc="Init function">
-            // vm.loadDataCombo();
-            // vm.doSearch();
+            vm.loadDataCombo();
+            vm.doSearch();
             //</editor-fold>
 
         })();
 
         function loadDataCombo() {
-            vm.lstPartnerType = [];
+            vm.lstUnionType = [];
+            vm.lstUnionTypeTemp = [];
             vm.lstStatus = [];
-            QldvCommonService.search({codeGroup: 'PARTNER_TYPE,STATUS_COMMON'}).$promise.then(function (resp) {
+            vm.lstStatusTemp = [];
+            QldvCommonService.search({codeGroup: 'STATUS_UNIONS,UNIONS_TYPE'}).$promise.then(function (resp) {
+                console.log(resp);
                 $.each(resp, function (i, obj) {
-                    if (obj.codeGroup === 'PARTNER_TYPE') {
-                        vm.lstPartnerType.push(obj);
+                    if (obj.codeGroup === 'STATUS_UNIONS') {
+                        vm.lstStatusTemp.push(obj);
                     } else {
-                        vm.lstStatus.push(obj);
+                        vm.lstUnionTypeTemp.push(obj);
                     }
                 });
+                vm.lstUnionType = vm.lstUnionTypeTemp;
+                vm.lstStatus = vm.lstStatusTemp;
             }, function (err) {
 
             });
+
+            vm.loadCombo.page = 1;
+            vm.loadCombo.pageSize = 1000000;
+            vm.loadCombo.sortName = 'partnerCode';
+            vm.loadCombo.sortType = 'asc';
+            vm.lstPartner = [];
+            PartnerService.search(vm.loadCombo).$promise.then(function (resp) {
+                var lstData = resp.data.data;
+                $.each(lstData, function (i, obj) {
+                    obj.code = obj.partnerId;
+                    obj.decode = obj.partnerName;
+                });
+                vm.lstPartner = lstData;
+            }, function (err) {
+
+            })
         }
-        
+
         function doSearch() {
             vm.tableMainConfig.pageSize = 5;
             vm.tableMainConfig.currentPage = 1;
             vm.getListData();
         }
-        
+
         function getListData() {
             vm.loadingByIdTable("tableMain", "shown", vm.tableMainConfig.data);
             vm.objSearch.page = vm.tableMainConfig.currentPage;
@@ -160,11 +210,10 @@ var scopeHolder;
             vm.objSearch.sortName = vm.tableMainConfig.sortName;
             vm.objSearch.sortType = vm.tableMainConfig.sortType;
 
-            PartnerService.search(vm.objSearch).$promise.then(function (resp) {
+            UnionsService.search(vm.objSearch).$promise.then(function (resp) {
                 vm.tableMainConfig.data = [];
                 vm.tableMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableMainConfig.totalPage = parseInt(resp.data.draw);
-                console.log(resp);
                 var lstData = resp.data.data;
                 if (lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {
@@ -175,45 +224,63 @@ var scopeHolder;
                         var objAdd = {
                             "action": {
                                 value: action,
-                                id: item.partnerId,
+                                id: item.unionId,
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
                                 width: '100'
                             },
-                            "partnerCode": {
-                                value: item.partnerCode,
-                                align: "left",
-                                header: $translate.instant('partner.label.partnerCode'),
-                                width: '150'
-                            },
                             "partnerName": {
                                 value: item.partnerName,
                                 align: "left",
-                                header: $translate.instant('partner.label.partnerName'),
+                                header: $translate.instant('unions.table.partnerName'),
                                 width: '150'
                             },
-                            "partnerType": {
-                                value: item.partnerTypeName,
+                            "unionName": {
+                                value: item.unionName,
                                 align: "left",
-                                header: $translate.instant('partner.label.partnerType'),
+                                header: $translate.instant('unions.table.unionName'),
+                                width: '150'
+                            },
+                            "vietnameseNumber": {
+                                value: item.vietnameseNumber,
+                                align: "right",
+                                header: $translate.instant('unions.table.vietnameeseNumber'),
+                                width: '150'
+                            },
+                            "foreignerNumber": {
+                                value: item.foreignerNumber,
+                                align: "right",
+                                header: $translate.instant('unions.table.foreignerNumber'),
+                                width: '170'
+                            },
+                            "fromDate": {
+                                value: item.fromDate,
+                                align: "center",
+                                header: $translate.instant('unions.table.fromDate'),
                                 width: '120'
                             },
-                            "status": {
-                                value: item.statusName,
+                            "toDate": {
+                                value: item.toDate,
+                                align: "center",
+                                header: $translate.instant('unions.table.toDate'),
+                                width: '120'
+                            },
+                            "representUnion": {
+                                value: item.representUnion,
                                 align: "left",
-                                header: $translate.instant('partner.label.status'),
+                                header: $translate.instant('unions.table.representUnion'),
                                 width: '200'
                             },
-                            "representName": {
-                                value: item.representName,
+                            "representCompany": {
+                                value: item.representCompany,
                                 align: "left",
-                                header: $translate.instant('partner.label.representName'),
-                                width: '120'
+                                header: $translate.instant('unions.table.representCompany'),
+                                width: '200'
                             },
-                            "phoneRepresent": {
-                                value: item.phoneRepresent,
-                                align: "right",
-                                header: $translate.instant('partner.label.phoneRepresent'),
+                            "status": {
+                                value: item.status,
+                                align: "left",
+                                header: $translate.instant('unions.table.status'),
                                 width: '120'
                             }
                         };
@@ -237,14 +304,14 @@ var scopeHolder;
                 }
             }
         }
-        
+
         function doAddNew() {
             $state.go('partner-detail');
         }
 
         function editData(temp) {
             var data = JSON.parse(decodeURIComponent(temp));
-            $state.go('partner-detail', {partnerId: data.partnerId+""});
+            $state.go('partner-detail', {partnerId: data.partnerId + ""});
         }
 
         function prevPage() {
@@ -276,6 +343,21 @@ var scopeHolder;
             vm.tableMainConfig.currentPage = 1;
             vm.tableMainConfig.pageSize = parseInt($(el).val());
             vm.getListData();
+        }
+
+        function openPopupDate(type) {
+            if (type === "fromDateFrom") {
+                vm.openedFromDateFrom = true;
+            }
+            else if (type === "toDateFrom") {
+                vm.openedToDateFrom = true;
+            }
+            else if (type === "fromDateTo") {
+                vm.openedFromDateTo = true;
+            }
+            else if (type === "toDateTo") {
+                vm.openedToDateTo = true;
+            }
         }
 
         $rootScope.$on('$loadSortingDatatable', function (event, object) {

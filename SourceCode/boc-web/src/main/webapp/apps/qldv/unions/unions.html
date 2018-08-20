@@ -2,43 +2,185 @@
     <form name="formPartner">
         <div class="col-md-12">
             <div class="block">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label"
-                               data-translate="partner.label.partnerCode"></label>
-                        <input type="text" data-ng-model="vm.objSearch.partnerCode"
-                               placeholder="{{'partner.label.partnerCode' | translate}}"
-                               class="form-control" maxlength="100" tabindex="1"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label"
-                               data-translate="partner.label.partnerType"></label>
-                        <select class="form-control select-wrapper" data-ng-model="vm.objSearch.partnerType">
-                            <option value="" data-translate="global.common.toolbar-all" selected></option>
-                            <option data-ng-repeat="obj in vm.lstPartnerType" value="{{obj.code}}" select-option-repeat>
-                                {{obj.decode}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label"
-                               data-translate="partner.label.partnerName"></label>
-                        <input type="text" data-ng-model="vm.objSearch.partnerName"
-                               placeholder="{{'partner.label.partnerName' | translate}}"
-                               class="form-control" maxlength="250" tabindex="2"/>
+                <form name="unions">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.unionName"></label>
+                            <input type="text" data-ng-model="vm.objSearch.unionName"
+                                   placeholder="{{'unions.label.unionName' | translate}}"
+                                   class="form-control" maxlength="100" tabindex="1"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.fromDateFrom"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="fromDateFrom" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objSearch.fromDateFrom"
+                                           is-open="vm.openedFromDateFrom"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.label.fromDateFrom' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('fromDateFrom')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                 <div role="alert">
+                                    <p class="error" ng-show="!unions.fromDateFrom.$error.required && !unions.fromDateFrom.$error.dateValid && unions.fromDateFrom.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.toDateFrom"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="toDateFrom" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objSearch.toDateFrom"
+                                           is-open="vm.openedToDateFrom"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.label.toDateFrom' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('toDateFrom')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="alert">
+                                    <p class="error" ng-show="!unions.toDateFrom.$error.required && !unions.toDateFrom.$error.dateValid && unions.toDateFrom.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label"
-                               data-translate="partner.label.status"></label>
-                        <select class="form-control select-wrapper" data-ng-model="vm.objSearch.status">
-                            <option value="" data-translate="global.common.toolbar-all" selected></option>
-                            <option data-ng-repeat="obj in vm.lstStatus" value="{{obj.code}}" select-option-repeat>
-                                {{obj.decode}}</option>
-                        </select>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.partnerId"></label>
+                            <fieldset class="input-group">
+                                <multiselect class="input-xlarge" multiple="true"
+                                             tile='global.common.toolbar-all' ng-model="vm.listSelectedPartner"
+                                             options="c.decode for c in vm.lstPartner" change="vm.selected()"
+                                             index="3">
+                                </multiselect>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.fromDateTo"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="fromDateTo" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objSearch.fromDateTo"
+                                           is-open="vm.openedFromDateTo"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.label.fromDateTo' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('fromDateTo')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="alert">
+                                    <p class="error" ng-show="!unions.fromDateTo.$error.required && !unions.fromDateTo.$error.dateValid && unions.fromDateTo.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.toDateTo"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="toDateTo" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objSearch.toDateTo"
+                                           is-open="vm.openedToDateTo"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.label.toDateTo' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('toDateTo')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="alert">
+                                    <p class="error" ng-show="!unions.toDateTo.$error.required && !unions.toDateTo.$error.dateValid && unions.toDateTo.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.unionType"></label>
+                            <fieldset class="input-group">
+                                <multiselect class="input-xlarge" multiple="true"
+                                             tile='global.common.toolbar-all' ng-model="vm.listSelectedUnionType"
+                                             options="c.decode for c in vm.lstUnionType" change="vm.selected()"
+                                             index="3">
+                                </multiselect>
+                            </fieldset>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.unitId"></label>
+                            <fieldset class="input-group">
+                                <multiselect class="input-xlarge" multiple="true"
+                                             tile='global.common.toolbar-all' ng-model="vm.listSelectedUnit"
+                                             options="c.decode for c in vm.lstUnit" change="vm.selected()"
+                                             index="3">
+                                </multiselect>
+                            </fieldset>
+                        </div>-->
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.status"></label>
+                            <fieldset class="input-group">
+                                <multiselect class="input-xlarge" multiple="true"
+                                             tile='global.common.toolbar-all' ng-model="vm.listSelectedStatus"
+                                             options="c.decode for c in vm.lstStatus" change="vm.selected()"
+                                             index="3">
+                                </multiselect>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-md-12 form-button-search">

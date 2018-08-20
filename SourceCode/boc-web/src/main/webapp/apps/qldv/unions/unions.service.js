@@ -6,7 +6,7 @@
     UnionsService.$inject = ['$resource', 'APP_REST_SERVICE'];
     function UnionsService ($resource, APP_REST_SERVICE) {
         var contentType = 'application/octet-stream';
-        var URL = APP_REST_SERVICE + "partner";
+        var URL = APP_REST_SERVICE + "unions";
         var service =  $resource(URL, {}, {
             search: {
                 method: 'POST',
