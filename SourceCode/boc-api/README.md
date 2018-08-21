@@ -1,6 +1,3 @@
-# VsmartApi
-This application was developed for Viettel KPI project.
-
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
@@ -34,7 +31,7 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ## Building for production
 
-To optimize the VsmartApi application for production, run:
+To optimize the application for production, run:
 
     ./mvnw -Pprod clean package
 
