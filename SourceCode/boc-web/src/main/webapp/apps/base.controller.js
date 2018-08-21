@@ -20,7 +20,7 @@
         }
     });
 
-    function BaseController(vm, ProfileService, BaseService, $locale, $translate, $location, $rootScope, $localStorage, APP_REST_SERVICE) {
+    function BaseController(vm, ProfileService, BaseService, $locale, $translate, $location, $rootScope, $localStorage, APP_REST_SERVICE, $filter) {
         vm.dateFormat = "dd/MM/yyyy";
         $locale.NUMBER_FORMATS.DECIMAL_SEP = ".";
         $locale.NUMBER_FORMATS.GROUP_SEP = ",";
@@ -157,6 +157,10 @@
         vm.numberIsNotNull = function (value) {
             return typeof value !== 'undefined' && value !== null && value !== "";
         };
+
+        vm.filterDate = function (value, format) {
+            return $filter('date')(value, format);
+        }
     }
 })();
 

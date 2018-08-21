@@ -22,7 +22,11 @@ var scopeHolder;
             $rootScope.$broadcast('$elementLoadJavascript', $element);
 
             //<editor-fold desc="Init variable">
-            vm.objSearch = {};
+            vm.objSearch = {
+                lstPartnerId: [],
+                lstUnionType: [],
+                lstUnionStatus: []
+            };
             vm.loadCombo = {};
             vm.listSelectedPartner = [];
             vm.lstPartner = [];
@@ -30,7 +34,12 @@ var scopeHolder;
             vm.lstUnionType = [];
             vm.listSelectedStatus = [];
             vm.lstStatus = [];
-
+            vm.objDate = {
+                fromDateFrom: null,
+                fromDateTo: null,
+                toDateFrom: null,
+                toDateTo: null
+            };
             //</editor-fold>
 
             //<editor-fold desc="Function">
@@ -38,6 +47,7 @@ var scopeHolder;
             vm.loadDataCombo = loadDataCombo;
             vm.doSearch = doSearch;
             vm.getListData = getListData;
+            vm.setParamSearch = setParamSearch;
             vm.doAddNew = doAddNew;
 
             vm.editData = editData;
@@ -166,7 +176,6 @@ var scopeHolder;
             vm.lstStatus = [];
             vm.lstStatusTemp = [];
             QldvCommonService.search({codeGroup: 'STATUS_UNIONS,UNIONS_TYPE'}).$promise.then(function (resp) {
-                console.log(resp);
                 $.each(resp, function (i, obj) {
                     if (obj.codeGroup === 'STATUS_UNIONS') {
                         vm.lstStatusTemp.push(obj);
@@ -198,6 +207,7 @@ var scopeHolder;
         }
 
         function doSearch() {
+            vm.setParamSearch();
             vm.tableMainConfig.pageSize = 5;
             vm.tableMainConfig.currentPage = 1;
             vm.getListData();
@@ -291,6 +301,35 @@ var scopeHolder;
             }, function (error) {
 
             });
+        }
+
+        function setParamSearch() {
+            vm.objSearch.lstPartnerId = [];
+            vm.objSearch.lstUnionType = [];
+            vm.objSearch.lstUnionStatus = [];
+
+            vm.objSearch.fromDateFrom = vm.filterDate(vm.objDate.fromDateFrom, 'yyyyMMdd');
+            vm.objSearch.fromDateTo = vm.filterDate(vm.objDate.fromDateTo, 'yyyyMMdd');
+            vm.objSearch.toDateFrom = vm.filterDate(vm.objDate.toDateFrom, 'yyyyMMdd');
+            vm.objSearch.toDateTo = vm.filterDate(vm.objDate.toDateTo, 'yyyyMMdd');
+
+            if(vm.listSelectedPartner.length > 0){
+                $.each(vm.listSelectedPartner, function (i, obj) {
+                    vm.objSearch.lstPartnerId.push(obj.partnerId);
+                });
+            }
+
+            if(vm.listSelectedUnionType.length > 0){
+                $.each(vm.listSelectedUnionType, function (i, obj) {
+                    vm.objSearch.lstUnionType.push(obj.code);
+                });
+            }
+
+            if(vm.listSelectedStatus.length > 0){
+                $.each(vm.listSelectedStatus, function (i, obj) {
+                    vm.objSearch.lstUnionStatus.push(obj.code);
+                });
+            }
         }
 
         function getTable(table) {

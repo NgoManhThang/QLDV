@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -49,6 +50,14 @@ public class UnionsDto extends BaseDto {
     private String reasonNotApp;
     private String representUnion;
     private String representCompany;
+
+    private String fromDateFrom;
+    private String fromDateTo;
+    private String toDateFrom;
+    private String toDateTo;
+    private List<String> lstPartnerId;
+    private List<String> lstUnionType;
+    private List<String> lstUnionStatus;
 
     public UnionsDto() {
     }

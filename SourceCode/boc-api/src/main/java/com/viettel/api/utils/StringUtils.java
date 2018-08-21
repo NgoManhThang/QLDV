@@ -129,4 +129,11 @@ public class StringUtils {
         }
         return "";
     }
+
+    public static String stringJoinCommand(List<String> lst) {
+        if (lst != null && !lst.isEmpty()) {
+            return String.join(",", lst);
+        }
+        return null;
+    }
 }

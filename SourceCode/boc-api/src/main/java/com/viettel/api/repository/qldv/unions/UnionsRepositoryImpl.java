@@ -4,6 +4,7 @@ import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.qldv.UnionsDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
+import com.viettel.api.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,15 @@ public class UnionsRepositoryImpl extends BaseRepository implements UnionsReposi
         try {
             StringBuilder sql = new StringBuilder(SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_UNIONS, "search-unions"));
             Map<String, String> maps = new HashMap<>();
+            maps.put("union_name", StringUtils.convertUpperParamContains(dto.getUnionName()));
+            maps.put("from_date_from", dto.getFromDateFrom());
+            maps.put("from_date_to", dto.getFromDateTo());
+            maps.put("to_date_from", dto.getToDateFrom());
+            maps.put("to_date_to", dto.getToDateTo());
+            maps.put("partner_id_list", StringUtils.stringJoinCommand(dto.getLstPartnerId()));
+            maps.put("union_type_code", StringUtils.stringJoinCommand(dto.getLstUnionType()));
+            maps.put("union_status_code", StringUtils.stringJoinCommand(dto.getLstUnionStatus()));
+
             List<UnionsDto> list = getListDataBySqlQuery(sql.toString(),
                     maps, dto.getPage(),
                     dto.getPageSize(),

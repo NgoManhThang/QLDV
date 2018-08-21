@@ -4,6 +4,7 @@ import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.repository.qldv.employee.EmployeeRepository;
+import com.viettel.api.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    MailService mailService;
 
     @Override
     public Datatable searchEmployee(EmployeeDto dto) {
@@ -28,6 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public EmployeeDto getDetail(EmployeeDto dto) {
+        //Gửi mail
+//        mailService.sendEmail("manhthangngo1994@gmail.com", "ABC", "XXX", false, true);
         return employeeRepository.getDetail(dto);
     }
 }
