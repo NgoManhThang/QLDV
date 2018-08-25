@@ -1,7 +1,9 @@
 {
   "unions": {
     "title": {
-      "table": "DANH SÁCH ĐOÀN"
+      "table": "DANH SÁCH ĐOÀN",
+      "addNew": "THÊM MỚI ĐOÀN",
+      "update": "CẬP NHẬT THÔNG TIN ĐOÀN"
     },
     "label": {
       "unionName": "Tên đoàn",
@@ -12,7 +14,14 @@
       "partnerId": "Thuộc đối tác",
       "unionType": "Loại đoàn",
       "unitId": "Khách thuộc đơn vị",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "placeIds": "Địa điểm",
+      "representName": "Tên đại diện đoàn",
+      "representPhone": "Số điện thoại đại diện đoàn",
+      "reasonNotStatement": "Lý do không có tờ trình",
+      "purpose": "Mục đích làm việc",
+      "workContent": "Nội dung làm việc",
+      "phoneRepresentCompany": "SĐT đại diện công ty"
     },
     "table": {
       "partnerName": "Tên đối tác",

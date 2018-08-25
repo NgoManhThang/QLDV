@@ -29,7 +29,7 @@
                             'apps/qldv/unions/unions.service.js'
                             , 'apps/qldv/partner/partner.service.js'
                             , 'apps/qldv/unions/unions.controller.js'
-                            , 'apps/qldv/unions/detail.controller.js'
+                            , 'apps/qldv/unions/detail_unions.controller.js'
                             , 'apps/qldv/common/qldv_common.service.js'
                             , 'apps/base.controller.js'
                             , 'apps/base.service.js'
@@ -45,23 +45,23 @@
                 }
             })
             .state('unions-detail', {
-                parent: 'boc.partner',
+                parent: 'boc.unions',
                 url: '/detail',
                 params: {
-                    partnerId: null
+                    unionId: null
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', '$resource', '$rootScope', function ($stateParams, $state, $uibModal, $rootScope) {
                     $uibModal.open({
-                        templateUrl: 'apps/qldv/partner/detail.html',
+                        templateUrl: 'apps/qldv/unions/detail_unions.html',
                         resolve: {
                             translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                                 $translatePartialLoader.addPart('datatable');
-                                $translatePartialLoader.addPart('partner');
+                                $translatePartialLoader.addPart('unions');
                                 $translatePartialLoader.addPart('global');
                                 return $translate.refresh();
                             }]
                         },
-                        controller: 'PartnerDetailController',
+                        controller: 'UnionsDetailController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg'

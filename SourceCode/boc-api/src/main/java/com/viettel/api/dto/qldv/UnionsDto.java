@@ -26,6 +26,7 @@ public class UnionsDto extends BaseDto {
     private String toDate;
     private Long partnerId;
     private String partnerName;
+
     private Long unitId;
     private String representName;
     private String representPhone;
@@ -55,6 +56,7 @@ public class UnionsDto extends BaseDto {
     private String fromDateTo;
     private String toDateFrom;
     private String toDateTo;
+    private String phoneRepresentCompany;
     private List<String> lstPartnerId;
     private List<String> lstUnionType;
     private List<String> lstUnionStatus;
@@ -73,7 +75,6 @@ public class UnionsDto extends BaseDto {
                     StringUtils.isNotNullOrEmpty(fromDate) ? DataUtil.ddMMyyyyToDate(fromDate) : null,
                     StringUtils.isNotNullOrEmpty(toDate) ? DataUtil.ddMMyyyyToDate(toDate) : null,
                     partnerId,
-                    unitId,
                     representName,
                     representPhone,
                     employeeId,

@@ -1,6 +1,8 @@
 package com.viettel.api.service.qldv.unions;
 
+import com.viettel.api.domain.qldv.UnionsEntity;
 import com.viettel.api.dto.Datatable;
+import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.UnionsDto;
 import com.viettel.api.repository.qldv.unions.UnionsRepository;
 import org.slf4j.Logger;
@@ -18,5 +20,15 @@ public class UnionsServiceImpl implements UnionsService {
     @Override
     public Datatable search(UnionsDto dto) {
         return unionsRepository.search(dto);
+    }
+
+    @Override
+    public ResultDto saveData(UnionsDto dto) {
+        return unionsRepository.saveData(dto);
+    }
+
+    @Override
+    public UnionsEntity getDetail(UnionsDto dto) {
+        return unionsRepository.getDetail(dto);
     }
 }

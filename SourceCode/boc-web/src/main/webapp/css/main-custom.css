@@ -1115,12 +1115,16 @@ label.control-label {
     color: #ffffff !important;
 }
 
-.panel-heading-custom, .panel-body-custom, .panel-footer-custom{
+.panel-heading-custom, .panel-body-custom, .panel-footer-custom {
     background: #2e3e4e !important;
 }
 
-.panel-default-custom{
+.panel-default-custom {
     border: 1px !important;
     border-style: solid !important;
     border-color: #fff !important;
+}
+
+.modal-lg {
+    width: 95% !important;
 }

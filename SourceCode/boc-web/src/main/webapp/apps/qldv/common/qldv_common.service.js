@@ -10,11 +10,27 @@
     function QldvCommonService($resource, APP_REST_SERVICE) {
         var multiContentType = 'multipart/form-data';
         var URL = APP_REST_SERVICE + "qldv-common";
-        var service =  $resource(URL, {}, {
+        var service = $resource(URL, {}, {
             search: {
                 method: 'POST',
                 isArray: true,
                 url: URL + '/search',
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                }
+            },
+            getPlaceById: {
+                method: 'POST',
+                isArray: true,
+                url: URL + '/getPlaceById',
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                }
+            },
+            getEmployeeByIdOrUserName: {
+                method: 'POST',
+                isArray: true,
+                url: URL + '/getEmployeeByIdOrUserName',
                 transformRequest: function (data) {
                     return angular.toJson(data);
                 }

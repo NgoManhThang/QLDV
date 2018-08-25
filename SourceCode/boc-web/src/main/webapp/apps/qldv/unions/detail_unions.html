@@ -1,0 +1,221 @@
+<div class="panel panel-default panel-default-custom">
+    <div class="panel-heading panel-heading-custom">
+        <h3 class="panel-title">{{vm.title}}</h3>
+    </div>
+    <div class="panel-body panel-body-custom">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="idFSaveData" name="fSaveData">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.unionName"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.detail.unionName"
+                                   placeholder="{{'unions.label.unionName' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.partnerId"></label>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.partnerId">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstPartnerId" value="{{obj.code}}"
+                                        select-option-repeat>
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.table.representCompany"></label>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.employeeId" ng-change="vm.changeEmployee()">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstEmployeeId" value="{{obj.employeeId}}"
+                                        select-option-repeat>
+                                    {{obj.fullName}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.phoneRepresentCompany"></label>
+                            <input type="text" data-ng-model="vm.detail.phoneRepresentCompany"
+                                   placeholder="{{'unions.label.phoneRepresentCompany' | translate}}"
+                                   class="form-control" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.placeIds"></label>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.placeIds">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstPlacesId" value="{{obj.placeId}}"
+                                        select-option-repeat>
+                                    {{obj.placeName}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.unionType"></label>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.unionType">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstUnionType" value="{{obj.code}}"
+                                        select-option-repeat>
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.table.vietnameeseNumber"></label>
+                            <input type="text" data-ng-model="vm.detail.vietnameseNumber"
+                                   placeholder="{{'unions.table.vietnameeseNumber' | translate}}"
+                                   class="form-control" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.table.fromDate"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="fromDate" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objDate.fromDate"
+                                           is-open="vm.openedFromDate"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.table.fromDate' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('fromDate')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="alert">
+                                    <p class="error" ng-show="!unions.fromDate.$error.required && !unions.fromDate.$error.dateValid && unions.fromDate.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.representName"></label>
+                            <input type="text" data-ng-model="vm.detail.representName"
+                                   placeholder="{{'unions.label.representName' | translate}}"
+                                   class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.status"></label>
+                            <select class="form-control select-wrapper" data-ng-model="vm.detail.status">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstStatus" value="{{obj.code}}"
+                                        select-option-repeat>
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.purpose"></label>
+                            <textarea type="text" rows="5" data-ng-model="vm.detail.purpose"
+                                      class="form-control" placeholder="{{'unions.label.purpose' | translate}}">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.table.foreignerNumber"></label>
+                            <input type="text" data-ng-model="vm.detail.foreignerNumber"
+                                   placeholder="{{'unions.table.foreignerNumber' | translate}}"
+                                   class="form-control" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.table.toDate"></label>
+                            <div class="import-money-punish-date">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm"
+                                           name="toDate" tabindex="5"
+                                           uib-datepicker-popup="{{vm.dateFormat}}"
+                                           alt-input-formats="{{vm.dateFormat}}"
+                                           data-ng-model="vm.objDate.toDate"
+                                           is-open="vm.openedToDate"
+                                           close-text="{{'global.popupDate.closeText' | translate}}"
+                                           clear-text="{{'global.popupDate.clearText' | translate}}"
+                                           current-text="{{'global.popupDate.currentText' | translate}}"
+                                           datepicker-options="vm.dateOptions" placeholder="{{'unions.table.toDate' | translate}}"/>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn white btn-sm" style="height: 30px;" data-ng-click="vm.openPopupDate('toDate')">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="alert">
+                                    <p class="error" ng-show="!unions.toDate.$error.required && !unions.toDate.$error.dateValid && unions.toDate.$invalid">
+                                        Dữ liệu không hợp lệ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.representPhone"></label>
+                            <input type="text" data-ng-model="vm.detail.representPhone"
+                                   placeholder="{{'unions.label.representPhone' | translate}}"
+                                   class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.reasonNotStatement"></label>
+                            <input type="text" data-ng-model="vm.detail.reasonNotStatement"
+                                   placeholder="{{'unions.label.reasonNotStatement' | translate}}"
+                                   class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.label.workContent"></label>
+                            <textarea type="text" rows="5" data-ng-model="vm.detail.workContent"
+                                      class="form-control" placeholder="{{'unions.label.workContent' | translate}}">
+                            </textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer panel-footer-custom">
+        <div class="col-md-12 form-button-search">
+            <button type="button" class="btn btn-info" data-ng-click="vm.doSaveData();">
+                <i class="fa fa-save"></i> <span data-translate="global.action.save"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger" data-ng-click="vm.doExit();">
+                <i class="fa fa-close"></i> <span data-translate="global.action.close"></span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ public class UnionsEntity {
     @Column(name = "UNION_NAME")
     private String unionName;
     @Column(name = "VIETNAMESE_NUMBER")
-    private Long vietnameeseNumber;
+    private Long vietnameseNumber;
     @Column(name = "FOREIGNER_NUMBER")
     private Long foreignerNumber;
     @Column(name = "FROM_DATE")
@@ -32,8 +32,6 @@ public class UnionsEntity {
     private Date toDate;
     @Column(name = "PARTNER_ID")
     private Long partnerId;
-    @Column(name = "UNIT_ID")
-    private Long unitId;
     @Column(name = "REPRESENT_NAME")
     private String representName;
     @Column(name = "REPRESENT_PHONE")
@@ -83,12 +81,11 @@ public class UnionsEntity {
     public UnionsEntity(
             Long unionId,
             String unionName,
-            Long vietnameeseNumber,
+            Long vietnameseNumber,
             Long foreignerNumber,
             Date fromDate,
             Date toDate,
             Long partnerId,
-            Long unitId,
             String representName,
             String representPhone,
             String employeeId,
@@ -113,12 +110,11 @@ public class UnionsEntity {
     ) {
         this.unionId = unionId;
         this.unionName = unionName;
-        this.vietnameeseNumber = vietnameeseNumber;
+        this.vietnameseNumber = vietnameseNumber;
         this.foreignerNumber = foreignerNumber;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.partnerId = partnerId;
-        this.unitId = unitId;
         this.representName = representName;
         this.representPhone = representPhone;
         this.employeeId = employeeId;
