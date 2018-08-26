@@ -45,6 +45,12 @@ public final class Constants {
         String NO_CAN_DELETE = "NO_CAN_DELETE";
 
     }
+
+    public interface VALIDATE{
+        String DELETE = "DELETE";
+        String ADD = "ADD";
+        String UPDATE = "UPDATE";
+    }
     
     private Constants() {
     }

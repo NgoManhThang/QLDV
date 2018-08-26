@@ -1,8 +1,10 @@
 package com.viettel.api.service.qldv.employee;
 
+import com.viettel.api.config.Constants;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
+import com.viettel.api.repository.qldv.CommonQldvRepository;
 import com.viettel.api.repository.qldv.employee.EmployeeRepository;
 import com.viettel.api.service.MailService;
 import org.slf4j.Logger;
@@ -16,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    CommonQldvRepository commonQldvRepository;
 
     @Autowired
     MailService mailService;
@@ -35,5 +40,15 @@ public class EmployeeServiceImpl implements EmployeeService{
         //Gửi mail
 //        mailService.sendEmail("manhthangngo1994@gmail.com", "ABC", "XXX", false, true);
         return employeeRepository.getDetail(dto);
+    }
+
+    @Override
+    public ResultDto validateRight(EmployeeDto dto, String action) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        if(Constants.VALIDATE.DELETE.equals(action)){
+
+        }
+        return resultDto;
     }
 }

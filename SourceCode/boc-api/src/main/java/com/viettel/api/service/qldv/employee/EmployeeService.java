@@ -12,4 +12,6 @@ public interface EmployeeService {
     ResultDto saveData (EmployeeDto dto);
 
     EmployeeDto getDetail (EmployeeDto dto);
+
+    ResultDto validateRight(EmployeeDto dto, String action);
 }

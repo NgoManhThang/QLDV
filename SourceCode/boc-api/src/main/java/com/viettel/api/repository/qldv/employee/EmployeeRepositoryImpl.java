@@ -6,16 +6,13 @@ import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.repository.BaseRepository;
-import com.viettel.api.utils.DataUtil;
 import com.viettel.api.utils.SQLBuilder;
 import com.viettel.api.utils.StringUtils;
-import com.viettel.api.web.rest.BaseController;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +27,7 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 @Repository
 @Transactional
-public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRepository {
+public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRepository{
     private Logger logger = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
 
     @PersistenceContext
@@ -90,7 +86,7 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
                 resultDto.setId(String.valueOf(id));
             } else {
                 EmployeeEntity entity = entityManager.find(EmployeeEntity.class, Long.valueOf(dto.getEmployeeId()));
-                if(entity.getEmployeeId() != null){
+                if (entity.getEmployeeId() != null) {
                     dto.setUpdateUser(userName);
                     dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                     dto.setPassword(entity.getPassword());
@@ -119,5 +115,22 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
             logger.error(e.getMessage(), e);
         }
         return employeeDto;
+    }
+
+    @Override
+    public ResultDto delete(EmployeeDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        entityManager = getEntityManager();
+        try {
+            EmployeeEntity entity = entityManager.find(EmployeeEntity.class, Long.valueOf(dto.getEmployeeId()));
+            if (entity.getEmployeeId() != null) {
+                entityManager.remove(entity);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            resultDto.setKey(Constants.RESULT.ERROR);
+        }
+        return resultDto;
     }
 }

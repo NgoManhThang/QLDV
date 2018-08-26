@@ -10,4 +10,6 @@ public interface EmployeeRepository {
     ResultDto saveData (EmployeeDto dto);
 
     EmployeeDto getDetail (EmployeeDto dto);
+
+    ResultDto delete(EmployeeDto dto);
 }
