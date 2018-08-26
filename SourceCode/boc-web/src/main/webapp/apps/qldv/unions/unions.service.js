@@ -24,6 +24,21 @@
                     };
                 }
             },
+            searchMember: {
+                method: 'POST',
+                url: URL_MEMBER + '/searchMember',
+                responseType: 'json',
+                cache: false,
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                },
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
+            },
             saveData: {
                 method: 'POST',
                 url: URL + '/saveData',

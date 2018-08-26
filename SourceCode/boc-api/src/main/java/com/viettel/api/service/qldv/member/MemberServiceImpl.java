@@ -1,5 +1,6 @@
 package com.viettel.api.service.qldv.member;
 
+import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.repository.qldv.member.MemberRepository;
@@ -18,5 +19,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResultDto saveData(MemberDto dto) {
         return memberRepository.saveData(dto);
+    }
+
+    @Override
+    public Datatable searchMember(MemberDto dto) {
+        return memberRepository.searchMember(dto);
     }
 }

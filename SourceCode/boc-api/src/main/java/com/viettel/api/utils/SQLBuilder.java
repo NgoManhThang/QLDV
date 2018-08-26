@@ -29,6 +29,7 @@ public class SQLBuilder {
     public final static String SQL_MODULE_QLDV_PARTNER = "partner";
     public final static String SQL_MODULE_QLDV_UNIONS = "unions";
     public final static String SQL_MODULE_QLDV_VALIDATE = "validate";
+    public final static String SQL_MODULE_QLDV_MEMBER = "member";
 
     public static String getSqlQueryById(String module, String queryId) {
         File folder = null;

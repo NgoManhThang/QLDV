@@ -4,7 +4,8 @@
       "table": "DANH SÁCH ĐOÀN",
       "addNew": "THÊM MỚI ĐOÀN",
       "update": "CẬP NHẬT THÔNG TIN ĐOÀN",
-      "addMember": "THÊM MỚI THÀNH VIÊN ĐOÀN"
+      "addMember": "THÊM MỚI THÀNH VIÊN ĐOÀN",
+      "tableMember": "DANH SÁCH THÀNH VIÊN ĐOÀN"
     },
     "label": {
       "unionName": "Tên đoàn",
@@ -30,7 +31,9 @@
       "memberId": "Chứng minh thư",
       "laptopId": "Serial máy tính",
       "nationalId": "Quốc tịch",
-      "unionId": "Thuộc đối tác"
+      "unionId": "Thuộc đối tác",
+      "apprStatus": "Trạng thái duyệt",
+      "reasonNotApp": "Nội dung từ chối"
     },
     "table": {
       "partnerName": "Tên đối tác",
