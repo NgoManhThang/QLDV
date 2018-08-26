@@ -68,5 +68,29 @@
                     });
                 }]
             })
+            // .state('member-detail', {
+            //     parent: 'unions-detail',
+            //     url: '/member',
+            //     params: {
+            //         unionMemberId: null
+            //     },
+            //     onEnter: ['$stateParams', '$state', '$uibModal', '$resource', '$rootScope', function ($stateParams, $state, $uibModal, $rootScope) {
+            //         $uibModal.open({
+            //             templateUrl: 'apps/qldv/unions/member_unions.html',
+            //             resolve: {
+            //                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            //                     $translatePartialLoader.addPart('datatable');
+            //                     $translatePartialLoader.addPart('unions');
+            //                     $translatePartialLoader.addPart('global');
+            //                     return $translate.refresh();
+            //                 }]
+            //             },
+            //             controller: 'MemberDetailController',
+            //             controllerAs: 'vm',
+            //             backdrop: 'static',
+            //             size: 'lg'
+            //         });
+            //     }]
+            // })
     }
 })();

@@ -1,0 +1,89 @@
+<div class="panel panel-default panel-default-custom">
+    <div class="panel-heading panel-heading-custom">
+        <h3 class="panel-title">{{vm.titleMember}}</h3>
+    </div>
+    <div class="panel-body panel-body-custom">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="idFSaveData" name="fSaveData">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.fullName"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.member.fullName"
+                                   placeholder="{{'unions.member.fullName' | translate}}"
+                                   class="form-control" maxlength="100"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.memberType"></label>
+                            <span class="text-danger">(*)</span>
+                            <select class="form-control select-wrapper" data-ng-model="vm.member.memberType">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstMemberType" value="{{obj.code}}"
+                                        select-option-repeat>
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.memberId"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.member.memberId"
+                                   placeholder="{{'unions.member.memberId' | translate}}"
+                                   class="form-control" maxlength="25"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.laptopId"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.member.laptopId"
+                                   placeholder="{{'unions.member.laptopId' | translate}}"
+                                   class="form-control" maxlength="25"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.nationalId"></label>
+                            <span class="text-danger">(*)</span>
+                            <select class="form-control select-wrapper" data-ng-model="vm.member.nationalId">
+                                <option value="" data-translate="global.common.toolbar-chose" selected></option>
+                                <option data-ng-repeat="obj in vm.lstNationalId" value="{{obj.code}}"
+                                        select-option-repeat>
+                                    {{obj.decode}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.unionId"></label>
+                            <input type="text" data-ng-model="vm.member.unionName"
+                                   placeholder="{{'unions.member.unionId' | translate}}"
+                                   class="form-control" maxlength="250" disabled/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer panel-footer-custom">
+        <div class="col-md-12 form-button-search">
+            <button type="button" class="btn btn-info" data-ng-click="vm.doSaveData('member');">
+                <i class="fa fa-save"></i> <span data-translate="global.action.save"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger" data-ng-click="vm.doExit('member');">
+                <i class="fa fa-close"></i> <span data-translate="global.action.close"></span>
+            </button>
+        </div>
+    </div>
+</div>

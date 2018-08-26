@@ -7,6 +7,7 @@
     function UnionsService ($resource, APP_REST_SERVICE) {
         var contentType = 'application/octet-stream';
         var URL = APP_REST_SERVICE + "unions";
+        var URL_MEMBER = APP_REST_SERVICE + "member";
         var service =  $resource(URL, {}, {
             search: {
                 method: 'POST',
@@ -26,6 +27,21 @@
             saveData: {
                 method: 'POST',
                 url: URL + '/saveData',
+                responseType: 'json',
+                cache: false,
+                processData: false,
+                headers: {'Content-type': undefined},
+                transformRequest: angular.identity,
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
+            },
+            saveDataMember: {
+                method: 'POST',
+                url: URL_MEMBER + '/saveData',
                 responseType: 'json',
                 cache: false,
                 processData: false,

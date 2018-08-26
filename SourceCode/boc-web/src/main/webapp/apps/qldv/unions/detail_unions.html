@@ -1,7 +1,8 @@
-<div class="panel panel-default panel-default-custom">
+<div class="panel panel-default panel-default-custom" data-ng-show="!vm.showMember">
     <div class="panel-heading panel-heading-custom">
         <h3 class="panel-title">{{vm.title}}</h3>
     </div>
+
     <div class="panel-body panel-body-custom">
         <div class="row">
             <div class="col-md-12">
@@ -208,6 +209,12 @@
     </div>
 
     <div class="panel-footer panel-footer-custom">
+        <div class="col-md-12 form-button-search" data-ng-show="vm.showAddMember">
+            <button type="button" class="btn btn-info" data-ng-click="vm.doAddMember();">
+                <i class="fa fa-plus"></i> <span data-translate="unions.action.addMember"></span>
+            </button>
+        </div>
+
         <div class="col-md-12 form-button-search">
             <button type="button" class="btn btn-info" data-ng-click="vm.doSaveData();">
                 <i class="fa fa-save"></i> <span data-translate="global.action.save"></span>
@@ -218,4 +225,8 @@
             </button>
         </div>
     </div>
+</div>
+
+<div data-ng-show="vm.showMember">
+    <div ui-include="'./apps/qldv/unions/member_unions.html'"></div>
 </div>

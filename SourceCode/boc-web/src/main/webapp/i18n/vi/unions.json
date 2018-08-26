@@ -3,7 +3,8 @@
     "title": {
       "table": "DANH SÁCH ĐOÀN",
       "addNew": "THÊM MỚI ĐOÀN",
-      "update": "CẬP NHẬT THÔNG TIN ĐOÀN"
+      "update": "CẬP NHẬT THÔNG TIN ĐOÀN",
+      "addMember": "THÊM MỚI THÀNH VIÊN ĐOÀN"
     },
     "label": {
       "unionName": "Tên đoàn",
@@ -23,6 +24,14 @@
       "workContent": "Nội dung làm việc",
       "phoneRepresentCompany": "SĐT đại diện công ty"
     },
+    "member": {
+      "fullName": "Họ tên",
+      "memberType": "Loại cá nhân",
+      "memberId": "Chứng minh thư",
+      "laptopId": "Serial máy tính",
+      "nationalId": "Quốc tịch",
+      "unionId": "Thuộc đối tác"
+    },
     "table": {
       "partnerName": "Tên đối tác",
       "unionName": "Tên đoàn",
@@ -33,6 +42,9 @@
       "representUnion": "Đại diện đoàn",
       "representCompany": "Đại diện công ty",
       "status": "Trạng thái"
+    },
+    "action": {
+      "addMember": "Thêm mới thành viên"
     }
   }
 }
