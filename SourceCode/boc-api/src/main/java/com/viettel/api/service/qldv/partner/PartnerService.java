@@ -11,4 +11,8 @@ public interface PartnerService {
     ResultDto saveData(PartnerDto dto);
 
     PartnerEntity getDetail(PartnerDto dto);
+
+    ResultDto delete(PartnerDto dto);
+
+    ResultDto validateRight(PartnerDto dto, String action);
 }

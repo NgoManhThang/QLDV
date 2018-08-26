@@ -12,6 +12,8 @@ var scopeHolder;
         var vm = this;
         scopeHolder = $scope;
 
+        var NO_CAN_DELETE = "NO_CAN_DELETE";
+
         // Init controller
         (function initController() {
 
@@ -33,7 +35,9 @@ var scopeHolder;
             vm.doAddNew = doAddNew;
 
             vm.editData = editData;
+            vm.deleteData = deleteData;
             $window.editData = vm.editData;
+            $window.deleteData = vm.deleteData;
 
             //</editor-fold>
 
@@ -133,7 +137,7 @@ var scopeHolder;
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
                         var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.employeeId + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(item) + '\')"><i class="fa fa-remove"></i></span>';
+                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
 
                         var objAdd = {
                             "action": {
@@ -196,6 +200,26 @@ var scopeHolder;
         function editData(id) {
             $state.go('employee-detail', {employeeId: id});
             console.log(id);
+        }
+
+        function deleteData(dataTem) {
+            var data = JSON.parse(decodeURIComponent(dataTem));
+            vm.openFormConfirm($translate.instant('global.message.confirm.deleteTitle'), $translate.instant('global.message.confirm.delete'), function () {
+                ManageEmployeeService.delete({employeeId: data.employeeId}).$promise.then(function (response) {
+                    var data = response.data;
+                    if (data.key === "SUCCESS") {
+                        vm.showAlert("success", $translate.instant('global.message.success'));
+                        $('#formConfirm').modal('hide');
+                        vm.doSearch();
+                    } else if (data.key === NO_CAN_DELETE) {
+                        vm.showAlert("warning", $translate.instant('global.message.delete.noCanDelete'));
+                    } else {
+                        vm.showAlert("danger", $translate.instant('global.message.error'));
+                    }
+                }, function (dataError) {
+                    vm.showAlert("error", "Err!!!");
+                });
+            });
         }
 
         function getTable(table) {

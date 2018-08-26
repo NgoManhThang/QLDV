@@ -45,8 +45,16 @@ public class EmployeeResource {
 
     @PostMapping("/getDetail")
     @Timed
-    public ResponseEntity<EmployeeDto> getDetail(@RequestBody EmployeeDto dto){
+    public ResponseEntity<EmployeeDto> getDetail(@RequestBody EmployeeDto dto) {
         EmployeeDto employeeDto = employeeService.getDetail(dto);
         return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/delete")
+    @Timed
+    public ResponseEntity<ResultDto> delete(@RequestBody EmployeeDto dto) {
+        ResultDto resultDto;
+        resultDto = employeeService.delete(dto);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 }

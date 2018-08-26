@@ -52,6 +52,21 @@
                         headers: headers()
                     };
                 }
+            },
+            delete: {
+                method: 'POST',
+                url: URL + '/delete',
+                responseType: 'json',
+                cache: false,
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                },
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
             }
         });
         return service;

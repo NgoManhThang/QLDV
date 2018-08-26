@@ -13,5 +13,7 @@ public interface EmployeeService {
 
     EmployeeDto getDetail (EmployeeDto dto);
 
+    ResultDto delete(EmployeeDto dto);
+
     ResultDto validateRight(EmployeeDto dto, String action);
 }

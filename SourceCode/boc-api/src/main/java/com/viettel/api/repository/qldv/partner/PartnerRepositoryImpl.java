@@ -103,4 +103,20 @@ public class PartnerRepositoryImpl extends BaseRepository implements PartnerRepo
         PartnerEntity entity = entityManager.find(PartnerEntity.class, dto.getPartnerId());
         return entity;
     }
+
+    @Override
+    public ResultDto delete(PartnerDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        entityManager = getEntityManager();
+        try {
+            PartnerEntity entity = entityManager.find(PartnerEntity.class, dto.getPartnerId());
+            if (entity.getPartnerId() != null) {
+                entityManager.remove(entity);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return resultDto;
+    }
 }

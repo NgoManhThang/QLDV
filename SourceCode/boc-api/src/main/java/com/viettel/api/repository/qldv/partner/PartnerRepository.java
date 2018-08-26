@@ -12,4 +12,6 @@ public interface PartnerRepository {
     ResultDto saveData(PartnerDto dto);
 
     PartnerEntity getDetail(PartnerDto dto);
+    
+    ResultDto delete(PartnerDto dto);
 }

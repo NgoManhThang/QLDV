@@ -11,6 +11,7 @@ var scopeHolder;
                                $translate, $http, $timeout, $sessionStorage, $localStorage, PartnerService, QldvCommonService) {
         var vm = this;
         scopeHolder = $scope;
+        var NO_CAN_DELETE = "NO_CAN_DELETE";
 
         // Init controller
         (function initController() {
@@ -35,7 +36,9 @@ var scopeHolder;
             vm.doAddNew = doAddNew;
 
             vm.editData = editData;
+            vm.deleteData = deleteData;
             $window.editData = vm.editData;
+            $window.deleteData = vm.deleteData;
 
             vm.prevPage = prevPage;
             vm.nextPage = nextPage;
@@ -170,7 +173,7 @@ var scopeHolder;
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
                         var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(item) + '\')"><i class="fa fa-remove"></i></span>';
+                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
 
                         var objAdd = {
                             "action": {
@@ -245,6 +248,26 @@ var scopeHolder;
         function editData(temp) {
             var data = JSON.parse(decodeURIComponent(temp));
             $state.go('partner-detail', {partnerId: data.partnerId+""});
+        }
+
+        function deleteData(temp) {
+            var data = JSON.parse(decodeURIComponent(temp));
+            vm.openFormConfirm($translate.instant('global.message.confirm.deleteTitle'), $translate.instant('global.message.confirm.delete'), function () {
+                PartnerService.delete({partnerId: data.partnerId}).$promise.then(function (response) {
+                    var data = response.data;
+                    if (data.key === "SUCCESS") {
+                        vm.showAlert("success", $translate.instant('global.message.success'));
+                        $('#formConfirm').modal('hide');
+                        vm.doSearch();
+                    } else if (data.key === NO_CAN_DELETE) {
+                        vm.showAlert("warning", $translate.instant('global.message.delete.noCanDelete'));
+                    } else {
+                        vm.showAlert("danger", $translate.instant('global.message.error'));
+                    }
+                }, function (dataError) {
+                    vm.showAlert("error", "Err!!!");
+                });
+            });
         }
 
         function prevPage() {

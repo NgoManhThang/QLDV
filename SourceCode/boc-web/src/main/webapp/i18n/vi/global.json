@@ -35,8 +35,9 @@
         "noCanDelete": "Không thể xóa bản ghi này!"
       },
       "confirm": {
-        "delete": "Bạn có chắc chắn muốn xóa các bản ghi được chọn không ?",
-        "confirmAction": "Bạn có chắc chắn muốn thực hiện thao tác này ?"
+        "deleteTitle": "Xác nhận xóa",
+        "delete": "Bạn có chắc chắn muốn xóa các bản ghi được chọn không?",
+        "confirmAction": "Bạn có chắc chắn muốn thực hiện thao tác này?"
       },
       "alert": {
         "warning": "Cảnh báo!",
@@ -65,7 +66,9 @@
       "refresh": "Làm mới",
       "addNew": "Thêm mới",
       "save": "Ghi lại",
-      "close": "Đóng"
+      "close": "Đóng",
+      "yes": "Có",
+      "no": "Không"
 
     },
     "popupDate": {

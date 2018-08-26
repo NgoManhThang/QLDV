@@ -55,4 +55,12 @@ public class PartnerResource {
         PartnerEntity entity = partnerService.getDetail(dto);
         return new ResponseEntity<>(entity, HttpStatus.OK);
     }
+
+    @PostMapping("/delete")
+    @Timed
+    public ResponseEntity<ResultDto> delete(@RequestBody PartnerDto dto){
+        ResultDto resultDto;
+        resultDto = partnerService.delete(dto);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    }
 }
