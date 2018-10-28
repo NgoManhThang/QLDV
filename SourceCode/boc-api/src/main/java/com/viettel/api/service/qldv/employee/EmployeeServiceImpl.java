@@ -4,16 +4,20 @@ import com.viettel.api.config.Constants;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
+import com.viettel.api.dto.qldv.FilesDto;
 import com.viettel.api.dto.qldv.UnionsDto;
 import com.viettel.api.repository.qldv.CommonQldvRepository;
 import com.viettel.api.repository.qldv.employee.EmployeeRepository;
 import com.viettel.api.repository.qldv.validate.ValidateRepository;
 import com.viettel.api.service.MailService;
+import com.viettel.api.utils.FilesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -35,7 +39,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ResultDto saveData(EmployeeDto dto) {
+    public ResultDto saveData(EmployeeDto dto, MultipartFile file) throws IOException {
+        //Save file to folder
+        if (file != null) {
+            dto.setNameImage(file.getOriginalFilename());
+            String filePath = FilesUtils.saveUploadedFile(file);
+            dto.setPathImage(filePath);
+            //Nếu có file thì không cần delete ở lúc update mà chỉ update thên file thôi
+            dto.setFileIdDelete(null);
+        } else {
+            dto.setNameImage(null);
+            dto.setPathImage(null);
+        }
         return employeeRepository.saveData(dto);
     }
 

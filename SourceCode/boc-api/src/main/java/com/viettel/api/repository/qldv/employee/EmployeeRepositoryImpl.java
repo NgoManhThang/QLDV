@@ -2,9 +2,11 @@ package com.viettel.api.repository.qldv.employee;
 
 import com.viettel.api.config.Constants;
 import com.viettel.api.domain.qldv.EmployeeEntity;
+import com.viettel.api.domain.qldv.FilesEntity;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
+import com.viettel.api.dto.qldv.FilesDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
 import com.viettel.api.utils.StringUtils;
@@ -27,7 +29,7 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 @Repository
 @Transactional
-public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRepository{
+public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRepository {
     private Logger logger = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
 
     @PersistenceContext
@@ -37,7 +39,8 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
     public Datatable searchEmployee(EmployeeDto dto) {
         Datatable datatable = new Datatable();
         try {
-            StringBuilder sqlQuery = new StringBuilder(SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_EMPLOYEE, "search-employee"));
+            StringBuilder sqlQuery = new StringBuilder(SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_EMPLOYEE,
+                    "search-employee"));
             Map<String, Object> maps = new HashMap<>();
             maps.put("p_user_name", StringUtils.convertUpperParamContains(dto.getUserName()));
             maps.put("p_full_name", StringUtils.convertUpperParamContains(dto.getFullName()));
@@ -73,6 +76,7 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
         resultDto.setKey(Constants.RESULT.SUCCESS);
         Session session = getSession();
         entityManager = getEntityManager();
+        FilesDto filesDto = new FilesDto();
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userName = auth.getName();
@@ -83,6 +87,15 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
                 dto.setCreateDate(new Timestamp(System.currentTimeMillis()));
                 dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                 Long id = (Long) session.save(dto.toEntity());
+                //Save file image
+                if (StringUtils.isNotNullOrEmpty(dto.getPathImage())) {
+                    filesDto.setGroupId(id);
+                    filesDto.setCreateUser(userName);
+                    filesDto.setGroupFile(1L);
+                    filesDto.setFileName(dto.getNameImage());
+                    filesDto.setFilePath(dto.getPathImage());
+                    session.save(filesDto.toEntity());
+                }
                 resultDto.setId(String.valueOf(id));
             } else {
                 EmployeeEntity entity = entityManager.find(EmployeeEntity.class, Long.valueOf(dto.getEmployeeId()));
@@ -91,6 +104,25 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
                     dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                     dto.setPassword(entity.getPassword());
                     entityManager.merge(dto.toEntity());
+                }
+
+                //Xóa file
+                if (StringUtils.isNotNullOrEmpty(dto.getFileIdDelete())) {
+                    FilesEntity fileDelete = entityManager.find(FilesEntity.class, Long.valueOf(dto.getFileIdDelete()));
+                    if (fileDelete.getFileId() != null) {
+                        entityManager.remove(fileDelete);
+                    }
+                }
+
+                //Thêm mới hoặc cập nhật file
+                if (StringUtils.isNotNullOrEmpty(dto.getPathImage())) {
+                    filesDto.setFileId(StringUtils.isNotNullOrEmpty(dto.getFileId()) ? Long.valueOf(dto.getFileId()) : null);
+                    filesDto.setGroupId(Long.valueOf(dto.getEmployeeId()));
+                    filesDto.setCreateUser(userName);
+                    filesDto.setGroupFile(1L);
+                    filesDto.setFileName(dto.getNameImage());
+                    filesDto.setFilePath(dto.getPathImage());
+                    session.saveOrUpdate(filesDto.toEntity());
                 }
             }
         } catch (Exception e) {

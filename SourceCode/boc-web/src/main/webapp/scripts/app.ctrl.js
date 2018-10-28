@@ -38,7 +38,9 @@
         $scope.menuIcons = {
             "QLDV_EMPLOYEE": "fa-users",
             "QLDV_PARTNER": "fa-twitter",
-            "QLDV_UNIONS": "fa-stack-overflow"
+            "QLDV_UNIONS": "fa-stack-overflow",
+            "QLDV_STATEMENT": "fa-github",
+            "QLDV_LOOKUP": "fa-camera"
         };
 
         function getBreadcrumb() {
@@ -98,7 +100,7 @@
                 if ($localStorage.user != null && $localStorage.user != undefined) {
                     $scope.userLoggedIn = $localStorage.user;
                     if ($scope.userLoggedIn.fileId != null) {
-                        $scope.userLoggedIn.urlFileImage = APP_REST_SERVICE + "common/getFileById?fileId=" + $scope.userLoggedIn.fileId;
+                        $scope.userLoggedIn.urlFileImage = APP_REST_SERVICE + "qldv-common/getFileById?fileId=" + $scope.userLoggedIn.fileId;
                     } else {
                         $scope.userLoggedIn.urlFileImage = './img/person.png';
                     }
@@ -160,7 +162,7 @@
                             "ord": 3,
                             "parentId": -1,
                             "status": 1,
-                            "objectId": 387930,
+                            "objectId": 387931,
                             "objectType": "M",
                             "objectCode": "QLDV_PARTNER",
                             "description": "",
@@ -173,12 +175,38 @@
                             "ord": 3,
                             "parentId": -1,
                             "status": 1,
-                            "objectId": 387930,
+                            "objectId": 387932,
                             "objectType": "M",
                             "objectCode": "QLDV_UNIONS",
                             "description": "",
                             "objectName": "Quản lý đoàn",
                             "objectUrl": "boc.unions",
+                            "objectRole": ""
+                        },
+                        {
+                            "childObjects": [],
+                            "ord": 3,
+                            "parentId": -1,
+                            "status": 1,
+                            "objectId": 387933,
+                            "objectType": "M",
+                            "objectCode": "QLDV_STATEMENT",
+                            "description": "",
+                            "objectName": "Quản lý tờ trình",
+                            "objectUrl": "boc.statement",
+                            "objectRole": ""
+                        },
+                        {
+                            "childObjects": [],
+                            "ord": 3,
+                            "parentId": -1,
+                            "status": 1,
+                            "objectId": 387934,
+                            "objectType": "M",
+                            "objectCode": "QLDV_LOOKUP",
+                            "description": "",
+                            "objectName": "Quản lý vào - ra",
+                            "objectUrl": "boc.lookup",
                             "objectRole": ""
                         }
                     ];

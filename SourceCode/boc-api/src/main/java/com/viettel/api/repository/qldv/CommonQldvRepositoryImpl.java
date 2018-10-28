@@ -1,5 +1,6 @@
 package com.viettel.api.repository.qldv;
 
+import com.viettel.api.domain.qldv.FilesEntity;
 import com.viettel.api.dto.qldv.CodeDecodeDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.dto.qldv.PlaceDto;
@@ -11,6 +12,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +25,9 @@ import java.util.Map;
 public class CommonQldvRepositoryImpl extends BaseRepository implements CommonQldvRepository {
 
     Logger logger = LoggerFactory.getLogger(CommonQldvRepositoryImpl.class);
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<CodeDecodeDto> search(CodeDecodeDto dto) {
@@ -62,5 +68,12 @@ public class CommonQldvRepositoryImpl extends BaseRepository implements CommonQl
             logger.error(e.getMessage(), e);
         }
         return lst;
+    }
+
+    @Override
+    public FilesEntity getFileById(Long id) {
+        entityManager = getEntityManager();
+        FilesEntity filesEntity = entityManager.find(FilesEntity.class, id);
+        return filesEntity;
     }
 }

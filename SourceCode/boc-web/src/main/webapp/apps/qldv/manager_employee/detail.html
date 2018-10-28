@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <form id="idFSaveData" name="fSaveData">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label"
                                    data-translate="employee.label.code">Mã nhân viên</label>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label"
                                    data-translate="employee.label.userName">User Name</label>
@@ -95,6 +95,21 @@
                                     {{obj.decode}}
                                 </option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group" style="text-align: center;">
+                            <input type="file" class="hide" accept="image/*" file-model="vm.avatarImg"
+                                   onchange="showImage(this)"/>
+                            <img id="idImageAvatar" class="img-circle" ng-src="{{vm.urlImageUser}}"
+                                 onclick="changeToFile(this)" style="width: 200px; height: 200px; cursor: pointer;"/>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;" data-ng-show="vm.detail.fileId !== null">
+                            <button type="button" class="btn btn-danger" tabindex="18" data-ng-click="vm.doDeleteImage(vm.detail.fileId);">
+                                <i class="fa fa-remove"></i> <span data-translate="global.action.delete"></span>
+                            </button>
                         </div>
                     </div>
                 </form>

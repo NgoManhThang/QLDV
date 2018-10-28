@@ -10,10 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -28,7 +25,8 @@ import liquibase.util.file.FilenameUtils;
  */
 public class FilesUtils {
 
-    public static String saveUploadedFile(MultipartFile file, String uploadFolder) throws IOException {
+    public static String saveUploadedFile(MultipartFile file) throws IOException {
+        String uploadFolder = BundleUtils.getBundleValue("FOLDER_UPLOAD");
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String originalName = file.getOriginalFilename();
         String fileName = FilenameUtils.getBaseName(originalName) + "_" + currentTime + "."

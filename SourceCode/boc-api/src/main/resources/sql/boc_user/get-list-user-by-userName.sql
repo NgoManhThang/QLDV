@@ -12,6 +12,8 @@ SELECT
   BU.USER_NAME    userName,
   BU.PASSWORD     password,
   BU.STATUS       status,
-  BU.COMPANY      company
+  BU.COMPANY      company,
+  files.FILE_ID   fileId
 FROM BOC_USER BU
+  LEFT JOIN QLDV_FILES files ON files.GROUP_ID = BU.USER_ID AND files.GROUP_FILE = '1'
 WHERE BU.STATUS = 1 AND BU.USER_NAME = :userName

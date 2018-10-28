@@ -27,11 +27,17 @@ var scopeHolder;
             //region Init variable
             vm.lstPosition = [];
             vm.lstStatus = [];
-            vm.detail = {};
+            vm.detail = {
+                fileId: null
+            };
+            vm.avatarImg = null;
             if (vm.stringIsNotNullOrEmpty($stateParams.employeeId)) {
                 vm.title = $translate.instant('employee.title.update');
             } else {
                 vm.title = $translate.instant('employee.title.addNew');
+                var srcImage = vm.getUrlImageByFileId(null);
+                $("#idImageAvatar").attr("src", srcImage);
+                vm.urlImageUser = srcImage;
             }
             //endregion
 
@@ -40,6 +46,7 @@ var scopeHolder;
             vm.doExit = doExit;
             vm.doSaveData = doSaveData;
             vm.getDetail = getDetail;
+            vm.doDeleteImage = doDeleteImage;
             //endregion
 
             //region Function init
@@ -127,7 +134,9 @@ var scopeHolder;
             }
 
             var formData = new FormData();
+            var file = vm.avatarImg;
             formData.append('dataString', JSON.stringify(vm.detail));
+            formData.append('files', file);
 
             ManageEmployeeService.saveData(formData).$promise.then(function (resp) {
                 var result = resp.data.key;
@@ -152,10 +161,16 @@ var scopeHolder;
         function getDetail(id) {
             ManageEmployeeService.getDetail({employeeId: id}).$promise.then(function (resp) {
                 vm.detail = resp.data;
-                console.log(resp);
+                vm.urlImageUser = vm.getUrlImageByFileId(vm.detail.fileId);
+                // console.log(resp);
             }, function (err) {
 
             });
+        }
+
+        function doDeleteImage(id) {
+            vm.detail.fileIdDelete = id;
+            vm.urlImageUser = vm.getUrlImageByFileId(null);
         }
 
 

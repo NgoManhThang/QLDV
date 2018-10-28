@@ -29,6 +29,11 @@ public class EmployeeDto extends BaseDto {
     private Timestamp createDate;
     private Timestamp updateDate;
 
+    private String pathImage;
+    private String nameImage;
+    private String fileId;
+    private String fileIdDelete;
+
 
     public EmployeeEntity toEntity() {
         Logger logger = LoggerFactory.getLogger(EmployeeDto.class);

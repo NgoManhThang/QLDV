@@ -1,16 +1,19 @@
 SELECT
-  EMPLOYEE_ID  employeeId,
-  USER_NAME    userName,
-  PASSWORD     password,
-  CODE         code,
-  FULL_NAME    fullName,
-  PHONE_NUMBER phone,
-  EMAIL        email,
-  POSITION     position,
-  CREATE_USER  createUser,
-  CREATE_DATE  createDate,
-  UPDATE_USER  updateUser,
-  UPDATE_DATE  updateDate,
-  STATUS       status
-FROM QLDV_EMPLOYEE
+  em.EMPLOYEE_ID  employeeId,
+  em.USER_NAME    userName,
+  em.PASSWORD     password,
+  em.CODE         code,
+  em.FULL_NAME    fullName,
+  em.PHONE_NUMBER phone,
+  em.EMAIL        email,
+  em.POSITION     position,
+  em.CREATE_USER  createUser,
+  em.CREATE_DATE  createDate,
+  em.UPDATE_USER  updateUser,
+  em.UPDATE_DATE  updateDate,
+  em.STATUS       status,
+  files.FILE_ID   fileId,
+  files.FILE_PATH pathImage
+FROM QLDV_EMPLOYEE em
+  LEFT JOIN QLDV_FILES files ON em.EMPLOYEE_ID = files.GROUP_ID AND files.GROUP_FILE = '1'
 WHERE EMPLOYEE_ID = :p_id

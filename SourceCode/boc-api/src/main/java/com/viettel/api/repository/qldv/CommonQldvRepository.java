@@ -1,5 +1,6 @@
 package com.viettel.api.repository.qldv;
 
+import com.viettel.api.domain.qldv.FilesEntity;
 import com.viettel.api.dto.qldv.CodeDecodeDto;
 import com.viettel.api.dto.qldv.EmployeeDto;
 import com.viettel.api.dto.qldv.PlaceDto;
@@ -14,4 +15,6 @@ public interface CommonQldvRepository {
     List<PlaceDto> getPlaceById(PlaceDto dto);
 
     List<EmployeeDto> getEmployeeByIdOrUserName(EmployeeDto dto);
+
+    FilesEntity getFileById(Long id);
 }

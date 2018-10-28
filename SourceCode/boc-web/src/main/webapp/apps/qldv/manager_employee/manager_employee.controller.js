@@ -39,6 +39,15 @@ var scopeHolder;
             $window.editData = vm.editData;
             $window.deleteData = vm.deleteData;
 
+            vm.prevPage = prevPage;
+            vm.nextPage = nextPage;
+            vm.currentPageChange = currentPageChange;
+            vm.pageSizeChange = pageSizeChange;
+            $window.tableMainprevPage = vm.prevPage;
+            $window.tableMainnextPage = vm.nextPage;
+            $window.tableMainpageSizeChange = vm.pageSizeChange;
+            $window.tableMaincurrentPageChange = vm.currentPageChange;
+
             //</editor-fold>
 
             //<editor-fold desc="Config Table">
@@ -53,6 +62,13 @@ var scopeHolder;
                 {
                     title: $translate.instant('global.table.action'),
                     value: "tblAction",
+                    checked: true,
+                    disable: true,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('user.labelInput.imageUser'),
+                    value: "tblImage",
                     checked: true,
                     disable: true,
                     isShow: true
@@ -139,6 +155,8 @@ var scopeHolder;
                         var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.employeeId + '\')"><i class="fa fa-edit"></i></span>' +
                             '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
 
+                        var image = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileId) +'" style="width: 50px; height: 50px;" />';
+
                         var objAdd = {
                             "action": {
                                 value: action,
@@ -146,6 +164,12 @@ var scopeHolder;
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
                                 width: '100'
+                            },
+                            "imageUser":{
+                                value: image,
+                                align: "center",
+                                header: $translate.instant('user.labelInput.imageUser'),
+                                width: '80'
                             },
                             "userName": {
                                 value: item.userName,
@@ -232,6 +256,37 @@ var scopeHolder;
                     }
                 }
             }
+        }
+
+        function prevPage() {
+            if (vm.tableMainConfig.currentPage > 1) {
+                vm.tableMainConfig.currentPage--;
+                vm.getListEmployee();
+            }
+        }
+
+        function nextPage() {
+            if (vm.tableMainConfig.currentPage < vm.tableMainConfig.totalPage) {
+                vm.tableMainConfig.currentPage++;
+                vm.getListEmployee();
+            }
+        }
+
+        function currentPageChange(el) {
+            if ($(el).val() === "" || $(el).val() === "0") {
+                $(el).val(1);
+            }
+            if (parseInt($(el).val()) > parseInt(vm.tableMainConfig.totalPage)) {
+                $(el).val(parseInt(vm.tableMainConfig.totalPage));
+            }
+            vm.tableMainConfig.currentPage = parseInt($(el).val());
+            vm.getListEmployee();
+        }
+
+        function pageSizeChange(el) {
+            vm.tableMainConfig.currentPage = 1;
+            vm.tableMainConfig.pageSize = parseInt($(el).val());
+            vm.getListEmployee();
         }
 
         $rootScope.$on('$loadSortingDatatable', function (event, object) {

@@ -21,7 +21,7 @@ public class BundleUtils {
 
     private static volatile ResourceBundle rsConfig = null;
 
-    public static String getLanguage(String key, Locale... locale) {
+    public static String getBundleValue(String key, Locale... locale) {
         ResourceBundle resource = ResourceBundle.getBundle("config/globalConfig");
         return resource.getString(key);
     }

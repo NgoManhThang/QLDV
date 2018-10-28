@@ -164,7 +164,7 @@ public class BocTargetServiceImpl implements BocTargetService{
                 String pathArr[] = fullPath.split("/target/classes");
                 String rootPath = pathArr[0].substring(0, pathArr[0].lastIndexOf("/"));
                 rootPath += File.separator + "file_upload_out" + File.separator;
-                String filePath = FilesUtils.saveUploadedFile(uploadfile, rootPath);
+                String filePath = "";
                 resultDTO = validateFileImport(filePath);
                 if (!Constants.RESULT.SUCCESS.equals(resultDTO.getKey())) {
                     return resultDTO;

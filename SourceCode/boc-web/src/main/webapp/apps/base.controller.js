@@ -26,7 +26,7 @@
         $locale.NUMBER_FORMATS.GROUP_SEP = ",";
         vm.getUrlImageByFileId = function(fileId) {
         	if(fileId != null) {
-        		return APP_REST_SERVICE + "common/getFileById?fileId=" + fileId;
+        		return APP_REST_SERVICE + "qldv-common/getFileById?fileId=" + fileId;
         	} else {
         		return './img/person.png';
         	}

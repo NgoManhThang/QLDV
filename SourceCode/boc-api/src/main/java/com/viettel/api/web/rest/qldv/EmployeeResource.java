@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -34,12 +35,13 @@ public class EmployeeResource {
 
     @PostMapping("/saveData")
     @Timed
-    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String dataString) throws IOException {
+    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String dataString,
+                                              @RequestParam(name = "files", required = false) MultipartFile file) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         EmployeeDto dto = mapper.readValue(dataString, EmployeeDto.class);
 
-        ResultDto resultDto = employeeService.saveData(dto);
+        ResultDto resultDto = employeeService.saveData(dto, file);
         return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 
