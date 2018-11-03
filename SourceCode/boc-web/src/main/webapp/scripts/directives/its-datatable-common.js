@@ -164,11 +164,12 @@
                             });
                         },
                         render: function (data, type, row, meta) {
-                        	if (type == 'display') {
+                        	/*if (type == 'display') {
                     			return '<span title= \"' + data +'\" class="td-container">'+data+'</span>';
                         	} else {
                                 return data;
-                            } 
+                            }*/
+                            return data;
                         },
                         orderable: true
                     });

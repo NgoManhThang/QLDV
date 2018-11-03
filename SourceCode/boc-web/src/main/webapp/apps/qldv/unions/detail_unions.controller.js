@@ -51,6 +51,12 @@ var scopeHolder;
             vm.titleMember = "";
             vm.showMember = false;
             vm.searchMember = {};
+
+            vm.urlCMT = null;
+            vm.fileCMT = null;
+
+            vm.urlComputer = null;
+            vm.fileComputer = null;
             //endregion
 
             //region Function
@@ -102,11 +108,25 @@ var scopeHolder;
                     disable: false,
                     isShow: true
                 },
+                /*{
+                    title: $translate.instant('unions.member.fileCMT'),
+                    value: "tblImage",
+                    checked: true,
+                    disable: true,
+                    isShow: true
+                },*/
                 {
                     title: $translate.instant('unions.member.laptopId'),
                     value: "laptopId",
                     checked: true,
                     disable: false,
+                    isShow: true
+                },
+                {
+                    title: $translate.instant('unions.member.fileComputer'),
+                    value: "tblImage",
+                    checked: true,
+                    disable: true,
                     isShow: true
                 },
                 {
@@ -209,6 +229,8 @@ var scopeHolder;
             if (type === 'member') {
                 var formData = new FormData();
                 formData.append('dataString', JSON.stringify(vm.member));
+                formData.append('filesCMT', vm.fileCMT);
+                formData.append('filesComputer', vm.fileComputer);
 
                 UnionsService.saveDataMember(formData).$promise.then(function (resp) {
                     var result = resp.data.key;
@@ -250,6 +272,13 @@ var scopeHolder;
         function doAddMember() {
             vm.lstMemberType = [];
             vm.lstNationalId = [];
+            var srcImage = vm.getUrlImageByFileId(null);
+            $("#idFileCMT").attr("src", srcImage);
+            vm.urlCMT = srcImage;
+
+            var srcImageComputer = vm.getUrlImageByFileId(null);
+            $("#idFileComputer").attr("src", srcImageComputer);
+            vm.urlComputer = srcImage;
             QldvCommonService.search({codeGroup: 'MEMBER_TYPE,NATIONAL'}).$promise.then(function (resp) {
                 $.each(resp, function (i, obj) {
                     if (obj.codeGroup === 'MEMBER_TYPE') {
@@ -308,10 +337,14 @@ var scopeHolder;
                 var lstData = resp.data.data;
                 if (lstData.length > 0) {
                     // vm.showTableMember = true;
+                    // console.log(lstData);
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
                         var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
                             '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+
+                        var imageCMT = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileIdCMT) +'" style="width: 50px; height: 50px;" />';
+                        var imageComputer = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileIdComputer) +'" style="width: 50px; height: 50px;" />';
 
                         var objAdd = {
                             "action": {
@@ -339,11 +372,23 @@ var scopeHolder;
                                 header: $translate.instant('unions.member.memberId'),
                                 width: '150'
                             },
+                            "fileCMT":{
+                                value: imageCMT,
+                                align: "center",
+                                header: $translate.instant('unions.member.fileCMT'),
+                                width: '80'
+                            },
                             "laptopId": {
                                 value: item.laptopId,
                                 align: "left",
                                 header: $translate.instant('unions.member.laptopId'),
                                 width: '170'
+                            },
+                            "fileComputer":{
+                                value: imageComputer,
+                                align: "center",
+                                header: $translate.instant('unions.member.fileComputer'),
+                                width: '80'
                             },
                             "apprStatus": {
                                 value: item.apprStatus === null ? "" : item.apprStatus,

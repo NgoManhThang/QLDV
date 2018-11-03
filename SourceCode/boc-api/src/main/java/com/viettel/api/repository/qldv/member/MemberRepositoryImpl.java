@@ -4,6 +4,7 @@ import com.viettel.api.config.Constants;
 import com.viettel.api.domain.qldv.MemberEntity;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
+import com.viettel.api.dto.qldv.FilesDto;
 import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
@@ -68,14 +69,35 @@ public class MemberRepositoryImpl extends BaseRepository implements MemberReposi
         resultDto.setKey(Constants.RESULT.SUCCESS);
         entityManager = getEntityManager();
         Session session = getSession();
+        FilesDto filesDto = new FilesDto();
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String userName = auth.getName();
             if (StringUtils.isStringNullOrEmpty(dto.getUnionMemberId())) {
                 dto.setCreateUser(auth.getName());
                 dto.setCreateDate(new Timestamp(System.currentTimeMillis()));
                 dto.setUpdateUser(auth.getName());
                 dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                 long id = (long) session.save(dto.toEntity());
+                //Save file CMT
+                if (StringUtils.isNotNullOrEmpty(dto.getFilePathCMT())) {
+                    filesDto.setGroupId(id);
+                    filesDto.setCreateUser(userName);
+                    filesDto.setGroupFile(2L);
+                    filesDto.setFileName(dto.getFileNameCMT());
+                    filesDto.setFilePath(dto.getFilePathCMT());
+                    session.save(filesDto.toEntity());
+                }
+
+                //Save file Computer
+                if (StringUtils.isNotNullOrEmpty(dto.getFilePathComputer())) {
+                    filesDto.setGroupId(id);
+                    filesDto.setCreateUser(userName);
+                    filesDto.setGroupFile(3L);
+                    filesDto.setFileName(dto.getFileNameComputer());
+                    filesDto.setFilePath(dto.getFilePathComputer());
+                    session.save(filesDto.toEntity());
+                }
                 resultDto.setId(String.valueOf(id));
             } else {
                 MemberEntity entity = entityManager.find(MemberEntity.class, dto.getUnionMemberId());

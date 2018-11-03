@@ -33,7 +33,9 @@
       "nationalId": "Quốc tịch",
       "unionId": "Thuộc đối tác",
       "apprStatus": "Trạng thái duyệt",
-      "reasonNotApp": "Nội dung từ chối"
+      "reasonNotApp": "Nội dung từ chối",
+      "fileCMT": "File ảnh/CMT/Hộ chiếu",
+      "fileComputer": "File ảnh máy tính"
     },
     "table": {
       "partnerName": "Tên đối tác",

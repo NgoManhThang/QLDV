@@ -11,7 +11,8 @@
       "partnerType": "Loại đối tác",
       "status": " Trạng thái",
       "representName": "Đại diện đoàn đối tác",
-      "phoneRepresent": "Sđt đại diện đối tác"
+      "phoneRepresent": "Sđt đại diện đối tác",
+      "logo": "Logo đối tác"
     },
     "message": {
       "partnerCodeNotNull": "Mã đối tác không được để trống",

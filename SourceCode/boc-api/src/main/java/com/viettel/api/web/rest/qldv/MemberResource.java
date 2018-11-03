@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(Constants.API_PATH_PREFIX + "member")
@@ -24,12 +25,14 @@ public class MemberResource {
 
     @PostMapping("/saveData")
     @Timed
-    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String data) {
+    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String data
+            , @RequestParam(name = "filesCMT", required = false) MultipartFile fileCMT
+            , @RequestParam(name = "filesComputer", required = false) MultipartFile fileComputer) {
         ResultDto resultDto = new ResultDto();
         try {
             ObjectMapper mapper = new ObjectMapper();
             MemberDto dto = mapper.readValue(data, MemberDto.class);
-            resultDto = memberService.saveData(dto);
+            resultDto = memberService.saveData(dto, fileCMT, fileComputer);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -38,11 +41,11 @@ public class MemberResource {
 
     @PostMapping("/searchMember")
     @Timed
-    public ResponseEntity<Datatable> searchMember(@RequestBody MemberDto dto){
+    public ResponseEntity<Datatable> searchMember(@RequestBody MemberDto dto) {
         Datatable datatable = new Datatable();
         try {
             datatable = memberService.searchMember(dto);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
         return new ResponseEntity<>(datatable, HttpStatus.OK);

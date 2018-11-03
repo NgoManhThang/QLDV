@@ -36,6 +36,16 @@ public class MemberDto extends BaseDto {
     private String barCodeComputer;
     private String unionName;
 
+    private String filePathCMT;
+    private String fileNameCMT;
+    private String fileIdDeleteCMT;
+    private String fileIdCMT;
+
+    private String filePathComputer;
+    private String fileNameComputer;
+    private String fileIdDeleteComputer;
+    private String fileIdComputer;
+
     public MemberEntity toEntity() {
         Logger logger = LoggerFactory.getLogger(MemberDto.class);
         try {

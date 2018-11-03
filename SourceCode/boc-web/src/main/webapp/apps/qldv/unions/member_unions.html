@@ -18,6 +18,15 @@
 
                         <div class="form-group">
                             <label class="control-label"
+                                   data-translate="unions.member.memberId"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.member.memberId"
+                                   placeholder="{{'unions.member.memberId' | translate}}"
+                                   class="form-control" maxlength="25"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
                                    data-translate="unions.member.memberType"></label>
                             <span class="text-danger">(*)</span>
                             <select class="form-control select-wrapper" data-ng-model="vm.member.memberType">
@@ -27,26 +36,6 @@
                                     {{obj.decode}}
                                 </option>
                             </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label"
-                                   data-translate="unions.member.memberId"></label>
-                            <span class="text-danger">(*)</span>
-                            <input type="text" data-ng-model="vm.member.memberId"
-                                   placeholder="{{'unions.member.memberId' | translate}}"
-                                   class="form-control" maxlength="25"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label"
-                                   data-translate="unions.member.laptopId"></label>
-                            <span class="text-danger">(*)</span>
-                            <input type="text" data-ng-model="vm.member.laptopId"
-                                   placeholder="{{'unions.member.laptopId' | translate}}"
-                                   class="form-control" maxlength="25"/>
                         </div>
 
                         <div class="form-group">
@@ -68,6 +57,36 @@
                             <input type="text" data-ng-model="vm.member.unionName"
                                    placeholder="{{'unions.member.unionId' | translate}}"
                                    class="form-control" maxlength="250" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="unions.member.laptopId"></label>
+                            <span class="text-danger">(*)</span>
+                            <input type="text" data-ng-model="vm.member.laptopId"
+                                   placeholder="{{'unions.member.laptopId' | translate}}"
+                                   class="form-control" maxlength="25"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group" style="text-align: center;">
+                            <label class="control-label" data-translate="unions.member.fileCMT"></label> <br>
+
+                            <input type="file" class="hide" accept="image/*" file-model="vm.fileCMT"
+                                   onchange="showImage(this)"/>
+                            <img id="idFileCMT" class="img-circle" ng-src="{{vm.urlCMT}}"
+                                 onclick="changeToFile(this)" style="width: 200px; height: 200px; cursor: pointer;"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group" style="text-align: center;">
+                            <label class="control-label" data-translate="unions.member.fileComputer"></label> <br>
+                            <input type="file" class="hide" accept="image/*" file-model="vm.fileComputer"
+                                   onchange="showImage(this)"/>
+                            <img id="idFileComputer" class="img-circle" ng-src="{{vm.urlComputer}}"
+                                 onclick="changeToFile(this)" style="width: 200px; height: 200px; cursor: pointer;"/>
                         </div>
                     </div>
                 </form>
