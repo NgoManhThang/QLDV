@@ -4,10 +4,10 @@ var scopeHolder;
     'use strict';
     angular.module('app').controller('UnionsDetailController', UnionsDetailController);
 
-    UnionsDetailController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$uibModalInstance',
+    UnionsDetailController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$uibModalInstance', '$window',
         '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'QldvCommonService', '$stateParams', 'PartnerService', 'UnionsService'];
 
-    function UnionsDetailController($scope, $rootScope, $controller, $state, $uibModalInstance,
+    function UnionsDetailController($scope, $rootScope, $controller, $state, $uibModalInstance, $window,
                                     $translate, $http, $timeout, $sessionStorage, $localStorage, QldvCommonService, $stateParams, PartnerService, UnionsService) {
         var vm = this;
         scopeHolder = $scope;
@@ -47,7 +47,10 @@ var scopeHolder;
             //Member
             vm.lstMemberType = [];
             vm.lstNationalId = [];
-            vm.member = {};
+            vm.member = {
+                fileIdCMT: null,
+                fileIdComputer: null
+            };
             vm.titleMember = "";
             vm.showMember = false;
             vm.searchMember = {};
@@ -69,6 +72,9 @@ var scopeHolder;
             vm.changeEmployee = changeEmployee;
             vm.doAddMember = doAddMember;
             vm.loadMember = loadMember;
+
+            vm.editMember = editMember;
+            $window.editMember = vm.editMember;
             //endregion
 
             //region Config Table
@@ -108,13 +114,13 @@ var scopeHolder;
                     disable: false,
                     isShow: true
                 },
-                /*{
+                {
                     title: $translate.instant('unions.member.fileCMT'),
                     value: "tblImage",
                     checked: true,
                     disable: true,
                     isShow: true
-                },*/
+                },
                 {
                     title: $translate.instant('unions.member.laptopId'),
                     value: "laptopId",
@@ -223,6 +229,29 @@ var scopeHolder;
 
             });
             //endregion
+
+            vm.lstMemberType = [];
+            vm.lstNationalId = [];
+            QldvCommonService.search({codeGroup: 'MEMBER_TYPE,NATIONAL'}).$promise.then(function (resp) {
+                $.each(resp, function (i, obj) {
+                    if (obj.codeGroup === 'MEMBER_TYPE') {
+                        vm.lstMemberType.push(obj);
+                    } else {
+                        vm.lstNationalId.push(obj);
+                    }
+                });
+                /*for (var i = 0; i < vm.lstPartnerId.length; i++) {
+                    if (parseInt(vm.detail.partnerId) === vm.lstPartnerId[i].partnerId) {
+                        vm.member.unionName = vm.lstPartnerId[i].partnerName;
+                        break;
+                    }
+                }
+                vm.member.unionId = vm.detail.unionId;
+                vm.titleMember = $translate.instant('unions.title.addMember');
+                vm.showMember = true;*/
+            }, function (err) {
+
+            });
         }
 
         function doSaveData(type) {
@@ -270,16 +299,27 @@ var scopeHolder;
         }
 
         function doAddMember() {
-            vm.lstMemberType = [];
-            vm.lstNationalId = [];
+            /*vm.lstMemberType = [];
+            vm.lstNationalId = [];*/
             var srcImage = vm.getUrlImageByFileId(null);
             $("#idFileCMT").attr("src", srcImage);
             vm.urlCMT = srcImage;
 
             var srcImageComputer = vm.getUrlImageByFileId(null);
             $("#idFileComputer").attr("src", srcImageComputer);
-            vm.urlComputer = srcImage;
-            QldvCommonService.search({codeGroup: 'MEMBER_TYPE,NATIONAL'}).$promise.then(function (resp) {
+            vm.urlComputer = srcImageComputer;
+
+            for (var i = 0; i < vm.lstPartnerId.length; i++) {
+                if (parseInt(vm.detail.partnerId) === vm.lstPartnerId[i].partnerId) {
+                    vm.member.unionName = vm.lstPartnerId[i].partnerName;
+                    break;
+                }
+            }
+            vm.member.unionId = vm.detail.unionId;
+            vm.titleMember = $translate.instant('unions.title.addMember');
+            vm.showMember = true;
+
+            /*QldvCommonService.search({codeGroup: 'MEMBER_TYPE,NATIONAL'}).$promise.then(function (resp) {
                 $.each(resp, function (i, obj) {
                     if (obj.codeGroup === 'MEMBER_TYPE') {
                         vm.lstMemberType.push(obj);
@@ -290,6 +330,7 @@ var scopeHolder;
                 for (var i = 0; i < vm.lstPartnerId.length; i++) {
                     if (parseInt(vm.detail.partnerId) === vm.lstPartnerId[i].partnerId) {
                         vm.member.unionName = vm.lstPartnerId[i].partnerName;
+                        break;
                     }
                 }
                 vm.member.unionId = vm.detail.unionId;
@@ -297,7 +338,7 @@ var scopeHolder;
                 vm.showMember = true;
             }, function (err) {
 
-            });
+            });*/
         }
 
         function doExit(type) {
@@ -340,8 +381,8 @@ var scopeHolder;
                     // console.log(lstData);
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
-                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editMember(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
+                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteMember(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
 
                         var imageCMT = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileIdCMT) +'" style="width: 50px; height: 50px;" />';
                         var imageComputer = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileIdComputer) +'" style="width: 50px; height: 50px;" />';
@@ -425,6 +466,23 @@ var scopeHolder;
             } else {
                 vm.detail.phoneRepresentCompany = "";
             }
+        }
+
+        function editMember(temp) {
+            var data = JSON.parse(decodeURIComponent(temp));
+            UnionsService.getDetailMember({unionMemberId: data.unionMemberId}).$promise.then(function (resp) {
+                vm.member = resp.data;
+
+                vm.urlCMT = vm.getUrlImageByFileId(vm.member.fileIdCMT);
+                vm.urlComputer = vm.getUrlImageByFileId(vm.member.fileIdComputer);
+
+                vm.titleMember = $translate.instant('unions.title.updateMember');
+                vm.showMember = true;
+
+            }, function (err) {
+                console.log(err);
+            });
+            console.log(data);
         }
 
         function openPopupDate(type) {

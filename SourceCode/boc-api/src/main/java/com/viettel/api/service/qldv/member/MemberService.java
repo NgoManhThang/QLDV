@@ -11,4 +11,6 @@ public interface MemberService {
     ResultDto saveData(MemberDto dto, MultipartFile fileCMT, MultipartFile fileComputer) throws IOException;
 
     Datatable searchMember(MemberDto dto);
+
+    MemberDto getDetail(MemberDto dto);
 }

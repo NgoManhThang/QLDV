@@ -9,4 +9,6 @@ public interface MemberRepository {
     Datatable searchMember(MemberDto dto);
 
     ResultDto saveData(MemberDto dto);
+
+    MemberDto getDetail(MemberDto dto);
 }

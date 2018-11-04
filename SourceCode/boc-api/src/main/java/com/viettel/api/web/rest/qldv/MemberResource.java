@@ -7,6 +7,7 @@ import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.service.qldv.member.MemberService;
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,17 @@ public class MemberResource {
             logger.error(e.getMessage(), e);
         }
         return new ResponseEntity<>(datatable, HttpStatus.OK);
+    }
+
+    @PostMapping("/getDetail")
+    @Timed
+    public ResponseEntity<MemberDto> getDetail(@RequestBody MemberDto dto){
+        MemberDto memberDto = new MemberDto();
+        try {
+            memberDto = memberService.getDetail(dto);
+        }catch (HibernateException e){
+            logger.error(e.getMessage());
+        }
+        return new ResponseEntity<>(memberDto, HttpStatus.OK);
     }
 }

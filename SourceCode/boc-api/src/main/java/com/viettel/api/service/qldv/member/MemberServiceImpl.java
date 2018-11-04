@@ -51,4 +51,9 @@ public class MemberServiceImpl implements MemberService {
     public Datatable searchMember(MemberDto dto) {
         return memberRepository.searchMember(dto);
     }
+
+    @Override
+    public MemberDto getDetail(MemberDto dto) {
+        return memberRepository.getDetail(dto);
+    }
 }

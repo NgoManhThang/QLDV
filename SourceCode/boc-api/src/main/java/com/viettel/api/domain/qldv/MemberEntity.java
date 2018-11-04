@@ -2,6 +2,8 @@ package com.viettel.api.domain.qldv;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 
@@ -41,11 +43,15 @@ public class MemberEntity {
     private Timestamp apprDate;
     @Column(name = "CREATE_USER")
     private String createUser;
-    @Column(name = "CREATE_DATE")
+
+    @CreationTimestamp
+    @Column(name = "CREATE_DATE", updatable = false, insertable = true)
     private Timestamp createDate;
     @Column(name = "UPDATE_USER")
     private String updateUser;
-    @Column(name = "UPDATE_DATE")
+
+    @UpdateTimestamp
+    @Column(name = "UPDATE_DATE", updatable = true, insertable = false)
     private Timestamp updateDate;
     @Column(name = "REASON_NOT_APP")
     private String reasonNotApp;
