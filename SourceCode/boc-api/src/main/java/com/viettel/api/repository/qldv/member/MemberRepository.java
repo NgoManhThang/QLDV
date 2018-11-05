@@ -11,4 +11,6 @@ public interface MemberRepository {
     ResultDto saveData(MemberDto dto);
 
     MemberDto getDetail(MemberDto dto);
+
+    ResultDto delete(MemberDto dto);
 }

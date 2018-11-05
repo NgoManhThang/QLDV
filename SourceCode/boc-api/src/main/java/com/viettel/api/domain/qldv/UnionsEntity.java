@@ -2,6 +2,8 @@ package com.viettel.api.domain.qldv;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 
@@ -46,29 +48,25 @@ public class UnionsEntity {
     private String workContent;
     @Column(name = "REASON_NOT_STATEMENT")
     private String reasonNotStatement;
-    @Column(name = "APPR_STATUS_1")
-    private String apprStatus1;
-    @Column(name = "APPR_USER_1")
-    private String apprUser1;
-    @Column(name = "APPR_DATE_1")
-    private Timestamp apprDate1;
-    @Column(name = "APPR_STATUS_2")
-    private String apprStatus2;
-    @Column(name = "APPR_USER_2")
-    private String apprUser2;
-    @Column(name = "APPR_DATE_2")
-    private Timestamp apprDate2;
+    @Column(name = "APPR_STATUS")
+    private String apprStatus;
+    @Column(name = "APPR_USER")
+    private String apprUser;
+    @Column(name = "APPR_DATE")
+    private Timestamp apprDate;
     @Column(name = "STATEMENT_ID")
     private Long statementId;
     @Column(name = "STATUS")
     private String status;
     @Column(name = "CREATE_USER")
     private String createUser;
-    @Column(name = "CREATE_DATE")
+    @CreationTimestamp
+    @Column(name = "CREATE_DATE", insertable = true, updatable = false)
     private Timestamp createDate;
     @Column(name = "UPDATE_USER")
     private String updateUser;
-    @Column(name = "UPDATE_DATE")
+    @UpdateTimestamp
+    @Column(name = "UPDATE_DATE", insertable = false, updatable = true)
     private Timestamp updateDate;
     @Column(name = "PLACE_IDS")
     private String placeIds;
@@ -93,12 +91,9 @@ public class UnionsEntity {
             String unionType,
             String workContent,
             String reasonNotStatement,
-            String apprStatus1,
-            String apprUser1,
-            Timestamp apprDate1,
-            String apprStatus2,
-            String apprUser2,
-            Timestamp apprDate2,
+            String apprStatus,
+            String apprUser,
+            Timestamp apprDate,
             Long statementId,
             String status,
             String createUser,
@@ -122,12 +117,9 @@ public class UnionsEntity {
         this.unionType = unionType;
         this.workContent = workContent;
         this.reasonNotStatement = reasonNotStatement;
-        this.apprStatus1 = apprStatus1;
-        this.apprUser1 = apprUser1;
-        this.apprDate1 = apprDate1;
-        this.apprStatus2 = apprStatus2;
-        this.apprUser2 = apprUser2;
-        this.apprDate2 = apprDate2;
+        this.apprStatus = apprStatus;
+        this.apprUser = apprUser;
+        this.apprDate = apprDate;
         this.statementId = statementId;
         this.status = status;
         this.createUser = createUser;

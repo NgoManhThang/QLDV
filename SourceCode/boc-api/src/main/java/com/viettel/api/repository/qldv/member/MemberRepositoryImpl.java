@@ -10,7 +10,9 @@ import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
 import com.viettel.api.utils.StringUtils;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,6 +30,7 @@ import java.util.Map;
 
 @Repository
 @Transactional
+@SuppressWarnings("all")
 public class MemberRepositoryImpl extends BaseRepository implements MemberRepository {
     Logger logger = LoggerFactory.getLogger(MemberRepositoryImpl.class);
 
@@ -161,5 +164,29 @@ public class MemberRepositoryImpl extends BaseRepository implements MemberReposi
         Map<String, Long> maps = new HashMap<>();
         maps.put("member_id", dto.getUnionMemberId());
         return getNamedParameterJdbcTemplate().queryForObject(sql, maps, BeanPropertyRowMapper.newInstance(MemberDto.class));
+    }
+
+    @Override
+    public ResultDto delete(MemberDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        try {
+            entityManager = getEntityManager();
+            Session session = getSession();
+            MemberEntity memberEntity = entityManager.find(MemberEntity.class, Long.valueOf(dto.getUnionMemberId()));
+            if (memberEntity != null) {
+                entityManager.remove(memberEntity);
+                List<FilesEntity> lstFile = session.createCriteria(FilesEntity.class)
+                        .add(Restrictions.or(Restrictions.eq("groupFile", new Long(2)), Restrictions.eq("groupFile", new Long(3))))
+                        .add(Restrictions.eq("groupId", dto.getUnionMemberId())).list();
+                for (FilesEntity entity : lstFile) {
+                    entityManager.remove(entity);
+                }
+            }
+        } catch (HibernateException e) {
+            logger.error(e.getMessage());
+            resultDto.setKey(Constants.RESULT.ERROR);
+        }
+        return resultDto;
     }
 }

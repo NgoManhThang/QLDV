@@ -35,12 +35,9 @@ public class UnionsDto extends BaseDto {
     private String unionType;
     private String workContent;
     private String reasonNotStatement;
-    private String apprStatus1;
-    private String apprUser1;
-    private Timestamp apprDate1;
-    private String apprStatus2;
-    private String apprUser2;
-    private Timestamp apprDate2;
+    private String apprStatus;
+    private String apprUser;
+    private Timestamp apprDate;
     private Long statementId;
     private String status;
     private String createUser;
@@ -82,12 +79,9 @@ public class UnionsDto extends BaseDto {
                     unionType,
                     workContent,
                     reasonNotStatement,
-                    apprStatus1,
-                    apprUser1,
-                    apprDate1,
-                    apprStatus2,
-                    apprUser2,
-                    apprDate2,
+                    apprStatus,
+                    apprUser,
+                    apprDate,
                     statementId,
                     status,
                     createUser,

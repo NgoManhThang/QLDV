@@ -74,7 +74,9 @@ var scopeHolder;
             vm.loadMember = loadMember;
 
             vm.editMember = editMember;
+            vm.deleteMember = deleteMember;
             $window.editMember = vm.editMember;
+            $window.deleteMember = vm.deleteMember;
             //endregion
 
             //region Config Table
@@ -482,7 +484,21 @@ var scopeHolder;
             }, function (err) {
                 console.log(err);
             });
-            console.log(data);
+        }
+
+        function deleteMember(temp) {
+            var data = JSON.parse(decodeURIComponent(temp));
+            UnionsService.deleteMember({unionMemberId: data.unionMemberId}).$promise.then(function (resp) {
+                var result = resp.data.key;
+                if (result === SUCCESS) {
+                    vm.showAlert("success", $translate.instant('global.message.success'));
+                    vm.loadMember();
+                } else {
+                    vm.showAlert("danger", $translate.instant('global.message.error'));
+                }
+            }, function (err) {
+
+            });
         }
 
         function openPopupDate(type) {

@@ -63,4 +63,16 @@ public class MemberResource {
         }
         return new ResponseEntity<>(memberDto, HttpStatus.OK);
     }
+
+    @PostMapping("/delete")
+    @Timed
+    public ResponseEntity<ResultDto> delete(@RequestBody MemberDto dto){
+        ResultDto resultDto = new ResultDto();
+        try {
+            resultDto = memberService.delete(dto);
+        }catch (HibernateException e){
+            logger.error(e.getMessage(), e);
+        }
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    }
 }

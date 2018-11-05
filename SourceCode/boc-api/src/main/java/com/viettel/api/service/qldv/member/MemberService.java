@@ -13,4 +13,6 @@ public interface MemberService {
     Datatable searchMember(MemberDto dto);
 
     MemberDto getDetail(MemberDto dto);
+
+    ResultDto delete(MemberDto dto);
 }

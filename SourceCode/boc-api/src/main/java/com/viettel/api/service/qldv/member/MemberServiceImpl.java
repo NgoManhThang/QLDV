@@ -56,4 +56,9 @@ public class MemberServiceImpl implements MemberService {
     public MemberDto getDetail(MemberDto dto) {
         return memberRepository.getDetail(dto);
     }
+
+    @Override
+    public ResultDto delete(MemberDto dto) {
+        return memberRepository.delete(dto);
+    }
 }
