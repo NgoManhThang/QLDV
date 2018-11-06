@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("all")
 @Repository
 @Transactional
 public class UnionsRepositoryImpl extends BaseRepository implements UnionsRepository {
@@ -115,5 +115,26 @@ public class UnionsRepositoryImpl extends BaseRepository implements UnionsReposi
         entityManager = getEntityManager();
         UnionsEntity unionsEntity = entityManager.find(UnionsEntity.class, dto.getUnionId());
         return unionsEntity;
+    }
+
+    @Override
+    public ResultDto updateStatus(UnionsDto dto) {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setKey(Constants.RESULT.SUCCESS);
+        entityManager = getEntityManager();
+        try {
+            UnionsEntity entity = entityManager.find(UnionsEntity.class, Long.valueOf(dto.getUnionId()));
+            if (entity != null) {
+                entity.setStatus(dto.getStatusValue());
+                if (StringUtils.isNotNullOrEmpty(dto.getReasonNotApp())) {
+                    entity.setReasonNotApp(dto.getReasonNotApp());
+                }
+                entityManager.merge(entity);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            resultDto.setKey(Constants.RESULT.ERROR);
+        }
+        return resultDto;
     }
 }

@@ -60,4 +60,16 @@ public class UnionsResource {
         }
         return new ResponseEntity<>(unionsEntity, HttpStatus.OK);
     }
+
+    @PostMapping("/updateStatus")
+    @Timed
+    public ResponseEntity<ResultDto> updateStatus(@RequestBody UnionsDto dto) {
+        ResultDto resultDto = new ResultDto();
+        try {
+            resultDto = unionsService.updateStatus(dto);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    }
 }

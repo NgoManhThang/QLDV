@@ -11,4 +11,6 @@ public interface UnionsService {
     ResultDto saveData(UnionsDto dto);
 
     UnionsEntity getDetail(UnionsDto dto);
+
+    ResultDto updateStatus(UnionsDto dto);
 }

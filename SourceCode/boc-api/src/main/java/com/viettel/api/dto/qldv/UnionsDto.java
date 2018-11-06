@@ -40,6 +40,7 @@ public class UnionsDto extends BaseDto {
     private Timestamp apprDate;
     private Long statementId;
     private String status;
+    private String statusValue;
     private String createUser;
     private Timestamp createDate;
     private String updateUser;

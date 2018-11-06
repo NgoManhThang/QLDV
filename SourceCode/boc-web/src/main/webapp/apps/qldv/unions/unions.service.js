@@ -84,6 +84,21 @@
                     };
                 }
             },
+            updateStatusUnions:{
+                method: 'POST',
+                url: URL + '/updateStatus',
+                responseType: 'json',
+                cache: false,
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                },
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
+            },
             getDetailMember:{
                 method: 'POST',
                 url: URL_MEMBER + '/getDetail',

@@ -31,4 +31,9 @@ public class UnionsServiceImpl implements UnionsService {
     public UnionsEntity getDetail(UnionsDto dto) {
         return unionsRepository.getDetail(dto);
     }
+
+    @Override
+    public ResultDto updateStatus(UnionsDto dto) {
+        return unionsRepository.updateStatus(dto);
+    }
 }
