@@ -183,7 +183,7 @@
                             "objectUrl": "boc.unions",
                             "objectRole": ""
                         },
-                        {
+                        /*{
                             "childObjects": [],
                             "ord": 3,
                             "parentId": -1,
@@ -195,7 +195,7 @@
                             "objectName": "Quản lý tờ trình",
                             "objectUrl": "boc.statement",
                             "objectRole": ""
-                        },
+                        },*/
                         {
                             "childObjects": [],
                             "ord": 3,

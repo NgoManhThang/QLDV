@@ -73,7 +73,7 @@
 
     },
     "popupDate": {
-      "currentText": "Tháng này",
+      "currentText": "Hôm nay",
       "toDayText": "Hôm nay",
       "closeText": "Đóng",
       "clearText": "Xóa"

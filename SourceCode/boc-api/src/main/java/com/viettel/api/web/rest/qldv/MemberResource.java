@@ -54,11 +54,11 @@ public class MemberResource {
 
     @PostMapping("/getDetail")
     @Timed
-    public ResponseEntity<MemberDto> getDetail(@RequestBody MemberDto dto){
+    public ResponseEntity<MemberDto> getDetail(@RequestBody MemberDto dto) {
         MemberDto memberDto = new MemberDto();
         try {
             memberDto = memberService.getDetail(dto);
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             logger.error(e.getMessage());
         }
         return new ResponseEntity<>(memberDto, HttpStatus.OK);
@@ -66,11 +66,11 @@ public class MemberResource {
 
     @PostMapping("/delete")
     @Timed
-    public ResponseEntity<ResultDto> delete(@RequestBody MemberDto dto){
+    public ResponseEntity<ResultDto> delete(@RequestBody MemberDto dto) {
         ResultDto resultDto = new ResultDto();
         try {
             resultDto = memberService.delete(dto);
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             logger.error(e.getMessage(), e);
         }
         return new ResponseEntity<>(resultDto, HttpStatus.OK);
