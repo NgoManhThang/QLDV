@@ -10,7 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  *
- * @author Nam, Nguyen Hoai
+ * @author ThangNM
  *
  */
 public class SQLBuilder {
@@ -30,6 +30,7 @@ public class SQLBuilder {
     public final static String SQL_MODULE_QLDV_UNIONS = "unions";
     public final static String SQL_MODULE_QLDV_VALIDATE = "validate";
     public final static String SQL_MODULE_QLDV_MEMBER = "member";
+    public final static String SQL_MODULE_QLDV_LOOKUP = "lookup";
 
     public static String getSqlQueryById(String module, String queryId) {
         File folder = null;

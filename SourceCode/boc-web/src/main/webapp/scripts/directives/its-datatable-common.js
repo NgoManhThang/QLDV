@@ -236,7 +236,7 @@
                             '</div>'
                         },
                         columns: lstObj.length === 0 ? headerDefault : lstMap,
-                        autoWidth: false,
+                        autoWidth: true,
                         columnDefs: columnDefsDefault,
                         initComplete: function (settings, json) {
                         	

@@ -5,10 +5,10 @@ var scopeHolder;
     angular.module('app').controller('LookupController', LookupController);
 
     LookupController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$window', '$element',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'PartnerService', 'QldvCommonService'];
+        '$translate', '$http', '$timeout', '$sessionStorage', '$localStorage', 'PartnerService', 'QldvCommonService', 'LookupService'];
 
     function LookupController($scope, $rootScope, $controller, $state, $window, $element,
-                               $translate, $http, $timeout, $sessionStorage, $localStorage, PartnerService, QldvCommonService) {
+                              $translate, $http, $timeout, $sessionStorage, $localStorage, PartnerService, QldvCommonService, LookupService) {
         var vm = this;
         scopeHolder = $scope;
         var NO_CAN_DELETE = "NO_CAN_DELETE";
@@ -23,12 +23,22 @@ var scopeHolder;
             $rootScope.$broadcast('$elementLoadJavascript', $element);
 
             //<editor-fold desc="Init variable">
+            // New used
             vm.listSelectedPartner = [];
             vm.lstPartner = [];
+            vm.loadCombo = {};
+            vm.objSearch = {
+                lstPartnerId: [],
+                lstUnionType: [],
+                lstUnionStatus: []
+            };
 
-            vm.objSearch = {};
-            vm.lstPartnerType = [];
-            vm.lstStatus = [];
+            vm.objDate = {
+                fromDateFrom: null,
+                fromDateTo: null,
+                toDateFrom: null,
+                toDateTo: null
+            };
             //</editor-fold>
 
             //<editor-fold desc="Function">
@@ -36,12 +46,11 @@ var scopeHolder;
             vm.loadDataCombo = loadDataCombo;
             vm.doSearch = doSearch;
             vm.getListData = getListData;
-            vm.doAddNew = doAddNew;
+            vm.setParamSearch = setParamSearch;
 
-            vm.editData = editData;
-            vm.deleteData = deleteData;
-            $window.editData = vm.editData;
-            $window.deleteData = vm.deleteData;
+
+            vm.viewListMember = viewListMember;
+            $window.viewListMember = vm.viewListMember;
 
             vm.prevPage = prevPage;
             vm.nextPage = nextPage;
@@ -133,34 +142,37 @@ var scopeHolder;
             //</editor-fold>
 
             //<editor-fold desc="Init function">
-            // vm.loadDataCombo();
-            // vm.doSearch();
+            vm.loadDataCombo();
+            vm.doSearch();
             //</editor-fold>
 
         })();
 
         function loadDataCombo() {
-            vm.lstPartnerType = [];
-            vm.lstStatus = [];
-            QldvCommonService.search({codeGroup: 'PARTNER_TYPE,STATUS_COMMON'}).$promise.then(function (resp) {
-                $.each(resp, function (i, obj) {
-                    if (obj.codeGroup === 'PARTNER_TYPE') {
-                        vm.lstPartnerType.push(obj);
-                    } else {
-                        vm.lstStatus.push(obj);
-                    }
+            vm.loadCombo.page = 1;
+            vm.loadCombo.pageSize = 1000000;
+            vm.loadCombo.sortName = 'partnerCode';
+            vm.loadCombo.sortType = 'asc';
+            vm.lstPartner = [];
+            PartnerService.search(vm.loadCombo).$promise.then(function (resp) {
+                var lstData = resp.data.data;
+                $.each(lstData, function (i, obj) {
+                    obj.code = obj.partnerId;
+                    obj.decode = obj.partnerName;
                 });
+                vm.lstPartner = lstData;
             }, function (err) {
 
-            });
+            })
         }
-        
+
         function doSearch() {
+            vm.setParamSearch();
             vm.tableMainConfig.pageSize = 5;
             vm.tableMainConfig.currentPage = 1;
             vm.getListData();
         }
-        
+
         function getListData() {
             vm.loadingByIdTable("tableMain", "shown", vm.tableMainConfig.data);
             vm.objSearch.page = vm.tableMainConfig.currentPage;
@@ -168,60 +180,59 @@ var scopeHolder;
             vm.objSearch.sortName = vm.tableMainConfig.sortName;
             vm.objSearch.sortType = vm.tableMainConfig.sortType;
 
-            PartnerService.search(vm.objSearch).$promise.then(function (resp) {
+            LookupService.search(vm.objSearch).$promise.then(function (resp) {
                 vm.tableMainConfig.data = [];
                 vm.tableMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableMainConfig.totalPage = parseInt(resp.data.draw);
                 console.log(resp);
                 var lstData = resp.data.data;
-                if (lstData.length > 0) {
+                if (lstData != null && lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
-                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+                        var action = '<span title="Xem chi tiết" class="btn-icon-table" onclick="window.viewListMember(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-eye"></i></span>';
 
                         var objAdd = {
                             "action": {
                                 value: action,
-                                id: item.partnerId,
+                                id: item.unionId,
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
                                 width: '100'
                             },
-                            "partnerCode": {
-                                value: item.partnerCode,
+                            "unionName": {
+                                value: item.unionName,
                                 align: "left",
-                                header: $translate.instant('partner.label.partnerCode'),
+                                header: $translate.instant('unions.table.unionName'),
                                 width: '150'
                             },
                             "partnerName": {
                                 value: item.partnerName,
                                 align: "left",
-                                header: $translate.instant('partner.label.partnerName'),
+                                header: $translate.instant('unions.table.partnerName'),
                                 width: '150'
                             },
-                            "partnerType": {
-                                value: item.partnerTypeName,
+                            "vietnameeseNumber": {
+                                value: item.vietnameseNumber,
                                 align: "left",
-                                header: $translate.instant('partner.label.partnerType'),
+                                header: $translate.instant('unions.table.vietnameeseNumber'),
                                 width: '120'
                             },
-                            "status": {
-                                value: item.statusName,
+                            "foreignerNumber": {
+                                value: item.foreignerNumber,
                                 align: "left",
-                                header: $translate.instant('partner.label.status'),
+                                header: $translate.instant('unions.table.foreignerNumber'),
                                 width: '200'
                             },
-                            "representName": {
-                                value: item.representName,
+                            "fromDate": {
+                                value: item.fromDate,
                                 align: "left",
-                                header: $translate.instant('partner.label.representName'),
+                                header: $translate.instant('unions.table.fromDate'),
                                 width: '120'
                             },
-                            "phoneRepresent": {
-                                value: item.phoneRepresent,
+                            "toDate": {
+                                value: item.toDate,
                                 align: "right",
-                                header: $translate.instant('partner.label.phoneRepresent'),
+                                header: $translate.instant('unions.table.toDate'),
                                 width: '120'
                             }
                         };
@@ -246,35 +257,28 @@ var scopeHolder;
             }
         }
         
-        function doAddNew() {
-            $state.go('partner-detail');
-        }
+        function setParamSearch() {
+            vm.objSearch.lstPartnerId = [];
 
-        function editData(temp) {
-            var data = JSON.parse(decodeURIComponent(temp));
-            $state.go('partner-detail', {partnerId: data.partnerId+""});
-        }
+            vm.objSearch.fromDateFrom = vm.filterDate(vm.objDate.fromDateFrom, 'yyyyMMdd');
+            vm.objSearch.fromDateTo = vm.filterDate(vm.objDate.fromDateTo, 'yyyyMMdd');
+            vm.objSearch.toDateFrom = vm.filterDate(vm.objDate.toDateFrom, 'yyyyMMdd');
+            vm.objSearch.toDateTo = vm.filterDate(vm.objDate.toDateTo, 'yyyyMMdd');
 
-        function deleteData(temp) {
-            var data = JSON.parse(decodeURIComponent(temp));
-            vm.openFormConfirm($translate.instant('global.message.confirm.deleteTitle'), $translate.instant('global.message.confirm.delete'), function () {
-                PartnerService.delete({partnerId: data.partnerId}).$promise.then(function (response) {
-                    var data = response.data;
-                    if (data.key === "SUCCESS") {
-                        vm.showAlert("success", $translate.instant('global.message.success'));
-                        $('#formConfirm').modal('hide');
-                        vm.doSearch();
-                    } else if (data.key === NO_CAN_DELETE) {
-                        vm.showAlert("warning", $translate.instant('global.message.delete.noCanDelete'));
-                    } else {
-                        vm.showAlert("danger", $translate.instant('global.message.error'));
-                    }
-                }, function (dataError) {
-                    vm.showAlert("error", "Err!!!");
+            if(vm.listSelectedPartner.length > 0){
+                $.each(vm.listSelectedPartner, function (i, obj) {
+                    vm.objSearch.lstPartnerId.push(obj.partnerId);
                 });
-            });
+            }
         }
 
+        function viewListMember(dataTemp) {
+            var data = JSON.parse(decodeURIComponent(dataTemp));
+            console.log(data);
+            $state.go('lst-member', {unionId: data.unionId});
+
+        }
+        
         function prevPage() {
             if (vm.tableMainConfig.currentPage > 1) {
                 vm.tableMainConfig.currentPage--;

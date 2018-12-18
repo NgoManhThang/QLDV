@@ -28,6 +28,7 @@
                         return $ocLazyLoad.load([
                             'apps/qldv/lookup/lookup.service.js'
                             , 'apps/qldv/lookup/lookup.controller.js'
+                            , 'apps/qldv/lookup/list_member.controller.js'
                             , 'apps/qldv/partner/partner.service.js'
                             , 'apps/qldv/common/qldv_common.service.js'
                             , 'apps/base.controller.js'
@@ -43,15 +44,15 @@
                     }
                 }
             })
-            /*.state('partner-detail', {
-                parent: 'boc.partner',
-                url: '/detail',
+            .state('lst-member', {
+                parent: 'boc.lookup',
+                url: '/list-member',
                 params: {
-                    partnerId: null
+                    unionId: null
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', '$resource', '$rootScope', function ($stateParams, $state, $uibModal, $rootScope) {
                     $uibModal.open({
-                        templateUrl: 'apps/qldv/partner/detail.html',
+                        templateUrl: 'apps/qldv/lookup/list_member.html',
                         resolve: {
                             translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                                 $translatePartialLoader.addPart('datatable');
@@ -60,12 +61,12 @@
                                 return $translate.refresh();
                             }]
                         },
-                        controller: 'PartnerDetailController',
+                        controller: 'ListMemberController',
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg'
                     });
                 }]
-            })*/
+            })
     }
 })();

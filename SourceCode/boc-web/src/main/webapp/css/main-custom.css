@@ -1128,3 +1128,32 @@ label.control-label {
 .modal-lg {
     width: 95% !important;
 }
+
+.table-list-member table thead > tr > th:nth-child(1),
+.table-list-member table tbody > tr > td:nth-child(1) {
+    max-width: 10px !important;
+    min-width: 10px !important;
+    white-space: normal !important;
+}
+
+.table-list-member table thead > tr > th:nth-child(2),
+.table-list-member table tbody > tr > td:nth-child(2),
+.table-list-member table thead > tr > th:nth-child(3),
+.table-list-member table tbody > tr > td:nth-child(3) {
+    max-width: 250px !important;
+    min-width: 250px !important;
+    white-space: normal !important;
+}
+
+.table-list-member table thead > tr > th:nth-child(4),
+.table-list-member table tbody > tr > td:nth-child(4),
+.table-list-member table thead > tr > th:nth-child(5),
+.table-list-member table tbody > tr > td:nth-child(5),
+.table-list-member table thead > tr > th:nth-child(6),
+.table-list-member table tbody > tr > td:nth-child(6),
+.table-list-member table thead > tr > th:nth-child(7),
+.table-list-member table tbody > tr > td:nth-child(7){
+    max-width: 150px !important;
+    min-width: 150px !important;
+    white-space: normal !important;
+}

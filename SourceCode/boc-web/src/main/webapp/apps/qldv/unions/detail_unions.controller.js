@@ -378,7 +378,7 @@ var scopeHolder;
                 vm.tableMemberMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableMemberMainConfig.totalPage = parseInt(resp.data.draw);
                 var lstData = resp.data.data;
-                if (lstData.length > 0) {
+                if (lstData != null && lstData.length > 0) {
                     // vm.showTableMember = true;
                     // console.log(lstData);
                     for (var i = 0; i < lstData.length; i++) {
