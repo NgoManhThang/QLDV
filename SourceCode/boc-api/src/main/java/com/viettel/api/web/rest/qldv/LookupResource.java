@@ -7,6 +7,7 @@ import com.viettel.api.domain.qldv.UnionsEntity;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.LookupDto;
+import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.dto.qldv.UnionsDto;
 import com.viettel.api.service.qldv.lookup.LookupService;
 import com.viettel.api.service.qldv.unions.UnionsService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(Constants.API_PATH_PREFIX + "lookup")
+@SuppressWarnings("all")
 public class LookupResource {
     Logger logger = LoggerFactory.getLogger(LookupResource.class);
 
@@ -37,41 +39,15 @@ public class LookupResource {
         return new ResponseEntity<>(datatable, HttpStatus.OK);
     }
 
-    /*@PostMapping("/saveData")
+    @PostMapping("/searchMember")
     @Timed
-    public ResponseEntity<ResultDto> saveData(@RequestParam("dataString") String data) {
-        ResultDto resultDto = new ResultDto();
+    public ResponseEntity<Datatable> searchMember(@RequestBody MemberDto dto) {
+        Datatable datatable = new Datatable();
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            UnionsDto dto = mapper.readValue(data, UnionsDto.class);
-            resultDto = unionsService.saveData(dto);
+            datatable = lookupService.searchMember(dto);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+        return new ResponseEntity<>(datatable, HttpStatus.OK);
     }
-
-    @PostMapping("/getDetail")
-    @Timed
-    public ResponseEntity<UnionsEntity> getDetail(@RequestBody UnionsDto dto) {
-        UnionsEntity unionsEntity = new UnionsEntity();
-        try {
-            unionsEntity = unionsService.getDetail(dto);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        return new ResponseEntity<>(unionsEntity, HttpStatus.OK);
-    }
-
-    @PostMapping("/updateStatus")
-    @Timed
-    public ResponseEntity<ResultDto> updateStatus(@RequestBody UnionsDto dto) {
-        ResultDto resultDto = new ResultDto();
-        try {
-            resultDto = unionsService.updateStatus(dto);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        return new ResponseEntity<>(resultDto, HttpStatus.OK);
-    }*/
 }

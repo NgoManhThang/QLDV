@@ -32,12 +32,6 @@ spring:
         default-domain: boc_api
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-#        url: jdbc:mysql://10.61.2.248:3306/RDM?UseUniCode=true&characterEncoding=utf8
-#        username: root
-#        password: '123456'
-#        url: jdbc:oracle:thin:@10.61.2.248:1521:orcl
-#        username: BOC
-#        password: '123456'
         url: jdbc:oracle:thin:@localhost:1521:xe
         username: admin
         password: '123456'

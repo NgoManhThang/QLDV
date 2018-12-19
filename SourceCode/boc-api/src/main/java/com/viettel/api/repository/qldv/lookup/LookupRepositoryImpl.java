@@ -5,6 +5,7 @@ import com.viettel.api.domain.qldv.UnionsEntity;
 import com.viettel.api.dto.Datatable;
 import com.viettel.api.dto.ResultDto;
 import com.viettel.api.dto.qldv.LookupDto;
+import com.viettel.api.dto.qldv.MemberDto;
 import com.viettel.api.dto.qldv.UnionsDto;
 import com.viettel.api.repository.BaseRepository;
 import com.viettel.api.utils.SQLBuilder;
@@ -75,65 +76,33 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
     }
 
     @Override
-    public ResultDto saveData(UnionsDto dto) {
-        ResultDto resultDto = new ResultDto();
-        resultDto.setKey(Constants.RESULT.SUCCESS);
-        entityManager = getEntityManager();
-        Session session = getSession();
+    public Datatable searchMember(MemberDto dto) {
+        Datatable datatable = new Datatable();
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (StringUtils.isStringNullOrEmpty(dto.getUnionId())) {
-                dto.setCreateUser(auth.getName());
-                dto.setUpdateUser(auth.getName());
-                dto.setCreateDate(new Timestamp(System.currentTimeMillis()));
-                dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
-                if (dto.getVietnameseNumber() == null) {
-                    dto.setVietnameseNumber(0l);
-                }
-                if (dto.getForeignerNumber() == null) {
-                    dto.setForeignerNumber(0l);
-                }
-                long id = (long) session.save(dto.toEntity());
-                resultDto.setId(String.valueOf(id));
-            } else {
-                UnionsEntity entity = entityManager.find(UnionsEntity.class, dto.getUnionId());
-                if (entity.getUnionId() != null) {
-                    dto.setUpdateUser(auth.getName());
-                    dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
-                    entityManager.merge(dto.toEntity());
+            String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_LOOKUP, "get-list-member");             Map<String, String> maps = new HashMap<>();
+            maps.put("union_id", String.valueOf(dto.getUnionId()));
+            List<MemberDto> list = getListDataBySqlQuery(sql, maps,
+                    dto.getPage(), dto.getPageSize(), MemberDto.class, true,
+                    dto.getSortName(), dto.getSortType());
+
+            int count = 0;
+            if (list.size() > 0) {
+                count = list.get(0).getTotalRow();
+            }
+
+            datatable.setRecordsTotal(count);
+            if (dto.getPageSize() > 0) {
+                if (count % dto.getPageSize() == 0) {
+                    datatable.setDraw(count / dto.getPageSize());
+                } else {
+                    datatable.setDraw((count / dto.getPageSize()) + 1);
                 }
             }
+            datatable.setData(list);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        return resultDto;
+        return datatable;
     }
 
-    @Override
-    public UnionsEntity getDetail(UnionsDto dto) {
-        entityManager = getEntityManager();
-        UnionsEntity unionsEntity = entityManager.find(UnionsEntity.class, dto.getUnionId());
-        return unionsEntity;
-    }
-
-    @Override
-    public ResultDto updateStatus(UnionsDto dto) {
-        ResultDto resultDto = new ResultDto();
-        resultDto.setKey(Constants.RESULT.SUCCESS);
-        entityManager = getEntityManager();
-        try {
-            UnionsEntity entity = entityManager.find(UnionsEntity.class, Long.valueOf(dto.getUnionId()));
-            if (entity != null) {
-                entity.setStatus(dto.getStatusValue());
-                if (StringUtils.isNotNullOrEmpty(dto.getReasonNotApp())) {
-                    entity.setReasonNotApp(dto.getReasonNotApp());
-                }
-                entityManager.merge(entity);
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            resultDto.setKey(Constants.RESULT.ERROR);
-        }
-        return resultDto;
-    }
 }
