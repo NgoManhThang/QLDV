@@ -1,0 +1,174 @@
+<div ng-show="vm.showScanCode">
+    <div class="panel panel-default panel-default-custom">
+        <div class="panel-heading panel-heading-custom">
+            <h3 class="panel-title">{{vm.titleTypeScan}}</h3>
+            <div class="pull-right">
+                <button type="button" class="close" data-ng-click="vm.btnBack();">&times;</button>
+            </div>
+        </div>
+
+        <div class="panel-body panel-body-custom">
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="scanCode" id="scanCode">
+                        <div class="col-md-offset-3 col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Security code</label>
+                                <span class="text-danger">(*)</span>
+                                <input type="text" data-ng-model="vm.objSearch.securityCode"
+                                       placeholder="Barcode" class="form-control"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-md-12 form-button-search">
+                    <button type="button" class="btn btn-info" data-ng-click="vm.btnScanCode();">
+                        <i class="fa fa-search"></i> <span>Scan code</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="vm.showInfoMember">
+    <div class="panel panel-default panel-default-custom">
+        <div class="panel-heading panel-heading-custom">
+            <h3 class="panel-title">THÔNG TIN NHÂN VIÊN</h3>
+            <div class="pull-right">
+                <button type="button" class="close" data-ng-click="vm.btnBack();">&times;</button>
+            </div>
+        </div>
+
+        <div class="panel-body panel-body-custom">
+            <div class="row">
+                <div class="col-sm-12">
+                    <fieldset class="col-sm-4">
+                        <div class="row text-center">
+                            <label>Security Code</label>
+                        </div>
+                        <div class="row text-center">
+                            <label>{{vm.result.barCodeUser}}</label>
+                        </div>
+                        <div class="row text-center">
+                            <img style="width: 150px;" ng-src="{{vm.result.urlBarCodeUser}}"/>
+                        </div>
+                        <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
+                            <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
+                                <i class="fa fa-reply"></i> <span>Trở về</span>
+                            </button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="col-sm-8">
+                        <h4>THÔNG TIN CÁ NHÂN</h4>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Họ tên</th>
+                                <td>{{vm.result.fullName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Thuộc đoàn - đối tác</th>
+                                <td>{{vm.result.unionName}} - {{vm.result.partnerName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Quốc tích</th>
+                                <td>{{vm.result.nationalName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Chứng minh nhân dân/Hộ chiếu</th>
+                                <td>{{vm.result.memberId}}</td>
+                            </tr>
+                            <tr>
+                                <th>Ngày bắt đầu làm việc</th>
+                                <td>{{vm.result.fromDate}}</td>
+                            </tr>
+                            <tr>
+                                <th>Ngày kết thúc làm việc</th>
+                                <td>{{vm.result.toDate}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <img style="width: 350px;" ng-src="{{vm.result.imageId}}"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="vm.showInfoLap">
+    <div class="panel panel-default panel-default-custom">
+        <div class="panel-heading panel-heading-custom">
+            <h3 class="panel-title">THÔNG TIN MÁY TÍNH</h3>
+            <div class="pull-right">
+                <button type="button" class="close" data-ng-click="vm.btnBack();">&times;</button>
+            </div>
+        </div>
+
+        <div class="panel-body panel-body-custom">
+            <div class="row">
+                <div class="col-sm-12">
+                    <fieldset class="col-sm-4">
+                        <div class="row text-center">
+                            <label>Security Code</label>
+                        </div>
+                        <div class="row text-center">
+                            <label>{{vm.result.barCodeComputer}}</label>
+                        </div>
+                        <div class="row text-center">
+                            <img style="width: 150px;" ng-src="{{vm.result.urlBarCodeComputer}}"/>
+                        </div>
+                        <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
+                            <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
+                                <i class="fa fa-reply"></i> <span>Trở về</span>
+                            </button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="col-sm-8">
+                        <h4>THÔNG TIN CHI TIẾT MÁY TÍNH</h4>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Serial No</th>
+                                <td>{{vm.result.laptopId}}</td>
+                            </tr>
+                            <tr>
+                                <th>Chủ sở hữu</th>
+                                <td>{{vm.result.fullName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Thuộc đoàn - đối tác</th>
+                                <td>{{vm.result.unionName}} - {{vm.result.partnerName}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <img style="width: 350px;" ng-src="{{vm.result.imageLaptop}}"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="vm.showNone">
+    <h4 class="text-center">KHÔNG TÌM THẤY THÔNG TIN TƯƠNG ỨNG</h4>
+    <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
+        <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
+            <i class="fa fa-reply"></i> <span data-translate="lookup.button.return">Trở về</span>
+        </button>
+    </div>
+</div>
