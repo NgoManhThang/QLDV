@@ -6,6 +6,7 @@
     LookupService.$inject = ['$resource', 'APP_REST_SERVICE'];
     function LookupService ($resource, APP_REST_SERVICE) {
         var contentType = 'application/octet-stream';
+        var pdfContentType = 'application/pdf';
         var URL = APP_REST_SERVICE + "lookup";
         var service =  $resource(URL, {}, {
             search: {
@@ -23,24 +24,9 @@
                     };
                 }
             },
-            saveData: {
+            searchMember: {
                 method: 'POST',
-                url: URL + '/saveData',
-                responseType: 'json',
-                cache: false,
-                processData: false,
-                headers: {'Content-type': undefined},
-                transformRequest: angular.identity,
-                transformResponse: function(data, headers) {
-                    return {
-                        data: data,
-                        headers: headers()
-                    };
-                }
-            },
-            getDetail: {
-                method: 'POST',
-                url: URL + '/getDetail',
+                url: URL + '/searchMember',
                 responseType: 'json',
                 cache: false,
                 transformRequest: function (data) {
@@ -53,17 +39,20 @@
                     };
                 }
             },
-            delete: {
+            getFilePathPdfPrinter:{
                 method: 'POST',
-                url: URL + '/delete',
-                responseType: 'json',
-                cache: false,
-                transformRequest: function (data) {
-                    return angular.toJson(data);
+                url: APP_REST_SERVICE + 'qldv-common/getPdfPrinter/:barCode',
+                params: {
+                    barCode: '@barCode'
                 },
-                transformResponse: function(data, headers) {
+                responseType: 'arraybuffer',
+                cache: false,
+                headers: {accept: pdfContentType},
+                transformResponse: function (data, headers) {
                     return {
-                        data: data,
+                        response: new Blob([ data ], {
+                            type: pdfContentType
+                        }),
                         headers: headers()
                     };
                 }

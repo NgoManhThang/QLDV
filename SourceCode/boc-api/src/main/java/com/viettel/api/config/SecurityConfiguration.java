@@ -106,6 +106,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/boc/access/getCsrfToken").permitAll()
             .antMatchers("/api/boc/common/getFileById").permitAll()
             .antMatchers("/api/boc/qldv-common/getFileById").permitAll()
+            .antMatchers("/api/boc/qldv-common/getImageByBarcode").permitAll()
+            .antMatchers("/api/boc/qldv-common/*").permitAll()
             //.antMatchers("/rest/**").permitAll()
             //.antMatchers("/api/**").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)

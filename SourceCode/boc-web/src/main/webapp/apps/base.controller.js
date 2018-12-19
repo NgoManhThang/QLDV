@@ -30,7 +30,15 @@
         	} else {
         		return './img/person.png';
         	}
-        }
+        };
+
+        vm.getImageByBarcode = function(barCode) {
+            if(barCode != null) {
+                return APP_REST_SERVICE + "qldv-common/getImageByBarcode?barCode=" + encodeURIComponent(barCode);
+            } else {
+                return './img/person.png';
+            }
+        };
         
         vm.doSaveModal = function(callback) {
         	callback();

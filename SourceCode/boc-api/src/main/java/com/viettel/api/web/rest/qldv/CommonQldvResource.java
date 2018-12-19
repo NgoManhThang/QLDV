@@ -161,11 +161,11 @@ public class CommonQldvResource {
             document.open();
             PdfContentByte cb = writer.getDirectContent();
 
-            com.itextpdf.text.Image imageIcon = com.itextpdf.text.Image.getInstance(fullPath + "/viettel.png");
+            com.itextpdf.text.Image imageIcon = com.itextpdf.text.Image.getInstance(fullPath + "/bk4.png");
             cb.addImage(imageIcon, 80f, 0f, 0f, 30f, 43f, 50f);
 
             Font font1 = FontFactory.getFont(FontFactory.TIMES_BOLD, 12);
-            Phrase phrase1 = new Phrase("ĐẠI HỌC BKHN", font1);
+            Phrase phrase1 = new Phrase("HUST", font1);
             ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
                     phrase1,
                     (document.right() - document.left()) / 2 + document.leftMargin(),

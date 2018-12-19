@@ -79,7 +79,8 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
     public Datatable searchMember(MemberDto dto) {
         Datatable datatable = new Datatable();
         try {
-            String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_LOOKUP, "get-list-member");             Map<String, String> maps = new HashMap<>();
+            String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_LOOKUP, "get-list-member");
+            Map<String, String> maps = new HashMap<>();
             maps.put("union_id", String.valueOf(dto.getUnionId()));
             List<MemberDto> list = getListDataBySqlQuery(sql, maps,
                     dto.getPage(), dto.getPageSize(), MemberDto.class, true,
