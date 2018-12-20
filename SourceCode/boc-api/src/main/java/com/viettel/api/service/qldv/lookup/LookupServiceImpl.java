@@ -32,4 +32,17 @@ public class LookupServiceImpl implements LookupService {
         return lookupRepository.searchMember(dto);
     }
 
+    @Override
+    public LookupDto scanBarcode(LookupDto dto) {
+        LookupDto lookupDto = lookupRepository.scanBarcode(dto);
+        if (lookupDto.getUnionMemberId() != null) {
+            if ("IN".equals(dto.getTypeScan())) {
+                lookupRepository.save(lookupDto);
+            } else {
+                lookupRepository.update(lookupDto);
+            }
+        }
+        return lookupDto;
+    }
+
 }

@@ -148,8 +148,11 @@
             <button type="submit" class="btn btn-info" tabindex="3" data-ng-click="vm.doSearch();">
                 <i class="fa fa-search"></i> <span data-translate="global.action.search"></span>
             </button>
-            <button type="button" class="btn btn-warning" tabindex="4" data-ng-click="vm.doRefresh();">
-                <i class="fa fa-refresh"></i> <span data-translate="global.action.refresh"></span>
+            <button type="button" class="btn btn-warning" tabindex="4" data-ng-click="vm.doScanBarCode('IN');">
+                <i class="fa fa-sign-in"></i> <span>Quét mã vạch vào</span>
+            </button>
+            <button type="button" class="btn btn-warning" tabindex="4" data-ng-click="vm.doScanBarCode('OUT');">
+                <i class="fa fa-sign-out"></i> <span>Quét mã vạch ra</span>
             </button>
         </div>
     </form>

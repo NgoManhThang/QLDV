@@ -11,4 +11,6 @@ public interface LookupService {
     Datatable search(LookupDto dto);
 
     Datatable searchMember(MemberDto dto);
+
+    LookupDto scanBarcode(LookupDto dto);
 }

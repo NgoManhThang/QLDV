@@ -50,4 +50,15 @@ public class LookupResource {
         }
         return new ResponseEntity<>(datatable, HttpStatus.OK);
     }
+
+    @PostMapping("/scanBarcode")
+    @Timed
+    public ResponseEntity<LookupDto> scanBarcode(@RequestBody LookupDto dto) {
+        try {
+            dto = lookupService.scanBarcode(dto);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 }

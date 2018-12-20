@@ -5,10 +5,10 @@ var scopeHolder;
     angular.module('app').controller('ScanAndInfoController', ScanAndInfoController);
 
     ScanAndInfoController.$inject = ['$scope', '$rootScope', '$controller', '$state', '$uibModalInstance', '$window',
-        '$translate', '$http', '$timeout', '$sessionStorage', '$stateParams'];
+        '$translate', '$http', '$timeout', '$sessionStorage', '$stateParams', 'LookupService'];
 
     function ScanAndInfoController($scope, $rootScope, $controller, $state, $uibModalInstance, $window,
-                                   $translate, $http, $timeout, $sessionStorage, $stateParams) {
+                                   $translate, $http, $timeout, $sessionStorage, $stateParams, LookupService) {
         var vm = this;
         scopeHolder = $scope;
 
@@ -52,11 +52,42 @@ var scopeHolder;
 
 
         function btnScanCode() {
+            vm.objSearch.typeScan = $stateParams.typeScan;
+            LookupService.scanBarcode(vm.objSearch).$promise.then(function (resp) {
+                console.log(resp);
+                vm.result = resp.data;
 
+                vm.result.urlBarCodeUser = vm.getImageByBarcode(vm.result.barCodeUser);
+                vm.result.urlBarCodeComputer = vm.getImageByBarcode(vm.result.barCodeComputer);
+
+                vm.result.imageId = vm.getUrlImageByFileId(vm.result.fileIdCMT);
+                vm.result.imageLaptop = vm.getUrlImageByFileId(vm.result.fileIdComputer);
+
+                if (vm.objSearch.barCode == vm.result.barCodeUser) {
+                    vm.showScanCode = false;
+                    vm.showInfoLap = false;
+                    vm.showInfoMember = true;
+                    vm.showNone = false;
+                } else if (vm.objSearch.barCode == vm.result.barCodeComputer) {
+                    vm.showScanCode = false;
+                    vm.showInfoLap = true;
+                    vm.showInfoMember = false;
+                    vm.showNone = false;
+                } else {
+                    vm.showScanCode = false;
+                    vm.showInfoLap = false;
+                    vm.showInfoMember = false;
+                    vm.showNone = true;
+                }
+            }, function (err) {
+
+            });
         }
 
         function btnBack() {
-
+            $stateParams.typeScan = null;
+            $uibModalInstance.close();
+            $state.go('boc.lookup');
         }
     }
 })();

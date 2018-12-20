@@ -56,6 +56,21 @@
                         headers: headers()
                     };
                 }
+            },
+            scanBarcode: {
+                method: 'POST',
+                url: URL + '/scanBarcode',
+                responseType: 'json',
+                cache: false,
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                },
+                transformResponse: function(data, headers) {
+                    return {
+                        data: data,
+                        headers: headers()
+                    };
+                }
             }
         });
         return service;

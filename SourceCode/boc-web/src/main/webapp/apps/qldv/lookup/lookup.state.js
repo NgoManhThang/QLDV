@@ -29,6 +29,7 @@
                             'apps/qldv/lookup/lookup.service.js'
                             , 'apps/qldv/lookup/lookup.controller.js'
                             , 'apps/qldv/lookup/list_member.controller.js'
+                            , 'apps/qldv/lookup/scan_info_in_out.controller.js'
                             , 'apps/qldv/partner/partner.service.js'
                             , 'apps/qldv/common/qldv_common.service.js'
                             , 'apps/base.controller.js'
@@ -65,6 +66,30 @@
                         controllerAs: 'vm',
                         backdrop: 'static',
                         size: 'lg'
+                    });
+                }]
+            })
+            .state('scan-barcode', {
+                parent: 'boc.lookup',
+                url: '/scan',
+                params: {
+                    typeScan: null
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', '$resource', '$rootScope', function ($stateParams, $state, $uibModal, $rootScope) {
+                    $uibModal.open({
+                        templateUrl: 'apps/qldv/lookup/scan_info_in_out.html',
+                        resolve: {
+                            translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                                $translatePartialLoader.addPart('datatable');
+                                $translatePartialLoader.addPart('partner');
+                                $translatePartialLoader.addPart('global');
+                                return $translate.refresh();
+                            }]
+                        },
+                        controller: 'ScanAndInfoController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'md'
                     });
                 }]
             })

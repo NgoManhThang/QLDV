@@ -15,7 +15,7 @@
                             <div class="form-group">
                                 <label class="control-label">Security code</label>
                                 <span class="text-danger">(*)</span>
-                                <input type="text" data-ng-model="vm.objSearch.securityCode"
+                                <input type="text" data-ng-model="vm.objSearch.barCode"
                                        placeholder="Barcode" class="form-control"/>
                             </div>
                         </div>
@@ -57,8 +57,8 @@
                             <img style="width: 150px;" ng-src="{{vm.result.urlBarCodeUser}}"/>
                         </div>
                         <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
-                            <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
-                                <i class="fa fa-reply"></i> <span>Trở về</span>
+                            <button type="button" class="btn btn-danger btn-block" data-ng-click="vm.btnBack();">
+                                <i class="fa fa-reply-all"></i> <span>Trở về</span>
                             </button>
                         </div>
                     </fieldset>
@@ -128,8 +128,8 @@
                             <img style="width: 150px;" ng-src="{{vm.result.urlBarCodeComputer}}"/>
                         </div>
                         <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
-                            <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
-                                <i class="fa fa-reply"></i> <span>Trở về</span>
+                            <button type="button" class="btn btn-danger btn-block" data-ng-click="vm.btnBack();">
+                                <i class="fa fa-reply-all"></i> <span>Trở về</span>
                             </button>
                         </div>
                     </fieldset>
@@ -164,11 +164,21 @@
     </div>
 </div>
 
-<div class="vm.showNone">
-    <h4 class="text-center">KHÔNG TÌM THẤY THÔNG TIN TƯƠNG ỨNG</h4>
-    <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
-        <button type="button" class="btn btn-sm white" data-ng-click="vm.btnBack();">
-            <i class="fa fa-reply"></i> <span data-translate="lookup.button.return">Trở về</span>
-        </button>
+<div ng-show="vm.showNone">
+    <div class="panel panel-default panel-default-custom">
+        <div class="panel-heading panel-heading-custom">
+            <h3 class="panel-title">KẾT QUẢ QUÉT MÃ VẠCH</h3>
+            <div class="pull-right">
+                <button type="button" class="close" data-ng-click="vm.btnBack();">&times;</button>
+            </div>
+        </div>
+        <div class="panel-body panel-body-custom">
+            <h4 class="text-center">KHÔNG TÌM THẤY THÔNG TIN TƯƠNG ỨNG</h4>
+            <div style="margin-top: 10px;" class="col-sm-12 form-inline text-center">
+                <button type="button" class="btn btn-danger" data-ng-click="vm.btnBack();">
+                    <i class="fa fa-reply-all"></i> <span>Trở về</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>

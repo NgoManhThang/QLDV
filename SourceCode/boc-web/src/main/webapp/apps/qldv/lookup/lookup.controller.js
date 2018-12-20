@@ -47,7 +47,7 @@ var scopeHolder;
             vm.doSearch = doSearch;
             vm.getListData = getListData;
             vm.setParamSearch = setParamSearch;
-
+            vm.doScanBarCode = doScanBarCode;
 
             vm.viewListMember = viewListMember;
             $window.viewListMember = vm.viewListMember;
@@ -277,6 +277,11 @@ var scopeHolder;
             console.log(data);
             $state.go('lst-member', {unionId: data.unionId});
 
+        }
+
+        function doScanBarCode(typeScan) {
+            console.log(typeScan);
+            $state.go('scan-barcode', {typeScan: typeScan});
         }
         
         function prevPage() {

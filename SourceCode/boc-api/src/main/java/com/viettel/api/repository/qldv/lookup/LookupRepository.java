@@ -11,4 +11,10 @@ public interface LookupRepository {
     Datatable search(LookupDto dto);
 
     Datatable searchMember(MemberDto dto);
+
+    LookupDto scanBarcode(LookupDto dto);
+
+    void save(LookupDto dto);
+
+    void update(LookupDto dto);
 }

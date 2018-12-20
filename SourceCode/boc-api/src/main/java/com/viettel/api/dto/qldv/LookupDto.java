@@ -21,6 +21,15 @@ public class LookupDto extends BaseDto {
     private String toDate;
     private Long partnerId;
     private String partnerName;
+    private String nationalName;
+    private Long unionMemberId;
+    private String fullName;
+    private String memberId;
+    private String laptopId;
+    private String fileIdCMT;
+    private String fileIdComputer;
+    private String barCodeUser;
+    private String barCodeComputer;
 
     // property for form search
     private String fromDateFrom;
@@ -28,4 +37,8 @@ public class LookupDto extends BaseDto {
     private String toDateFrom;
     private String toDateTo;
     private List<String> lstPartnerId;
+
+    //Scan barcode
+    private String barCode;
+    private String typeScan;
 }
