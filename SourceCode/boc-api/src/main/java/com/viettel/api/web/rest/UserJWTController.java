@@ -101,36 +101,36 @@ public class UserJWTController extends BaseController {
 			if(bocUserDto.getUserId() != null && bocUserDto.getStatus() == 1) {
 //				if(StringUtils.passwordEncoder().matches(loginVM.getPassword(), bocUserDto.getPassword())) {
 				if("123456".equals(bocUserDto.getPassword())) {
-					List<BocRoleDto> listBocRoleDto = bocUserService.getListRoleByUserName(loginVM.getUsername());
-					List<String> listRole = new ArrayList<>();
-					List<BocUnitDto> listBocUnitDto = bocUserService.getListUnitByUserName(loginVM.getUsername());
-					List<String> listUnit = new ArrayList<>();
-					List<BocRoleTargetDto> listBocRoleTargetDto = bocUserService.getListRoleTargetByUserName(loginVM.getUsername());
-					List<String> listRoleTarget = new ArrayList<>();
-					if(!listBocUnitDto.isEmpty()) {
-						bocUserDto.setRegionLevel(listBocUnitDto.get(0).getRegionLevel());
-					}
-					listRole.add("DASHBOARD");
+//					List<BocRoleDto> listBocRoleDto = bocUserService.getListRoleByUserName(loginVM.getUsername());
+//					List<String> listRole = new ArrayList<>();
+//					List<BocUnitDto> listBocUnitDto = bocUserService.getListUnitByUserName(loginVM.getUsername());
+//					List<String> listUnit = new ArrayList<>();
+//					List<BocRoleTargetDto> listBocRoleTargetDto = bocUserService.getListRoleTargetByUserName(loginVM.getUsername());
+//					List<String> listRoleTarget = new ArrayList<>();
+//					if(!listBocUnitDto.isEmpty()) {
+//						bocUserDto.setRegionLevel(listBocUnitDto.get(0).getRegionLevel());
+//					}
+//					listRole.add("DASHBOARD");
 					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 					GrantedAuthority grantedAutority = new SimpleGrantedAuthority("DASHBOARD");
 					authorities.add(grantedAutority);
-					
-					// Set role for jwt user
-					for (int i = 0; i < listBocRoleDto.size(); i++) {
-						listRole.add(listBocRoleDto.get(i).getRoleCode());
-						grantedAutority = new SimpleGrantedAuthority(listBocRoleDto.get(i).getRoleCode());
-						authorities.add(grantedAutority);
-					}
-					for (int j = 0; j < listBocUnitDto.size(); j++) {
-						listUnit.add(listBocUnitDto.get(j).getUnitCode());
-					}
-					for (int j = 0; j < listBocRoleTargetDto.size(); j++) {
-						listRoleTarget.add(listBocRoleTargetDto.get(j).getRoleTargetCode());
-					}
-					bocUserDto.setPassword(null);
-					bocUserDto.setListRole(listRole);
-					bocUserDto.setListUnit(listUnit);
-					bocUserDto.setListRoleTarget(listRoleTarget);
+//
+//					// Set role for jwt user
+//					for (int i = 0; i < listBocRoleDto.size(); i++) {
+//						listRole.add(listBocRoleDto.get(i).getRoleCode());
+//						grantedAutority = new SimpleGrantedAuthority(listBocRoleDto.get(i).getRoleCode());
+//						authorities.add(grantedAutority);
+//					}
+//					for (int j = 0; j < listBocUnitDto.size(); j++) {
+//						listUnit.add(listBocUnitDto.get(j).getUnitCode());
+//					}
+//					for (int j = 0; j < listBocRoleTargetDto.size(); j++) {
+//						listRoleTarget.add(listBocRoleTargetDto.get(j).getRoleTargetCode());
+//					}
+//					bocUserDto.setPassword(null);
+//					bocUserDto.setListRole(listRole);
+//					bocUserDto.setListUnit(listUnit);
+//					bocUserDto.setListRoleTarget(listRoleTarget);
 					
 					UsernamePasswordAuthenticationToken authenticationToken =
 				            new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword(), authorities);
