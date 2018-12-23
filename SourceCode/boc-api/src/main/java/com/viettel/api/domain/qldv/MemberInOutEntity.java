@@ -45,4 +45,7 @@ public class MemberInOutEntity implements Serializable{
 
     @Column(name = "USER_OUT")
     private String userOut;
+
+    @Column(name = "BAR_CODE")
+    private String barCode;
 }

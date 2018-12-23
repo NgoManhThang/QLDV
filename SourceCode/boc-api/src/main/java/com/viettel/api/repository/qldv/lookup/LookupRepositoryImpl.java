@@ -114,7 +114,7 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
     public LookupDto scanBarcode(LookupDto dto) {
         StringBuilder sb = new StringBuilder(SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_LOOKUP, "scan-barcode"));
         if ("OUT".equals(dto.getTypeScan())) {
-            sb.append(" INNER JOIN (SELECT UNION_MEMBER_ID FROM (select UNION_MEMBER_ID from QLDV_MEMBER_INOUT ORDER BY TIME_IN DESC) WHERE ROWNUM = 1) T7 ON T1.UNION_MEMBER_ID = T7.UNION_MEMBER_ID");
+            sb.append(" INNER JOIN (SELECT UNION_MEMBER_ID FROM (select UNION_MEMBER_ID from QLDV_MEMBER_INOUT WHERE BAR_CODE = :bar_code AND TIME_OUT IS NULL ORDER BY TIME_IN DESC) WHERE ROWNUM = 1) T7 ON T1.UNION_MEMBER_ID = T7.UNION_MEMBER_ID");
         }
         sb.append(" WHERE (T1.BAR_CODE_USER = :bar_code OR T1.BAR_CODE_COMPUTER = :bar_code)");
         Map<String, String> maps = new HashMap<>();
@@ -132,6 +132,7 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
         entity.setUnionMemberId(dto.getUnionMemberId());
         entity.setUnionId(dto.getUnionId());
         entity.setUserIn(userName);
+        entity.setBarCode(dto.getBarCode());
         session.save(entity);
     }
 

@@ -1,9 +1,9 @@
 <div class="login-container">
 	<div class="login-box animated fadeInDown">
-		<!-- <div class="login-logo"></div> -->
+		<!--<div class="login-logo">HỆ THỐNG QUẢN LÝ ĐOÀN VÀO</div>-->
 		<div class="login-body">
 			<div class="login-title" style="text-align: center;">
-				<strong>Đăng nhập</strong>
+				<strong>ĐĂNG NHẬP</strong>
 			</div>
 			<div class="m-b text-normal alert alert-danger" ng-show="vm.authenticationError">
 		        <span class=""><b>{{vm.errorMessage}}</b></span>
@@ -11,7 +11,7 @@
 			<form class="form-horizontal" name="form" role="form" ng-submit="vm.login()" novalidate>
 				<div class="form-group">
 					<div class="col-md-12">
-						<input type="text" class="form-control" ng-model="vm.username" id="username" name="username" ng-maxlength="100"  ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+						<input type="text" class="form-control" ng-model="vm.username" id="username" name="username" ng-maxlength="100"  ng-pattern="/^[_'.@A-Za-z0-9-]*$/" placeholder="Tên đăng nhập" required>
 						<span ng-show="form.username.$dirty && form.username.$error.required" class="error-message">Tài khoản không được để trống</span>
 						<span ng-show="form.username.$dirty && form.username.$error.pattern" class="error-message">Tài khoản không được chứa ký tự đặc biệt</span>
 						<span ng-show="form.username.$dirty && form.username.$error.maxlength" class="error-message">Tài khoản không được vượt quá 100 ký tự</span>
@@ -19,7 +19,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-12">
-						<input type="password" id="password" name="password" class="form-control" ng-model="vm.password" ng-minlength="6" ng-maxlength="20" required>
+						<input type="password" id="password" name="password" class="form-control" ng-model="vm.password" ng-minlength="6" ng-maxlength="20" placeholder="Mật khẩu" required>
 						<span ng-show="form.password.$dirty && form.password.$error.required" class="error-message">Mật khẩu không được để trống</span>
 						<span ng-show="form.password.$dirty && form.password.$error.minlength" class="error-message">Mật khẩu không được dưới 6 ký tự</span>
 						<span ng-show="form.password.$dirty && form.password.$error.maxlength" class="error-message">Mật khẩu không được vượt quá 20 ký tự</span>

@@ -37,6 +37,7 @@ public class LookupServiceImpl implements LookupService {
         LookupDto lookupDto = lookupRepository.scanBarcode(dto);
         if (lookupDto.getUnionMemberId() != null) {
             if ("IN".equals(dto.getTypeScan())) {
+                lookupDto.setBarCode(dto.getBarCode());
                 lookupRepository.save(lookupDto);
             } else {
                 lookupRepository.update(lookupDto);
