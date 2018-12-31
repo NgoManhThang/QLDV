@@ -1,0 +1,54 @@
+--------------------------------------------------------
+--  File created - Friday-March-30-2018   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table UNIONS
+--------------------------------------------------------
+
+  CREATE TABLE "QLDV_UNIONS" ("UNION_ID" NUMBER, "UNION_NAME" VARCHAR2(200), "VIETNAMESE_NUMBER" NUMBER, "FOREIGNER_NUMBER" NUMBER, "FROM_DATE" DATE, "TO_DATE" DATE, "PARTNER_ID" NUMBER, "UNIT_ID" NUMBER, "REPRESENT_NAME" VARCHAR2(200), "REPRESENT_PHONE" VARCHAR2(50), "EMPLOYEE_ID" VARCHAR2(100), "PURPOSE" VARCHAR2(1000), "UNION_TYPE" VARCHAR2(50), "WORK_CONTENT" VARCHAR2(1000), "REASON_NOT_STATEMENT" VARCHAR2(1000), "APPR_STATUS1" VARCHAR2(1), "APPR_USER1" VARCHAR2(50), "APPR_DATE1" TIMESTAMP (6), "APPR_STATUS2" VARCHAR2(1), "APPR_USER2" VARCHAR2(50), "APPR_DATE2" TIMESTAMP (6), "APPR_STATUS3" VARCHAR2(1), "APPR_USER3" VARCHAR2(50), "APPR_DATE3" TIMESTAMP (6), "APPR_STATUS" VARCHAR2(1), "STATEMENT_ID" NUMBER, "STATUS" VARCHAR2(50), "CREATE_USER" VARCHAR2(50), "CREATE_DATE" TIMESTAMP (6), "UPDATE_USER" VARCHAR2(50), "UPDATE_DATE" TIMESTAMP (6) DEFAULT NULL, "PLACE_IDS" VARCHAR2(1000), "REASON_NOT_APP" VARCHAR2(500)) ;
+
+   COMMENT ON COLUMN "QLDV_UNIONS"."UNION_ID" IS 'ID của bảng';
+   COMMENT ON COLUMN "QLDV_UNIONS"."UNION_NAME" IS 'Tên đoàn';
+   COMMENT ON COLUMN "QLDV_UNIONS"."VIETNAMESE_NUMBER" IS 'Số người việt nam';
+   COMMENT ON COLUMN "QLDV_UNIONS"."FOREIGNER_NUMBER" IS 'Số người nước ngoài';
+   COMMENT ON COLUMN "QLDV_UNIONS"."FROM_DATE" IS 'Từ ngày';
+   COMMENT ON COLUMN "QLDV_UNIONS"."TO_DATE" IS 'Đến ngày';
+   COMMENT ON COLUMN "QLDV_UNIONS"."PARTNER_ID" IS 'ID đối tác';
+   COMMENT ON COLUMN "QLDV_UNIONS"."UNIT_ID" IS 'ID đơn vị';
+   COMMENT ON COLUMN "QLDV_UNIONS"."REPRESENT_NAME" IS 'Tên đại diện đoàn';
+   COMMENT ON COLUMN "QLDV_UNIONS"."REPRESENT_PHONE" IS 'Số điện thoại đại diện đoàn';
+   COMMENT ON COLUMN "QLDV_UNIONS"."EMPLOYEE_ID" IS 'ID nhân viên giám sát';
+   COMMENT ON COLUMN "QLDV_UNIONS"."PURPOSE" IS 'Mục đích';
+   COMMENT ON COLUMN "QLDV_UNIONS"."UNION_TYPE" IS 'Loại đoàn';
+   COMMENT ON COLUMN "QLDV_UNIONS"."WORK_CONTENT" IS 'Nội dung làm việc';
+   COMMENT ON COLUMN "QLDV_UNIONS"."REASON_NOT_STATEMENT" IS 'Lý do không có tờ trình';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_STATUS1" IS 'Trạng thái phê duyệt (A: Approve, R: Refused) mức 1';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_USER1" IS 'Người phê duyệt cấp 1';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_DATE1" IS 'Thời gian phê duyệt cấp 1';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_STATUS2" IS 'Trạng thái phê duyệt (A: Approve, R: Refused) mức 2';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_USER2" IS 'Người phê duyệt cấp 2';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_DATE2" IS 'Thời gian phê duyệt cấp 2';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_STATUS3" IS 'Trạng thái phê duyệt (A: Approve, R: Refused) mức 3';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_USER3" IS 'Người phê duyệt cấp 3';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_DATE3" IS 'Thời gian phê duyệt cấp 3';
+   COMMENT ON COLUMN "QLDV_UNIONS"."APPR_STATUS" IS 'Trạng thái phê duyệt cuối cùng (A: Approve, R: Refused)';
+   COMMENT ON COLUMN "QLDV_UNIONS"."STATEMENT_ID" IS 'ID tờ trình của đoàn';
+   COMMENT ON COLUMN "QLDV_UNIONS"."STATUS" IS 'Trạng thái hiện t';
+   COMMENT ON COLUMN "QLDV_UNIONS"."CREATE_USER" IS 'Người tạo';
+   COMMENT ON COLUMN "QLDV_UNIONS"."CREATE_DATE" IS 'Ngày giờ tạo';
+   COMMENT ON COLUMN "QLDV_UNIONS"."UPDATE_USER" IS 'Người cập nhật';
+   COMMENT ON COLUMN "QLDV_UNIONS"."UPDATE_DATE" IS 'Ngày giờ cập nhật';
+   COMMENT ON COLUMN "QLDV_UNIONS"."PLACE_IDS" IS 'Danh sách địa điểm';
+   COMMENT ON COLUMN "QLDV_UNIONS"."REASON_NOT_APP" IS 'Lý do từ chối duyệt';
+   COMMENT ON TABLE "QLDV_UNIONS"  IS 'Danh sách đoàn';
+--------------------------------------------------------
+--  DDL for Index UNIONS_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "QLDV_UNIONS_PK" ON "QLDV_UNIONS" ("UNION_ID");
+--------------------------------------------------------
+--  Constraints for Table UNIONS
+--------------------------------------------------------
+
+  ALTER TABLE "QLDV_UNIONS" MODIFY ("UNION_ID" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_UNIONS" ADD CONSTRAINT "QLDV_UNIONS_PK" PRIMARY KEY ("UNION_ID") USING INDEX  ENABLE;

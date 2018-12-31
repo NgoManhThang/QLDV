@@ -1,0 +1,38 @@
+--------------------------------------------------------
+--  File created - Friday-March-30-2018   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table STATEMENT
+--------------------------------------------------------
+
+  CREATE TABLE "QLDV_STATEMENT" ("STATEMENT_ID" NUMBER, "STATEMENT_CODE" VARCHAR2(50), "STATEMENT_NAME" VARCHAR2(200), "CONTENT" VARCHAR2(1000), "START_DATE" DATE, "END_DATE" DATE, "FILE_PATH" VARCHAR2(200), "APPENDIX_PATH" VARCHAR2(200), "SIGN_STATUS" VARCHAR2(50), "SIGN_DATE" TIMESTAMP (6), "DURATION_STATUS" VARCHAR2(50), "CREATE_USER" VARCHAR2(50), "CREATE_DATE" TIMESTAMP (6), "UPDATE_USER" VARCHAR2(50), "UPDATE_DATE" TIMESTAMP (6), "FILE_NAME" VARCHAR2(200)) ;
+
+   COMMENT ON COLUMN "QLDV_STATEMENT"."STATEMENT_ID" IS 'ID của bảng';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."STATEMENT_CODE" IS 'Mã tờ trình';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."STATEMENT_NAME" IS 'Tên tờ trình';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."CONTENT" IS 'Nội dung';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."START_DATE" IS 'Ngày bắt đầu';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."END_DATE" IS 'Ngày kết thúc';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."FILE_PATH" IS 'File trình ký';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."APPENDIX_PATH" IS 'File phụ lục';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."SIGN_STATUS" IS 'Trạng thái ký - DRAFF: Trạng thái draff, SUBMITTED: đã trình ký, REJECT: Từ chối';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."SIGN_DATE" IS 'Ngày giờ ký';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."DURATION_STATUS" IS 'Trạng thái hết hạn';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."CREATE_USER" IS 'Người tạo';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."CREATE_DATE" IS 'Ngày giờ tạo';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."UPDATE_USER" IS 'Người cập nhật';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."UPDATE_DATE" IS 'Ngày giờ cập nhật';
+   COMMENT ON COLUMN "QLDV_STATEMENT"."FILE_NAME" IS 'Tên file trình ký';
+   COMMENT ON TABLE "QLDV_STATEMENT"  IS 'Danh mục tờ trình';
+--------------------------------------------------------
+--  DDL for Index STATEMENT_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "QLDV_STATEMENT_PK" ON "QLDV_STATEMENT" ("STATEMENT_ID");
+--------------------------------------------------------
+--  Constraints for Table STATEMENT
+--------------------------------------------------------
+
+  ALTER TABLE "QLDV_STATEMENT" MODIFY ("STATEMENT_ID" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_STATEMENT" MODIFY ("STATEMENT_CODE" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_STATEMENT" ADD CONSTRAINT "QLDV_STATEMENT_PK" PRIMARY KEY ("STATEMENT_ID") USING INDEX  ENABLE;

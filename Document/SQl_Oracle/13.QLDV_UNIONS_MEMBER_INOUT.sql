@@ -1,0 +1,34 @@
+--------------------------------------------------------
+--  File created - Friday-March-30-2018   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table UNIONS_MEMBER_INOUT
+--------------------------------------------------------
+
+  CREATE TABLE "QLDV_UNIONS_MEMBER_INOUT" ("UNION_MEMBER_INOUT_ID" NUMBER, "UNION_MEMBER_ID" NUMBER, "UNION_ID" NUMBER, "TIME_IN" TIMESTAMP (6), "USER_IN" VARCHAR2(50), "REMARK_IN" VARCHAR2(500), "TIME_OUT" TIMESTAMP (6), "USER_OUT" VARCHAR2(50), "REMARK_OUT" VARCHAR2(500), "CREATE_USER" VARCHAR2(50), "CREATE_DATE" TIMESTAMP (6), "UPDATE_USER" VARCHAR2(50), "UPDATE_DATE" TIMESTAMP (6)) ;
+
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."UNION_MEMBER_INOUT_ID" IS 'ID của bảng';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."UNION_MEMBER_ID" IS 'ID thành viên';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."UNION_ID" IS 'ID đoàn vào';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."TIME_IN" IS 'Giờ vào';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."USER_IN" IS 'Username người check in';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."REMARK_IN" IS 'Ghi chú khi vào';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."TIME_OUT" IS 'Giờ ra';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."USER_OUT" IS 'Username người check out';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."REMARK_OUT" IS 'Ghi chú khi ra';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."CREATE_USER" IS 'Người tạo';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."CREATE_DATE" IS 'Ngày giờ tạo';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."UPDATE_USER" IS 'Người cập nhật';
+   COMMENT ON COLUMN "QLDV_UNIONS_MEMBER_INOUT"."UPDATE_DATE" IS 'Ngày giờ cập nhật';
+   COMMENT ON TABLE "QLDV_UNIONS_MEMBER_INOUT"  IS 'Lịch sử vào ra của thành viên trong đoàn';
+--------------------------------------------------------
+--  DDL for Index UNIONS_MEMBER_INOUT_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "QLDV_UNIONS_MEMBER_INOUT_PK" ON "QLDV_UNIONS_MEMBER_INOUT" ("UNION_MEMBER_INOUT_ID");
+--------------------------------------------------------
+--  Constraints for Table UNIONS_MEMBER_INOUT
+--------------------------------------------------------
+
+  ALTER TABLE "QLDV_UNIONS_MEMBER_INOUT" MODIFY ("UNION_MEMBER_INOUT_ID" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_UNIONS_MEMBER_INOUT" ADD CONSTRAINT "QLDV_UNIONS_MEMBER_INOUT_PK" PRIMARY KEY ("UNION_MEMBER_INOUT_ID") USING INDEX  ENABLE;

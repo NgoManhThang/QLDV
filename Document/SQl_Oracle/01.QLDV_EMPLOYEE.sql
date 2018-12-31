@@ -1,0 +1,42 @@
+--------------------------------------------------------
+--  File created - Friday-March-30-2018   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table EMPLOYEE
+--------------------------------------------------------
+
+  CREATE TABLE "QLDV_EMPLOYEE" ("EMPLOYEE_ID" NUMBER, "CODE" VARCHAR2(50), "FULL_NAME" VARCHAR2(100), "PHONE_NUMBER" VARCHAR2(50), "EMAIL" VARCHAR2(50), "UNIT_ID" NUMBER, "TITLE" VARCHAR2(100), "LEVEL_EMPLOYEE" VARCHAR2(50), "ROLE" NUMBER, "PLACE_ID" NUMBER, "COMMENTS" VARCHAR2(200), "CREATE_USER" VARCHAR2(50), "CREATE_DATE" TIMESTAMP (6), "UPDATE_USER" VARCHAR2(50), "UPDATE_DATE" TIMESTAMP (6), "USER_NAME" VARCHAR2(50), "STATUS" NUMBER) ;
+
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."EMPLOYEE_ID" IS 'ID';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."CODE" IS 'Mã nhân viên';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."FULL_NAME" IS 'Họ và tên';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."PHONE_NUMBER" IS 'Số điện thoại';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."EMAIL" IS 'Email';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."UNIT_ID" IS 'ID đơn vị';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."TITLE" IS 'Chức danh';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."LEVEL_EMPLOYEE" IS 'Cấp bậc';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."ROLE" IS 'Mức duyệt';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."PLACE_ID" IS 'Địa điểm làm việc (để check người vào ra)';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."COMMENTS" IS 'Comment';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."CREATE_USER" IS 'Người tạo';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."CREATE_DATE" IS 'Ngày giờ tạo';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."UPDATE_USER" IS 'Người cập nhật';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."UPDATE_DATE" IS 'Ngày giờ cập nhật';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."USER_NAME" IS 'User name';
+   COMMENT ON COLUMN "QLDV_EMPLOYEE"."STATUS" IS 'Trạng thái';
+   COMMENT ON TABLE "QLDV_EMPLOYEE"  IS 'Danh mục nhân viên';
+Insert into QLDV_EMPLOYEE (EMPLOYEE_ID,CODE,FULL_NAME,PHONE_NUMBER,EMAIL,UNIT_ID,TITLE,LEVEL_EMPLOYEE,ROLE,PLACE_ID,COMMENTS,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE,USER_NAME,STATUS) values (1,'192978','Nguyễn Văn Việt','0987473226','vietnv14@viettel.com.vn',421857,'NV','HDLD',0,1,null,null,null,null,null,'vietnv14',1);
+COMMIT;
+
+--------------------------------------------------------
+--  DDL for Index EMPLOYEE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "QLDV_EMPLOYEE_PK" ON "QLDV_EMPLOYEE" ("EMPLOYEE_ID", "CODE");
+--------------------------------------------------------
+--  Constraints for Table EMPLOYEE
+--------------------------------------------------------
+
+  ALTER TABLE "QLDV_EMPLOYEE" MODIFY ("EMPLOYEE_ID" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_EMPLOYEE" MODIFY ("CODE" NOT NULL ENABLE);
+  ALTER TABLE "QLDV_EMPLOYEE" ADD CONSTRAINT "QLDV_EMPLOYEE_PK" PRIMARY KEY ("EMPLOYEE_ID", "CODE") USING INDEX  ENABLE;
