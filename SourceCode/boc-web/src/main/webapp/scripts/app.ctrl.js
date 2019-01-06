@@ -96,9 +96,11 @@
 
         function loginSuccess() {
             if ($localStorage.applicationName == APP_NAME) {
-                $state.go('boc.employee');
+                $state.go('boc.lookup');
                 if ($localStorage.user != null && $localStorage.user != undefined) {
                     $scope.userLoggedIn = $localStorage.user;
+                    console.log("Log information user");
+                    console.log($localStorage.user);
                     if ($scope.userLoggedIn.fileId != null) {
                         $scope.userLoggedIn.urlFileImage = APP_REST_SERVICE + "qldv-common/getFileById?fileId=" + $scope.userLoggedIn.fileId;
                     } else {
@@ -183,19 +185,6 @@
                             "objectUrl": "boc.unions",
                             "objectRole": ""
                         },
-                        /*{
-                            "childObjects": [],
-                            "ord": 3,
-                            "parentId": -1,
-                            "status": 1,
-                            "objectId": 387933,
-                            "objectType": "M",
-                            "objectCode": "QLDV_STATEMENT",
-                            "description": "",
-                            "objectName": "Quản lý tờ trình",
-                            "objectUrl": "boc.statement",
-                            "objectRole": ""
-                        },*/
                         {
                             "childObjects": [],
                             "ord": 3,
@@ -210,7 +199,20 @@
                             "objectRole": ""
                         }
                     ];
-                    $scope.userLoggedIn.parentMenu = aaa;
+
+                    var main = [];
+
+                    if ($localStorage.user.position === "2") {
+                        $.each(aaa, function (index, obj) {
+                            if (obj.objectCode === "QLDV_LOOKUP") {
+                                main.push(obj);
+                            }
+                        })
+                    } else {
+                        main = aaa;
+                    }
+
+                    $scope.userLoggedIn.parentMenu = main;
                 }
             } else {
                 Auth.logout();

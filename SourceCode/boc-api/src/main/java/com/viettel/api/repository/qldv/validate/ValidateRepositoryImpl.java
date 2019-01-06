@@ -26,7 +26,7 @@ public class ValidateRepositoryImpl extends BaseRepository implements ValidateRe
         try {
             String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_VALIDATE, "get-employee-exist-in-unions");
             Map<String, String> maps = new HashMap<>();
-            maps.put("p_id", dto.getEmployeeId());
+            maps.put("p_id", String.valueOf(dto.getEmployeeId()));
             lst = getNamedParameterJdbcTemplate().query(sql, maps, BeanPropertyRowMapper.newInstance(UnionsDto.class));
         }catch (Exception e){
             logger.error(e.getMessage(), e);

@@ -61,7 +61,7 @@ public class CommonQldvRepositoryImpl extends BaseRepository implements CommonQl
         List<EmployeeDto> lst = new ArrayList<>();
         try {
             String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_COMMON, "get-employee-by-id-user-name");
-            Map<String, String> maps = new HashMap<>();
+            Map<String, Long> maps = new HashMap<>();
             maps.put("p_id", dto.getEmployeeId());
             lst = getNamedParameterJdbcTemplate().query(sql, maps, BeanPropertyRowMapper.newInstance(EmployeeDto.class));
         } catch (Exception e) {
@@ -75,5 +75,13 @@ public class CommonQldvRepositoryImpl extends BaseRepository implements CommonQl
         entityManager = getEntityManager();
         FilesEntity filesEntity = entityManager.find(FilesEntity.class, id);
         return filesEntity;
+    }
+
+    @Override
+    public EmployeeDto getEmployeeByUserName(String userName) {
+        String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_COMMON, "get-employee-by-user-name");
+        Map<String, String> maps = new HashMap<>();
+        maps.put("p_user_name", userName);
+        return getNamedParameterJdbcTemplate().queryForObject(sql, maps, BeanPropertyRowMapper.newInstance(EmployeeDto.class));
     }
 }

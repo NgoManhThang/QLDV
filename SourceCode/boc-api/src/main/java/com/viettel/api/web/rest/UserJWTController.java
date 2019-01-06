@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.viettel.api.dto.qldv.EmployeeDto;
+import com.viettel.api.service.boc.CommonService;
+import com.viettel.api.service.qldv.CommonQldvService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +59,9 @@ public class UserJWTController extends BaseController {
     @Autowired
     BocUserService bocUserService;
 
+    @Autowired
+	CommonQldvService commonService;
+
     public UserJWTController(BocUserService bocUserService, TokenProvider tokenProvider) {
         this.bocUserService = bocUserService;
         this.tokenProvider = tokenProvider;
@@ -64,14 +70,14 @@ public class UserJWTController extends BaseController {
     @GetMapping("/checkSession")
     @Timed
     public ResponseEntity<?> checkSession(HttpServletRequest request) {
-    	BocUserDto bocUserDto = new BocUserDto();
+    	EmployeeDto employeeDto = new EmployeeDto();
     	try {
-    		bocUserDto = (BocUserDto) httpSession.getAttribute("userToken");
+			employeeDto = (EmployeeDto) httpSession.getAttribute("userToken");
 		} catch (IllegalStateException e) {
 			log.error(e.getMessage(), e);
-			bocUserDto = null;
+			employeeDto = null;
 		}
-		return ResponseEntity.ok(bocUserDto);
+		return ResponseEntity.ok(employeeDto);
     }
     
     @GetMapping("/getCsrfToken")
@@ -97,10 +103,11 @@ public class UserJWTController extends BaseController {
     		, HttpServletRequest request) {
     	try {
     		ResultDto resultDto = new ResultDto();
-    		BocUserDto bocUserDto = bocUserService.getUserByUserName(loginVM.getUsername());
-			if(bocUserDto.getUserId() != null && bocUserDto.getStatus() == 1) {
-//				if(StringUtils.passwordEncoder().matches(loginVM.getPassword(), bocUserDto.getPassword())) {
-				if("123456".equals(bocUserDto.getPassword())) {
+//    		BocUserDto bocUserDto = bocUserService.getUserByUserName(loginVM.getUsername());
+			EmployeeDto employeeDto = commonService.getEmployeeByUserName(loginVM.getUsername());
+			if(employeeDto.getUserId() != null && employeeDto.getStatus() == 1) {
+				if(StringUtils.passwordEncoder().matches(loginVM.getPassword(), employeeDto.getPassword())) {
+//				if("123456".equals(employeeDto.getPassword())) {
 //					List<BocRoleDto> listBocRoleDto = bocUserService.getListRoleByUserName(loginVM.getUsername());
 //					List<String> listRole = new ArrayList<>();
 //					List<BocUnitDto> listBocUnitDto = bocUserService.getListUnitByUserName(loginVM.getUsername());
@@ -111,6 +118,7 @@ public class UserJWTController extends BaseController {
 //						bocUserDto.setRegionLevel(listBocUnitDto.get(0).getRegionLevel());
 //					}
 //					listRole.add("DASHBOARD");
+
 					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 					GrantedAuthority grantedAutority = new SimpleGrantedAuthority("DASHBOARD");
 					authorities.add(grantedAutority);
@@ -135,14 +143,14 @@ public class UserJWTController extends BaseController {
 					UsernamePasswordAuthenticationToken authenticationToken =
 				            new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword(), authorities);
 					boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
-					String jwt = tokenProvider.createToken(authenticationToken, rememberMe, bocUserDto);
+					String jwt = tokenProvider.createToken(authenticationToken, rememberMe, employeeDto);
 					SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 					response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
 					resultDto.setAuthToken("Bearer " + jwt);
 					resultDto.setKey("200");
-					resultDto.setObject(bocUserDto);
+					resultDto.setObject(employeeDto);
 					httpSession = getHttpSession();
-					httpSession.setAttribute("userToken", bocUserDto);
+					httpSession.setAttribute("userToken", employeeDto);
 	    			return ResponseEntity.ok(resultDto);
 				} else {
 					resultDto.setKey("400");

@@ -137,7 +137,7 @@ public class EmployeeRepositoryImpl extends BaseRepository implements EmployeeRe
         EmployeeDto employeeDto = new EmployeeDto();
         try {
             String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_EMPLOYEE, "get-detail");
-            Map<String, String> maps = new HashMap<>();
+            Map<String, Long> maps = new HashMap<>();
             maps.put("p_id", dto.getEmployeeId());
             List<EmployeeDto> list = getNamedParameterJdbcTemplate().query(sql, maps, BeanPropertyRowMapper.newInstance(EmployeeDto.class));
             if (list != null && list.size() > 0) {

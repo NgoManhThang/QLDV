@@ -48,6 +48,7 @@ var scopeHolder;
             $window.tableMainpageSizeChange = vm.pageSizeChange;
             $window.tableMaincurrentPageChange = vm.currentPageChange;
 
+
             //</editor-fold>
 
             //<editor-fold desc="Config Table">
@@ -64,7 +65,7 @@ var scopeHolder;
                     value: "tblAction",
                     checked: true,
                     disable: true,
-                    isShow: true
+                    isShow: $localStorage.user.position === '0'
                 },
                 {
                     title: $translate.instant('user.labelInput.imageUser'),
@@ -163,7 +164,8 @@ var scopeHolder;
                                 id: item.employeeId,
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
-                                width: '100'
+                                width: '100',
+                                isShow: $localStorage.user.position === '0'
                             },
                             "imageUser":{
                                 value: image,

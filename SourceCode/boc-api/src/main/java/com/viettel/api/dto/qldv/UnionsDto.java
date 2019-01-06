@@ -4,9 +4,7 @@ import com.viettel.api.domain.qldv.UnionsEntity;
 import com.viettel.api.dto.BaseDto;
 import com.viettel.api.utils.DataUtil;
 import com.viettel.api.utils.StringUtils;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class UnionsDto extends BaseDto {
     private Long unionId;
     private String unionName;
@@ -30,7 +30,7 @@ public class UnionsDto extends BaseDto {
     private Long unitId;
     private String representName;
     private String representPhone;
-    private String employeeId;
+    private Long employeeId;
     private String purpose;
     private String unionType;
     private String workContent;
@@ -45,7 +45,7 @@ public class UnionsDto extends BaseDto {
     private Timestamp createDate;
     private String updateUser;
     private Timestamp updateDate;
-    private String placeIds;
+    private Long placeIds;
     private String reasonNotApp;
     private String representUnion;
     private String representCompany;
@@ -55,12 +55,10 @@ public class UnionsDto extends BaseDto {
     private String toDateFrom;
     private String toDateTo;
     private String phoneRepresentCompany;
+
     private List<String> lstPartnerId;
     private List<String> lstUnionType;
     private List<String> lstUnionStatus;
-
-    public UnionsDto() {
-    }
 
     public UnionsEntity toEntity() {
         Logger logger = LoggerFactory.getLogger(UnionsDto.class);
@@ -79,11 +77,9 @@ public class UnionsDto extends BaseDto {
                     purpose,
                     unionType,
                     workContent,
-                    reasonNotStatement,
                     apprStatus,
                     apprUser,
                     apprDate,
-                    statementId,
                     status,
                     createUser,
                     createDate,

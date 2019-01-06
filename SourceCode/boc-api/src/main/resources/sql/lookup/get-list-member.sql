@@ -4,8 +4,6 @@ SELECT
   T2.DECODE            nationalId,
   T1.MEMBER_ID         memberId,
   T1.LAPTOP_ID         laptopId,
-  T1.APPR_STATUS       apprStatus,
-  T1.REASON_NOT_APP    reasonNotApp,
   T3.FILE_ID           fileIdCMT,
   T4.FILE_ID           fileIdComputer,
   T1.BAR_CODE_USER     barCodeUser,

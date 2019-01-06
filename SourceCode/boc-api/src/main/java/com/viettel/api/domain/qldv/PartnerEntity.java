@@ -42,7 +42,7 @@ public class PartnerEntity {
     private Timestamp updateDate;
 
     @Column(name = "STATUS")
-    private String status;
+    private Long status;
 
     @Column(name = "REPRESENT_NAME")
     private String representName;
@@ -62,7 +62,7 @@ public class PartnerEntity {
             Timestamp createDate,
             String updateUser,
             Timestamp updateDate,
-            String status,
+            Long status,
             String representName,
             String phoneRepresent
     ) {

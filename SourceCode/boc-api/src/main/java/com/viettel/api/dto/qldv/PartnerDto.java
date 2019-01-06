@@ -2,6 +2,7 @@ package com.viettel.api.dto.qldv;
 
 import com.viettel.api.domain.qldv.PartnerEntity;
 import com.viettel.api.dto.BaseDto;
+import com.viettel.api.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +44,7 @@ public class PartnerDto extends BaseDto{
                     createDate,
                     updateUser,
                     updateDate,
-                    status,
+                    StringUtils.isNotNullOrEmpty(status) ? Long.valueOf(status) : null,
                     representName,
                     phoneRepresent
             );

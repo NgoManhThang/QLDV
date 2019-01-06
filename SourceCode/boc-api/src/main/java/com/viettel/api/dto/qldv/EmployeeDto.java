@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class EmployeeDto extends BaseDto {
-    private String employeeId;
+    private Long employeeId;
     private String code;
-    private String status;
+    private Long status;
     private String userName;
     private String password;
     private String retypePassword;
@@ -33,13 +33,14 @@ public class EmployeeDto extends BaseDto {
     private String nameImage;
     private String fileId;
     private String fileIdDelete;
+    private String userId;
 
 
     public EmployeeEntity toEntity() {
         Logger logger = LoggerFactory.getLogger(EmployeeDto.class);
         try {
             EmployeeEntity entity = new EmployeeEntity(
-                    StringUtils.isNotNullOrEmpty(employeeId) ? Long.valueOf(employeeId) : null,
+                    employeeId,
                     code,
                     fullName,
                     phone,
@@ -51,7 +52,7 @@ public class EmployeeDto extends BaseDto {
                     updateDate,
                     userName,
                     password,
-                    StringUtils.isNotNullOrEmpty(status) ? Long.valueOf(status) : null
+                    status
             );
             return entity;
         } catch (Exception e) {

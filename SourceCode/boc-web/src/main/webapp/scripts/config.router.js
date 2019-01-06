@@ -22,7 +22,7 @@
     function config( $stateProvider,   $urlRouterProvider,   MODULE_CONFIG ) {
 
         $urlRouterProvider
-        .otherwise('/boc/employee');
+        .otherwise('/boc/lookup');
         //.otherwise('/access/signin');
         $stateProvider
             .state('app', {

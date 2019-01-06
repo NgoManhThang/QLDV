@@ -17,4 +17,6 @@ public interface CommonQldvRepository {
     List<EmployeeDto> getEmployeeByIdOrUserName(EmployeeDto dto);
 
     FilesEntity getFileById(Long id);
+
+    EmployeeDto getEmployeeByUserName(String userName);
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import com.viettel.api.dto.qldv.EmployeeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -81,7 +82,7 @@ public class TokenProvider {
             .compact();
     }
 
-    public String createToken(Authentication authentication, Boolean rememberMe, BocUserDto bocUserDto) {
+    public String createToken(Authentication authentication, Boolean rememberMe, EmployeeDto employeeDto) {
         String authorities = authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.joining(","));
@@ -99,7 +100,7 @@ public class TokenProvider {
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authorities)
             .claim(PASS_KEY, authentication.getCredentials().toString())
-            .claim(USER_KEY, gson.toJson(bocUserDto))
+            .claim(USER_KEY, gson.toJson(employeeDto))
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .setExpiration(validity)
             .compact();

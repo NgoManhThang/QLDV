@@ -47,7 +47,9 @@
                     var paramObj = angular.fromJson(attr.pData);
                     var tableName = paramObj.tableName === undefined ? "" : paramObj.tableName;
                     pageName = paramObj.pageName === undefined ? "" : paramObj.pageName;
-                    var lstObj = paramObj.data;
+                    // Lọc data
+                    var lstObj = filterListObj(paramObj.data);
+
                     var headerDefault = filterHeader(paramObj.headerDefault);
                     var pPropertyName = paramObj.propertyName;
                     var tblHeight = paramObj.tblHeight;
@@ -268,14 +270,28 @@
                 function filterHeader(headerDefault) {
                     var arrHead = [];
                     for (var i = 0; i < headerDefault.length; i++){
-                        if (typeof headerDefault[i].checked === "undefined"){
+                        if(!headerDefault[i].isShow){
+                            continue;
+                        }
+                        if (typeof headerDefault[i].checked === "undefined" || headerDefault[i].checked){
                             arrHead.push(headerDefault[i]);
                         }
-                        else if (headerDefault[i].checked){
-                            arrHead.push(headerDefault[i]);
-                        }
+                        // else if (headerDefault[i].checked && headerDefault[i].isShow){
+                        //     arrHead.push(headerDefault[i]);
+                        // }
                     }
                     return arrHead;
+                }
+
+                function filterListObj(lstObj) {
+                    $.each(lstObj, function (index, obj) {
+                        // Nếu set show = false thì remove cột action
+                        // Nếu không set gì thì là 'undefined' --> Không làm gì cả
+                        if(!obj.action.isShow && typeof obj.action.isShow !== 'undefined'){
+                            delete obj.action;
+                        }
+                    });
+                    return lstObj;
                 }
 
                 /**

@@ -8,6 +8,7 @@ import com.viettel.api.repository.qldv.CommonQldvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -34,5 +35,14 @@ public class CommonQldvServiceImpl implements CommonQldvService {
     @Override
     public FilesEntity getFileById(Long id) {
         return commonRepository.getFileById(id);
+    }
+
+    @Override
+    public EmployeeDto getEmployeeByUserName(String userName) {
+        try {
+            return commonRepository.getEmployeeByUserName(userName);
+        }catch (NoResultException e){
+            return new EmployeeDto();
+        }
     }
 }

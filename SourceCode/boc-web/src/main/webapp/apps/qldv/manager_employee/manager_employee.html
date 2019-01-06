@@ -29,7 +29,7 @@
         <!--<button type="button" class="btn btn-warning" tabindex="4" data-ng-click="vm.doRefresh();">
             <i class="fa fa-refresh"></i> <span data-translate="user.button.refresh"></span>
         </button>-->
-        <button type="button" class="btn btn-success" tabindex="4" data-ng-click="vm.doAddNew();">
+        <button type="button" class="btn btn-success" tabindex="4" data-ng-click="vm.doAddNew();" ng-show="userLoggedIn.position == '0'">
             <i class="fa fa-plus"></i> <span data-translate="user.button.addNew"></span>
         </button>
     </div>
@@ -39,7 +39,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title" data-translate="user.title.table"></h3>
-                <ul class="panel-controls">
+               <!-- <ul class="panel-controls">
                     <li>
                         <a href="#" class="panel-fullscreen" title="{{'global.common.expand' | translate}}">
                             <span class="fa fa-expand"></span>
@@ -48,7 +48,7 @@
                     <li>
                         <its-table-config table-config="vm.tableMainConfig"></its-table-config>
                     </li>
-                </ul>
+                </ul>-->
             </div>
             <div class="panel-body">
                 <div class="table-responsive its-table-paging its-table-custom">

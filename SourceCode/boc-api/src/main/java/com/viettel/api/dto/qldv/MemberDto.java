@@ -31,7 +31,6 @@ public class MemberDto extends BaseDto {
     private Timestamp createDate;
     private String updateUser;
     private Timestamp updateDate;
-    private String reasonNotApp;
     private String barCodeUser;
     private String barCodeComputer;
     private String unionName;
@@ -65,7 +64,6 @@ public class MemberDto extends BaseDto {
                     createDate,
                     updateUser,
                     updateDate,
-                    reasonNotApp,
                     barCodeUser,
                     barCodeComputer
             );

@@ -21,40 +21,54 @@ public class MemberEntity {
     @GeneratedValue(strategy = SEQUENCE, generator = "generator")
     @Column(name = "UNION_MEMBER_ID", unique = true)
     private Long unionMemberId;
+
     @Column(name = "UNION_ID")
     private Long unionId;
+
     @Column(name = "FULL_NAME")
     private String fullName;
+
     @Column(name = "NATIONAL_ID")
     private String nationalId;
+
     @Column(name = "MEMBER_TYPE")
     private String memberType;
+
     @Column(name = "MEMBER_ID")
     private String memberId;
+
     @Column(name = "LAPTOP_ID")
     private String laptopId;
+
     @Column(name = "BAR_CODE_PRINT")
     private Long barCodePrint;
+
     @Column(name = "APPR_STATUS")
     private String apprStatus;
+
     @Column(name = "APPR_USER")
     private String apprUser;
+
     @Column(name = "APPR_DATE")
     private Timestamp apprDate;
+
     @Column(name = "CREATE_USER")
     private String createUser;
 
     @CreationTimestamp
     @Column(name = "CREATE_DATE", updatable = false, insertable = true)
     private Timestamp createDate;
+
     @Column(name = "UPDATE_USER")
     private String updateUser;
 
     @UpdateTimestamp
     @Column(name = "UPDATE_DATE", updatable = true, insertable = false)
     private Timestamp updateDate;
-    @Column(name = "REASON_NOT_APP")
-    private String reasonNotApp;
+
+//    @Column(name = "REASON_NOT_APP")
+//    private String reasonNotApp;
+
     @Column(name = "BAR_CODE_USER")
     private String barCodeUser;
     @Column(name = "BAR_CODE_COMPUTER")
@@ -80,7 +94,6 @@ public class MemberEntity {
             Timestamp createDate,
             String updateUser,
             Timestamp updateDate,
-            String reasonNotApp,
             String barCodeUser,
             String barCodeComputer
     ) {
@@ -99,7 +112,6 @@ public class MemberEntity {
         this.createDate = createDate;
         this.updateUser = updateUser;
         this.updateDate = updateDate;
-        this.reasonNotApp = reasonNotApp;
         this.barCodeUser = barCodeUser;
         this.barCodeComputer = barCodeComputer;
     }

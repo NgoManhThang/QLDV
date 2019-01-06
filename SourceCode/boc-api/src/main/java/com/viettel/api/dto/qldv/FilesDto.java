@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FilesDto extends BaseDto {
+public class FilesDto extends CodeDecodeDto {
 	private Long fileId;
     private Long groupId;
     private Long groupFile;
