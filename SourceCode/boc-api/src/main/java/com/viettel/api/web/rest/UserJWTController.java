@@ -105,7 +105,7 @@ public class UserJWTController extends BaseController {
     		ResultDto resultDto = new ResultDto();
 //    		BocUserDto bocUserDto = bocUserService.getUserByUserName(loginVM.getUsername());
 			EmployeeDto employeeDto = commonService.getEmployeeByUserName(loginVM.getUsername());
-			if(employeeDto.getUserId() != null && employeeDto.getStatus() == 1) {
+			if(employeeDto.getUserId() != null &&  "1".equals(employeeDto.getStatus())) {
 				if(StringUtils.passwordEncoder().matches(loginVM.getPassword(), employeeDto.getPassword())) {
 //				if("123456".equals(employeeDto.getPassword())) {
 //					List<BocRoleDto> listBocRoleDto = bocUserService.getListRoleByUserName(loginVM.getUsername());

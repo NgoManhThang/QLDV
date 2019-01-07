@@ -153,14 +153,18 @@ var scopeHolder;
                 if (lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
-                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.employeeId + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
-
+                        var mainAction;
+                        var editBtn = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + item.employeeId + '\')"><i class="fa fa-edit"></i></span>';
+                        var deleteBtn =    '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+                        mainAction = editBtn;
+                        if(!vm.stringIsNotNullOrEmpty(item.unionIds)){
+                            mainAction += deleteBtn;
+                        }
                         var image = '<img class="img-circle" src="'+ vm.getUrlImageByFileId(item.fileId) +'" style="width: 50px; height: 50px;" />';
 
                         var objAdd = {
                             "action": {
-                                value: action,
+                                value: mainAction,
                                 id: item.employeeId,
                                 align: "center",
                                 header: $translate.instant('global.table.action'),

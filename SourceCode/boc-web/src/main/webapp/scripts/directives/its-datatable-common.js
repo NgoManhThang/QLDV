@@ -161,6 +161,7 @@
                                         $(td).css('padding-top', value.paddingTop + "px");
                                     }
                                     $(td).addClass('truncate');
+                                    $(td).css('vertical-align', "middle");
                                     return;
                                 }
                             });
@@ -287,7 +288,8 @@
                     $.each(lstObj, function (index, obj) {
                         // Nếu set show = false thì remove cột action
                         // Nếu không set gì thì là 'undefined' --> Không làm gì cả
-                        if(!obj.action.isShow && typeof obj.action.isShow !== 'undefined'){
+                        if(typeof obj.action !== 'undefined' && typeof obj.action.isShow !== 'undefined'
+                            && !obj.action.isShow){
                             delete obj.action;
                         }
                     });
