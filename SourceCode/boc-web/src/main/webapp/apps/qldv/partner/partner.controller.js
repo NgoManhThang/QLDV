@@ -145,17 +145,19 @@ var scopeHolder;
                         vm.lstStatus.push(obj);
                     }
                 });
+                console.log(vm.lstPartnerType);
+                console.log(vm.lstStatus);
             }, function (err) {
 
             });
         }
-        
+
         function doSearch() {
             vm.tableMainConfig.pageSize = 5;
             vm.tableMainConfig.currentPage = 1;
             vm.getListData();
         }
-        
+
         function getListData() {
             vm.loadingByIdTable("tableMain", "shown", vm.tableMainConfig.data);
             vm.objSearch.page = vm.tableMainConfig.currentPage;
@@ -168,16 +170,25 @@ var scopeHolder;
                 vm.tableMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableMainConfig.totalPage = parseInt(resp.data.draw);
                 console.log(resp);
+                console.log($localStorage.user);
                 var lstData = resp.data.data;
                 if (lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {
                         var item = lstData[i];
-                        var action = '<span title="' + $translate.instant('global.action.edit') + '" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>' +
-                            '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+                        var actionMain = '';
+                        var editBtn = '<span title="Sửa" class="btn-icon-table" onclick="window.editData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-edit"></i></span>';
+                        var deleteBtn = '<span title="' + $translate.instant('global.action.delete') + '" class="btn-icon-table" onclick="window.deleteData(\'' + encodeURIComponent(JSON.stringify(item)) + '\')"><i class="fa fa-remove"></i></span>';
+                        if (($localStorage.user.position !== '0' && item.createUser === $localStorage.user.userName)
+                                || $localStorage.user.position === '0') {
+                            actionMain = editBtn;
+                            if (!vm.stringIsNotNullOrEmpty(item.unionIds)) {
+                                actionMain += deleteBtn;
+                            }
+                        }
 
                         var objAdd = {
                             "action": {
-                                value: action,
+                                value: actionMain,
                                 id: item.partnerId,
                                 align: "center",
                                 header: $translate.instant('global.table.action'),
@@ -240,14 +251,14 @@ var scopeHolder;
                 }
             }
         }
-        
+
         function doAddNew() {
             $state.go('partner-detail');
         }
 
         function editData(temp) {
             var data = JSON.parse(decodeURIComponent(temp));
-            $state.go('partner-detail', {partnerId: data.partnerId+""});
+            $state.go('partner-detail', {partnerId: data.partnerId + ""});
         }
 
         function deleteData(temp) {

@@ -29,6 +29,8 @@ public class PartnerDto extends BaseDto{
     private String representName;
     private String phoneRepresent;
 
+    private String unionIds;
+
     public PartnerDto() {
     }
 

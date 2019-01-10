@@ -122,6 +122,7 @@ var scopeHolder;
 
         function getDetail(id) {
             PartnerService.getDetail({partnerId: id}).$promise.then(function (resp) {
+                resp.data.status = resp.data.status + "";
                 vm.detail = resp.data;
                 console.log(resp);
             }, function (err) {
