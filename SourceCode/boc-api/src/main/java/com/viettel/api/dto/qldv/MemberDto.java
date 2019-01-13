@@ -45,6 +45,9 @@ public class MemberDto extends BaseDto {
     private String fileIdDeleteComputer;
     private String fileIdComputer;
 
+    private String numPersonVN;
+    private String numPersonNN;
+
     public MemberEntity toEntity() {
         Logger logger = LoggerFactory.getLogger(MemberDto.class);
         try {
@@ -57,7 +60,6 @@ public class MemberDto extends BaseDto {
                     memberId,
                     laptopId,
                     barCodePrint,
-                    apprStatus,
                     apprUser,
                     apprDate,
                     createUser,

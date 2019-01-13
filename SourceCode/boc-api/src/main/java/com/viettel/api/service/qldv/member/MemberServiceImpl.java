@@ -9,11 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 @Service
+@Transactional
 public class MemberServiceImpl implements MemberService {
     Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
@@ -44,7 +46,19 @@ public class MemberServiceImpl implements MemberService {
             dto.setFilePathComputer(null);
             dto.setFileNameComputer(null);
         }
-        return memberRepository.saveData(dto);
+        ResultDto resultDto = memberRepository.saveData(dto);
+
+        // Update barcode for member
+        memberRepository.updateBarCode(dto);
+
+        // Get number member VN, NN by union id and national id in table name "QLDV_UNIONS_MEMBER"
+        MemberDto memberDto = memberRepository.countTypeNumPerson(dto);
+
+        // Update number member VN, NN in table name "QLDV_UNIONS"
+
+        memberRepository.updateNumPersonByUnionId(memberDto);
+
+        return resultDto;
     }
 
     @Override

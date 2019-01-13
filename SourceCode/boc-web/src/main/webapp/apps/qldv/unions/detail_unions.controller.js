@@ -136,20 +136,6 @@ var scopeHolder;
                     checked: true,
                     disable: true,
                     isShow: true
-                },
-                {
-                    title: $translate.instant('unions.member.apprStatus'),
-                    value: "apprStatus",
-                    checked: true,
-                    disable: false,
-                    isShow: true
-                },
-                {
-                    title: $translate.instant('unions.member.reasonNotApp'),
-                    value: "reasonNotApp",
-                    checked: true,
-                    disable: false,
-                    isShow: true
                 }
             ];
             vm.tableMemberMainConfig = {
@@ -242,15 +228,6 @@ var scopeHolder;
                         vm.lstNationalId.push(obj);
                     }
                 });
-                /*for (var i = 0; i < vm.lstPartnerId.length; i++) {
-                    if (parseInt(vm.detail.partnerId) === vm.lstPartnerId[i].partnerId) {
-                        vm.member.unionName = vm.lstPartnerId[i].partnerName;
-                        break;
-                    }
-                }
-                vm.member.unionId = vm.detail.unionId;
-                vm.titleMember = $translate.instant('unions.title.addMember');
-                vm.showMember = true;*/
             }, function (err) {
 
             });
@@ -258,6 +235,44 @@ var scopeHolder;
 
         function doSaveData(type) {
             if (type === 'member') {
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.fullName)){
+                    vm.showAlert("warning", "Vui lòng điền họ tên!");
+                    return;
+                }
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.memberId)){
+                    vm.showAlert("warning", "Vui lòng điền số chứng minh thư");
+                    return;
+                }
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.memberType)){
+                    vm.showAlert("warning", "Vui lòng chọn loại cá nhân");
+                    return;
+                }
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.nationalId)){
+                    vm.showAlert("warning", "Vui lòng chọn quốc tịch");
+                    return;
+                }
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.laptopId)){
+                    vm.showAlert("warning", "Vui lòng nhập serial máy tính");
+                    return;
+                }
+
+                if(!vm.stringIsNotNullOrEmpty(vm.member.fileIdCMT) && vm.fileCMT == null){
+                    vm.showAlert("warning", "Vui lòng chọn ảnh đại diện");
+                    return;
+                }
+
+                if(vm.stringIsNotNullOrEmpty(vm.member.laptopId)
+                    && !vm.stringIsNotNullOrEmpty(vm.member.fileIdComputer)
+                    && vm.fileComputer == null){
+                    vm.showAlert("warning", "Vui lòng chọn ảnh máy tính");
+                    return;
+                }
+
                 var formData = new FormData();
                 formData.append('dataString', JSON.stringify(vm.member));
                 formData.append('filesCMT', vm.fileCMT);
@@ -269,6 +284,14 @@ var scopeHolder;
                         vm.showMember = false;
                         vm.showTableMember = true;
                         vm.showAlert("success", $translate.instant('global.message.success'));
+
+                        vm.member = {
+                            fileIdCMT: null,
+                            fileIdComputer: null
+                        };
+                        vm.fileCMT = null;
+                        vm.fileComputer = null;
+
                         vm.loadMember();
                     } else {
                         vm.showAlert("danger", $translate.instant('global.message.error'));
@@ -287,6 +310,7 @@ var scopeHolder;
                     var result = resp.data.key;
                     if (result === SUCCESS) {
                         vm.detail.unionId = resp.data.id;
+                        vm.member.unionId = resp.data.id;
                         vm.showAlert("success", $translate.instant('global.message.success'));
                         // vm.doExit();
                         vm.showAddMember = true;
@@ -301,8 +325,13 @@ var scopeHolder;
         }
 
         function doAddMember() {
-            /*vm.lstMemberType = [];
-            vm.lstNationalId = [];*/
+            vm.member = {
+                fileIdCMT: null,
+                fileIdComputer: null
+            };
+            vm.fileCMT = null;
+            vm.fileComputer = null;
+
             var srcImage = vm.getUrlImageByFileId(null);
             $("#idFileCMT").attr("src", srcImage);
             vm.urlCMT = srcImage;
@@ -320,27 +349,6 @@ var scopeHolder;
             vm.member.unionId = vm.detail.unionId;
             vm.titleMember = $translate.instant('unions.title.addMember');
             vm.showMember = true;
-
-            /*QldvCommonService.search({codeGroup: 'MEMBER_TYPE,NATIONAL'}).$promise.then(function (resp) {
-                $.each(resp, function (i, obj) {
-                    if (obj.codeGroup === 'MEMBER_TYPE') {
-                        vm.lstMemberType.push(obj);
-                    } else {
-                        vm.lstNationalId.push(obj);
-                    }
-                });
-                for (var i = 0; i < vm.lstPartnerId.length; i++) {
-                    if (parseInt(vm.detail.partnerId) === vm.lstPartnerId[i].partnerId) {
-                        vm.member.unionName = vm.lstPartnerId[i].partnerName;
-                        break;
-                    }
-                }
-                vm.member.unionId = vm.detail.unionId;
-                vm.titleMember = $translate.instant('unions.title.addMember');
-                vm.showMember = true;
-            }, function (err) {
-
-            });*/
         }
 
         function doExit(type) {
@@ -350,6 +358,7 @@ var scopeHolder;
                 $stateParams.unionId = null;
                 $uibModalInstance.close();
                 $state.go('boc.unions');
+                $rootScope.$broadcast("loadDataUnions");
             }
         }
 
@@ -401,7 +410,7 @@ var scopeHolder;
                                 value: item.fullName,
                                 align: "left",
                                 header: $translate.instant('unions.member.fullName'),
-                                width: '150'
+                                width: '200'
                             },
                             "nationalId": {
                                 value: item.nationalId,
@@ -419,31 +428,19 @@ var scopeHolder;
                                 value: imageCMT,
                                 align: "center",
                                 header: $translate.instant('unions.member.fileCMT'),
-                                width: '80'
+                                width: '100'
                             },
                             "laptopId": {
                                 value: item.laptopId,
                                 align: "left",
                                 header: $translate.instant('unions.member.laptopId'),
-                                width: '170'
+                                width: '180'
                             },
                             "fileComputer":{
                                 value: imageComputer,
                                 align: "center",
                                 header: $translate.instant('unions.member.fileComputer'),
-                                width: '80'
-                            },
-                            "apprStatus": {
-                                value: item.apprStatus === null ? "" : item.apprStatus,
-                                align: "left",
-                                header: $translate.instant('unions.member.apprStatus'),
-                                width: '120'
-                            },
-                            "reasonNotApp": {
-                                value: item.reasonNotApp === null ? "" : item.reasonNotApp,
-                                align: "left",
-                                header: $translate.instant('unions.member.reasonNotApp'),
-                                width: '120'
+                                width: '100'
                             }
                         };
                         vm.tableMemberMainConfig.data.push(objAdd);

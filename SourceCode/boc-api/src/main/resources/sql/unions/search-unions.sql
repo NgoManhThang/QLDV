@@ -27,12 +27,16 @@ SELECT
   T3.FULL_NAME || ' (' || T3.PHONE_NUMBER || ')'         representCompany,
   T1.CREATE_USER                                         createUser,
   T4.DECODE                                              status,
-  T1.STATUS                                              statusValue
+  T1.STATUS                                              statusValue,
+  LISTAGG(T6.UNION_MEMBER_ID, '-')
+  WITHIN GROUP (
+    ORDER BY T6.UNION_ID)                                unionMemberIds
 FROM QLDV_UNIONS T1
   LEFT JOIN QLDV_PARTNER T2 ON T1.PARTNER_ID = T2.PARTNER_ID
   LEFT JOIN QLDV_EMPLOYEE T3 ON T1.EMPLOYEE_ID = T3.EMPLOYEE_ID
   LEFT JOIN QLDV_CODE T4 ON T1.STATUS = T4.CODE AND T4.CODE_GROUP = 'STATUS_UNIONS'
   LEFT JOIN QLDV_CODE T5 ON T1.UNION_TYPE = T5.CODE AND T5.CODE_GROUP = 'UNIONS_TYPE'
+  LEFT JOIN QLDV_UNIONS_MEMBER T6 ON T1.UNION_ID = T6.UNION_ID
 WHERE
   (
     :union_name IS NULL OR (:union_name IS NOT NULL AND upper(T1.UNION_NAME) LIKE :union_name)
@@ -62,3 +66,16 @@ WHERE
   AND (
     :to_date_to IS NULL OR (:to_date_to IS NOT NULL AND trunc(T1.TO_DATE) <= TO_DATE(:to_date_to, 'YYYYMMDD'))
   )
+GROUP BY T1.UNION_ID,
+  T1.UNION_NAME,
+  T1.PARTNER_ID,
+  T2.PARTNER_NAME,
+  T1.VIETNAMESE_NUMBER,
+  T1.FOREIGNER_NUMBER,
+  TO_CHAR(T1.FROM_DATE, 'dd/MM/yyyy'),
+  TO_CHAR(T1.TO_DATE, 'dd/MM/yyyy'),
+  T1.REPRESENT_NAME || ' (' || T1.REPRESENT_PHONE || ')',
+  T3.FULL_NAME || ' (' || T3.PHONE_NUMBER || ')',
+  T1.CREATE_USER,
+  T4.DECODE,
+  T1.STATUS

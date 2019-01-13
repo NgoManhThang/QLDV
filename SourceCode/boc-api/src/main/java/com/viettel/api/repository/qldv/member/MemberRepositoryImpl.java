@@ -13,6 +13,7 @@ import com.viettel.api.utils.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.NativeQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -29,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-@Transactional
 @SuppressWarnings("all")
 public class MemberRepositoryImpl extends BaseRepository implements MemberRepository {
     Logger logger = LoggerFactory.getLogger(MemberRepositoryImpl.class);
@@ -84,6 +84,7 @@ public class MemberRepositoryImpl extends BaseRepository implements MemberReposi
                 dto.setUpdateUser(auth.getName());
                 dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                 long id = (long) session.save(dto.toEntity());
+                dto.setUnionMemberId(id);
                 //Save file CMT
                 if (StringUtils.isNotNullOrEmpty(dto.getFilePathCMT())) {
                     filesDto.setGroupId(id);
@@ -188,5 +189,45 @@ public class MemberRepositoryImpl extends BaseRepository implements MemberReposi
             resultDto.setKey(Constants.RESULT.ERROR);
         }
         return resultDto;
+    }
+
+    @Override
+    public void updateBarCode(MemberDto dto) {
+        Session session = getSession();
+        StringBuilder sb = new StringBuilder("UPDATE QLDV_UNIONS_MEMBER ");
+        sb.append(" SET BAR_CODE_USER = :bar_code_user, BAR_CODE_COMPUTER = :bar_code_computer");
+        sb.append(" WHERE UNION_MEMBER_ID = :member_id");
+
+        NativeQuery query = session.createNativeQuery(sb.toString());
+
+        query.setParameter("bar_code_user", dto.getUnionMemberId() + dto.getMemberId());
+        query.setParameter("bar_code_computer", dto.getUnionMemberId() + dto.getLaptopId());
+        query.setParameter("member_id", dto.getUnionMemberId());
+
+        query.executeUpdate();
+    }
+
+    @Override
+    public MemberDto countTypeNumPerson(MemberDto dto) {
+        String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_MEMBER, "count-type-num-person");
+        Map<String, Long> maps = new HashMap<>();
+        maps.put("union_id", dto.getUnionId());
+        return getNamedParameterJdbcTemplate().queryForObject(sql, maps, BeanPropertyRowMapper.newInstance(MemberDto.class));
+    }
+
+    @Override
+    public void updateNumPersonByUnionId(MemberDto dto) {
+        Session session = getSession();
+        StringBuilder sb = new StringBuilder("UPDATE QLDV_UNIONS");
+        sb.append(" SET VIETNAMESE_NUMBER = :num_person_vn, FOREIGNER_NUMBER = :num_person_nn");
+        sb.append(" WHERE UNION_ID = :union_id");
+
+        NativeQuery query = session.createNativeQuery(sb.toString());
+
+        query.setParameter("num_person_vn", dto.getNumPersonVN());
+        query.setParameter("num_person_nn", dto.getNumPersonNN());
+        query.setParameter("union_id", dto.getUnionId());
+
+        query.executeUpdate();
     }
 }

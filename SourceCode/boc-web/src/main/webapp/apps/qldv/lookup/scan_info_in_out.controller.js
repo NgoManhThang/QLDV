@@ -68,16 +68,22 @@ var scopeHolder;
                     vm.showInfoLap = false;
                     vm.showInfoMember = true;
                     vm.showNone = false;
+                    var audio = new Audio('content/assets/audio/ting_ting.mp3');
+                    audio.play();
                 } else if (vm.objSearch.barCode == vm.result.barCodeComputer) {
                     vm.showScanCode = false;
                     vm.showInfoLap = true;
                     vm.showInfoMember = false;
                     vm.showNone = false;
+                    var audio = new Audio('content/assets/audio/ting_ting.mp3');
+                    audio.play();
                 } else {
                     vm.showScanCode = false;
                     vm.showInfoLap = false;
                     vm.showInfoMember = false;
                     vm.showNone = true;
+                    var audio = new Audio('content/assets/audio/fail_button.mp3');
+                    audio.play();
                 }
             }, function (err) {
 

@@ -102,6 +102,7 @@ public class UnionsRepositoryImpl extends BaseRepository implements UnionsReposi
                     dto.setUpdateUser(auth.getName());
                     dto.setUpdateDate(new Timestamp(System.currentTimeMillis()));
                     entityManager.merge(dto.toEntity());
+                    resultDto.setId(String.valueOf(entity.getUnionId()));
                 }
             }
         } catch (Exception e) {

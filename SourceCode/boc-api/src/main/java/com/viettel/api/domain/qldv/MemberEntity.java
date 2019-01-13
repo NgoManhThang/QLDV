@@ -43,8 +43,8 @@ public class MemberEntity {
     @Column(name = "BAR_CODE_PRINT")
     private Long barCodePrint;
 
-    @Column(name = "APPR_STATUS")
-    private String apprStatus;
+//    @Column(name = "APPR_STATUS")
+//    private String apprStatus;
 
     @Column(name = "APPR_USER")
     private String apprUser;
@@ -71,6 +71,7 @@ public class MemberEntity {
 
     @Column(name = "BAR_CODE_USER")
     private String barCodeUser;
+
     @Column(name = "BAR_CODE_COMPUTER")
     private String barCodeComputer;
 
@@ -87,7 +88,6 @@ public class MemberEntity {
             String memberId,
             String laptopId,
             Long barCodePrint,
-            String apprStatus,
             String apprUser,
             Timestamp apprDate,
             String createUser,
@@ -105,7 +105,6 @@ public class MemberEntity {
         this.memberId = memberId;
         this.laptopId = laptopId;
         this.barCodePrint = barCodePrint;
-        this.apprStatus = apprStatus;
         this.apprUser = apprUser;
         this.apprDate = apprDate;
         this.createUser = createUser;

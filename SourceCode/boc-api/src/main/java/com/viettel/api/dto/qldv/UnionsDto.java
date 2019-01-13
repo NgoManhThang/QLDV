@@ -55,6 +55,7 @@ public class UnionsDto extends BaseDto {
     private String toDateFrom;
     private String toDateTo;
     private String phoneRepresentCompany;
+    private String unionMemberIds;
 
     private List<String> lstPartnerId;
     private List<String> lstUnionType;

@@ -13,4 +13,10 @@ public interface MemberRepository {
     MemberDto getDetail(MemberDto dto);
 
     ResultDto delete(MemberDto dto);
+
+    void updateBarCode(MemberDto dto);
+
+    MemberDto countTypeNumPerson(MemberDto dto);
+
+    void updateNumPersonByUnionId(MemberDto dto);
 }
