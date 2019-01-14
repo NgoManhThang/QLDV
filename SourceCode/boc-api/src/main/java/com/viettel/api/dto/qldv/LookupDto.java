@@ -30,6 +30,7 @@ public class LookupDto extends BaseDto {
     private String fileIdComputer;
     private String barCodeUser;
     private String barCodeComputer;
+    private String unionMemberIdInOut;
 
     // property for form search
     private String fromDateFrom;

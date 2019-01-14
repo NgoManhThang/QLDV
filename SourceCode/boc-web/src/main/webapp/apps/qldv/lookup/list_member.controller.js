@@ -32,9 +32,19 @@ var scopeHolder;
             vm.doSearch = doSearch;
             vm.getListData = getListData;
             vm.close = close;
+            vm.btnSearchMember = btnSearchMember;
 
             vm.printBarcode = printBarcode;
             $window.printBarcode = vm.printBarcode;
+
+            vm.prevPage = prevPage;
+            vm.nextPage = nextPage;
+            vm.currentPageChange = currentPageChange;
+            vm.pageSizeChange = pageSizeChange;
+            $window.tableMainprevPage = vm.prevPage;
+            $window.tableMainnextPage = vm.nextPage;
+            $window.tableMainpageSizeChange = vm.pageSizeChange;
+            $window.tableMaincurrentPageChange = vm.currentPageChange;
             //endregion
 
             //region Config Table
@@ -119,6 +129,41 @@ var scopeHolder;
             vm.getListData();
         }
         
+        function btnSearchMember() {
+            vm.doSearch();
+        }
+
+        function prevPage() {
+            if (vm.tableLstMemberMainConfig.currentPage > 1) {
+                vm.tableLstMemberMainConfig.currentPage--;
+                vm.doSearch();
+            }
+        }
+
+        function nextPage() {
+            if (vm.tableLstMemberMainConfig.currentPage < vm.tableLstMemberMainConfig.totalPage) {
+                vm.tableLstMemberMainConfig.currentPage++;
+                vm.doSearch();
+            }
+        }
+
+        function currentPageChange(el) {
+            if ($(el).val() === "" || $(el).val() === "0") {
+                $(el).val(1);
+            }
+            if (parseInt($(el).val()) > parseInt(vm.tableLstMemberMainConfig.totalPage)) {
+                $(el).val(parseInt(vm.tableLstMemberMainConfig.totalPage));
+            }
+            vm.tableLstMemberMainConfig.currentPage = parseInt($(el).val());
+            vm.doSearch();
+        }
+
+        function pageSizeChange(el) {
+            vm.tableLstMemberMainConfig.currentPage = 1;
+            vm.tableLstMemberMainConfig.pageSize = parseInt($(el).val());
+            vm.doSearch();
+        }
+        
         function getListData() {
             vm.loadingByIdTable("tableMainListMember", "shown", vm.tableLstMemberMainConfig.data);
             vm.detail.page = vm.tableLstMemberMainConfig.currentPage;
@@ -130,7 +175,7 @@ var scopeHolder;
                 vm.tableLstMemberMainConfig.data = [];
                 vm.tableLstMemberMainConfig.totalRecord = parseInt(resp.data.recordsTotal);
                 vm.tableLstMemberMainConfig.totalPage = parseInt(resp.data.draw);
-                console.log(resp);
+                // console.log(resp);
                 var lstData = resp.data.data;
                 if (lstData != null && lstData.length > 0) {
                     for (var i = 0; i < lstData.length; i++) {

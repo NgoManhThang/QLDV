@@ -85,7 +85,11 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
         try {
             String sql = SQLBuilder.getSqlQueryById(SQLBuilder.SQL_MODULE_QLDV_LOOKUP, "get-list-member");
             Map<String, String> maps = new HashMap<>();
+
             maps.put("union_id", String.valueOf(dto.getUnionId()));
+            maps.put("full_name", StringUtils.convertUpperParamContains(dto.getFullName()));
+            maps.put("member_id", StringUtils.convertUpperParamContains(dto.getMemberId()));
+
             List<MemberDto> list = getListDataBySqlQuery(sql, maps,
                     dto.getPage(), dto.getPageSize(), MemberDto.class, true,
                     dto.getSortName(), dto.getSortType());
@@ -143,7 +147,7 @@ public class LookupRepositoryImpl extends BaseRepository implements LookupReposi
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
 
-        String sql = "SELECT UNION_MEMBER_INOUT_ID FROM (select UNION_MEMBER_INOUT_ID from QLDV_MEMBER_INOUT WHERE UNION_MEMBER_ID = :p_id ORDER BY TIME_IN DESC) WHERE ROWNUM = 1";
+        String sql = "SELECT UNION_MEMBER_INOUT_ID FROM (select UNION_MEMBER_INOUT_ID from QLDV_MEMBER_INOUT WHERE UNION_MEMBER_ID = :p_id AND TIME_OUT  IS NULL ORDER BY TIME_IN DESC) WHERE ROWNUM = 1";
         NativeQuery<BigDecimal> query = session.createNativeQuery(sql);
         query.setParameter("p_id", dto.getUnionMemberId());
         long id = query.uniqueResult().longValue();
